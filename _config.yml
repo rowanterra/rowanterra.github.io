@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Test # the website title (if blank, full name will be used instead)
+title: TestSite # the website title (if blank, full name will be used instead)
 first_name: Rowan
 middle_name: R.
 last_name: Terra
