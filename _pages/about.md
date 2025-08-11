@@ -31,4 +31,3 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 
 I have taken academic, professional, seasonal, and freelance opportunities to widen my research breadth and find my niche. I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
