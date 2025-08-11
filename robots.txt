@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://rowanterra.github.io/al-folio/sitemap.xml
+Sitemap: https://rowanterra.com/sitemap.xml
