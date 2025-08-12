@@ -409,7 +409,7 @@ ninja.data = [{
           title: 'A long announcement with details',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
+              window.location.href = "/news/announcement_break/";
             },},{id: "news-presenting-computational-prospecting-for-rare-earth-element-feedstocks-in-pennsylvania-at-the-2025-american-chemical-society-national-conference-in-washington-d-c",
           title: 'Presenting Computational prospecting for rare earth element feedstocks in Pennsylvania at the 2025...',
           description: "",
