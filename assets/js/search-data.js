@@ -410,11 +410,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+            },},{id: "news-presenting-computational-prospecting-for-rare-earth-element-feedstocks-in-pennsylvania-at-the-2025-american-chemical-society-national-conference-in-washington-d-c",
+          title: 'Presenting Computational prospecting for rare earth element feedstocks in Pennsylvania at the 2025...',
           description: "",
-          section: "News",},{id: "news-presenting-computational-prospecting-work-at-the-2025-american-chemical-society-national-conference-in-washington-d-c",
-          title: 'Presenting computational prospecting work at the 2025 American Chemical Society national conference in...',
+          section: "News",},{id: "news-presenting-recursive-modeling-connects-geochemistry-and-genomics-in-critical-minerals-characterization-and-microbiological-mining-of-critical-minerals-is-altered-by-community-modifying-metal-enrichments-at-the-geological-society-of-america-connects-2025-conference-in-san-antonio-tx",
+          title: 'Presenting Recursive Modeling Connects Geochemistry and Genomics in Critical Minerals Characterization and Microbiological...',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
@@ -495,13 +495,6 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("https://scholar.google.com/citations?user=BSpwNNoAAAAJ&hl", "_blank");
-        },
-      },{
-        id: 'social-custom_social',
-        title: 'Custom_social',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://www.alberteinstein.com/", "_blank");
         },
       },{
       id: 'light-theme',
