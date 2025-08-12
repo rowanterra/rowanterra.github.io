@@ -7,18 +7,20 @@ subtitle: '<a href="#" class="forest-link">Computational Biogeochemistry</a> Ph.
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: false
   more_info: >
-    <p> </p>
-    <p> </p>
-    <p></p>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
+
+    <div class="fb-post" data-href="https://www.facebook.com/reel/1507551226905605" data-width="320"></div>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
+  enabled: false # includes a list of news items
+  scrollable: false # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
@@ -31,3 +33,11 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 I have taken academic, professional, seasonal, and freelance opportunities to widen my research breadth and find my niche. I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions.
 
 *I anticipate searching for positions with late 2026 or early 2027 start dates.* Currently I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that < permit hybrid work >. Ultimately, I would like to work towards becoming a principal investigator in any of these settings.
+
+<div class="row">
+  <div class="col-sm-8">
+    <h2 id="news">news</h2>
+    {% include news.liquid %}
+  </div>
+</div>
+
