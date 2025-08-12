@@ -2,13 +2,13 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a class="forest-link" style="pointer-events:none; cursor:default;">Computational Biogeochemistry</a>
+subtitle: <a class="forest-link" style="pointer-events:none; cursor:default;">Computational Biogeochemistry</a> Ph.D. Candidate and ORISE Research Fellow
 
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: true
-  image_style: "width: 320px;"
+  image_circular: false
+  image_style: "width: 360px;"
   more_info: >
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMxjU-PMWRG/" data-instgrm-version="14" style="max-width: 320px; margin: auto;">
     </blockquote>
