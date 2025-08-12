@@ -6,7 +6,7 @@
     #- name: Date of Birth
       #value: X
     - name: Languages
-      value: English
+      value: English (native), Portuguese (basic)
 
 - title: Education
   type: time_table
@@ -26,6 +26,18 @@
       year: 2025
       description:
         - Description 1.
+        - Description 2.
+    - title: M.A.T. Science
+      institution: University of Pittsburgh, Pittsburgh, PA, USA
+      year: 2020
+      description:
+        - Description 1.
+        - Description 2.
+    - title: B.S. Biological Sciences
+      institution: University of Pittsburgh, Pittsburgh, PA, USA
+      year: 2020
+      description:
+        - Minors in chemistry, education, and religious studies
         - Description 2.
 
 - title: Experience
