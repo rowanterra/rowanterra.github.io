@@ -9,13 +9,9 @@ profile:
   image: prof_pic.jpg
   image_circular: false
   more_info: >
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
-
-    <div class="fb-post"
-         data-href="https://www.facebook.com/reel/1507551226905605"
-         data-width="320">
+    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMxjU-PMWRG/" data-instgrm-version="14" style="max-width: 320px; margin: auto;">
+    </blockquote>
+    <script async src="//www.instagram.com/embed.js"></script>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
