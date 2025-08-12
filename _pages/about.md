@@ -13,7 +13,9 @@ profile:
     <script async defer crossorigin="anonymous"
       src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
 
-    <div class="fb-post" data-href="https://www.facebook.com/reel/1507551226905605" data-width="320"></div>
+    <div class="fb-post"
+         data-href="https://www.facebook.com/reel/1507551226905605"
+         data-width="320">
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
