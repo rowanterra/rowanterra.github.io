@@ -421,9 +421,9 @@ ninja.data = [{
           description: "Biogeochemistry of a Single AMD System",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
+            },},{id: "projects-computational-prospecting",
+          title: 'Computational Prospecting',
+          description: "Using AMD fluids, solids, or microbes to locate critical minerals.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
             },},{id: "projects-project-3-with-very-long-name",
