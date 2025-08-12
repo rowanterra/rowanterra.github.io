@@ -4,4 +4,4 @@ title: upcoming events
 permalink: /news/
 ---
 
-{% include news.liquid %}
+{% include news.liquid %} 
