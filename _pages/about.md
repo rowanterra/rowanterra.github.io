@@ -8,10 +8,12 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false
+  image_style: "width: 320px;"
   more_info: >
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMxjU-PMWRG/" data-instgrm-version="14" style="max-width: 320px; margin: auto;">
     </blockquote>
     <script async src="//www.instagram.com/embed.js"></script>
+
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
