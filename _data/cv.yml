@@ -1,13 +1,30 @@
-- title: General Information
+- title: Basic
   type: map
   contents:
     - name: Full Name
       value: Rowan R. Terra
-    #- name: Date of Birth
-      #value: X
     - name: Languages
       value: English (native), Portuguese (basic)
 
+- title: Education
+  type: time_table
+  contents:
+    - title: Ph.D. Candidate
+      institution: Duquesne University, Pittsburgh, PA, USA
+      year: 2026
+      description:
+        - Biogeochemistry
+        - Computational
+
+- title: Experience
+  type: time_table
+  contents:
+    - title: Research Fellow
+      institution: NETL-DOE (via ORISE Fellowship)
+      year: 2023–present
+      description:
+        - Working on AMD feedstock characterization
+        - Microbiological mineral recovery research
 - title: Education
   type: time_table
   contents:
