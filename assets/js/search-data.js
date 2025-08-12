@@ -405,12 +405,10 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
+            },},{id: "news-in-this-interview-i-go-over-my-project-highlights-and-disucss-my-experience-as-an-orise-fellow",
+          title: 'In this interview, I go over my project highlights and disucss my experience...',
           description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_break/";
-            },},{id: "news-presenting-computational-prospecting-for-rare-earth-element-feedstocks-in-pennsylvania-at-the-2025-american-chemical-society-national-conference-in-washington-d-c",
+          section: "News",},{id: "news-presenting-computational-prospecting-for-rare-earth-element-feedstocks-in-pennsylvania-at-the-2025-american-chemical-society-national-conference-in-washington-d-c",
           title: 'Presenting Computational prospecting for rare earth element feedstocks in Pennsylvania at the 2025...',
           description: "",
           section: "News",},{id: "news-presenting-recursive-modeling-connects-geochemistry-and-genomics-in-critical-minerals-characterization-and-microbiological-mining-of-critical-minerals-is-altered-by-community-modifying-metal-enrichments-at-the-geological-society-of-america-connects-2025-conference-in-san-antonio-tx",
