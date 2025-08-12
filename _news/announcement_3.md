@@ -6,17 +6,5 @@ inline: true
 related_posts: false
 ---
 
-In this interview, I go over my project highlights and disucss my experience as an ORISE fellow.
+[In this interview](https://www.facebook.com/reel/1507551226905605), I go over my project highlights and discuss my experience as an ORISE fellow.
 
----
-
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
-
-<div style="display: flex; justify-content: center; margin: 20px 0;">
-  <div class="fb-post"
-       data-href="https://www.facebook.com/reel/1507551226905605"
-       data-width="320">
-  </div>
-</div>
