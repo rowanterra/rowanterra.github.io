@@ -416,9 +416,9 @@ ninja.data = [{
           section: "News",},{id: "news-presenting-recursive-modeling-connects-geochemistry-and-genomics-in-critical-minerals-characterization-and-microbiological-mining-of-critical-minerals-is-altered-by-community-modifying-metal-enrichments-at-the-geological-society-of-america-connects-2025-conference-in-san-antonio-tx",
           title: 'Presenting Recursive Modeling Connects Geochemistry and Genomics in Critical Minerals Characterization and Microbiological...',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
+          section: "News",},{id: "projects-spatiotemporal-surveys",
+          title: 'Spatiotemporal Surveys',
+          description: "Biogeochemistry of a Single AMD System",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
             },},{id: "projects-project-2",
