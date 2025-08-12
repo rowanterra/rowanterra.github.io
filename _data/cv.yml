@@ -2,28 +2,28 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Rowan R. Terra
+    #- name: Date of Birth
+      #value: X
     - name: Languages
-      value: English, German
+      value: English
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Ph.D. Candidate
+      institution: Duquesne University, Pittsburgh, PA, USA
+      year: 2026
       description:
-        - Description 1.
-        - Description 2.
+        - Biogeochemistry 
+        - Computaitonal
         - title: Description 3.
           contents:
             - Sub-description 1.
             - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+    - title: Graduate Continuing Education Credits
+      institution: Carnegie Mellon University, Pittsburgh, PA, USA
+      year: 2025
       description:
         - Description 1.
         - Description 2.
@@ -82,11 +82,11 @@
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Computational Biogeochemistry
       items:
         - Description 1.
         - Description 2.
-    - title: Topic 2.
+    - title: Biological Mining
       items:
         - Description 1.
         - Description 2.
