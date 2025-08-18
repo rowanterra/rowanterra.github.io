@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a class="forest-link" style="pointer-events:none; cursor:default;">Computational Biogeochemistry</a> Ph.D. Candidate and ORISE Research Fellow
+subtitle:  <span class="fake-link">Computational Biogeochemistry</span> Ph.D. Candidate and ORISE Research Fellow
 
 profile:
   align: right
