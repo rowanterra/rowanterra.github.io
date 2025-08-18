@@ -30,9 +30,9 @@ latest_posts:
 ---
 I am a Ph.D. candidate conducting research on biogeochemical processes in abandoned mine drainage at <a href="https://www.duq.edu/academics/colleges-and-schools/science-and-engineering/academics/departments-and-programs/biological-sciences/index.php">Duquesne University</a> and <a href="https://edx.netl.doe.gov/sites/geomicrobiology/">NETL-DOE</a> under an <a href="https://orise.orau.gov/index.html">ORISE</a> research fellowship. My current projects characterize AMD feedstocks using field and computational methods while also exploring microbiological avenues for critical mineral extraction and recovery.
 
-I have taken academic, professional, seasonal, and freelance opportunities to widen my research breadth and find my niche. I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions.
+I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions.
 
-*I anticipate searching for positions with late 2026 or early 2027 start dates.* Currently I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that < permit hybrid work >. Ultimately, I would like to work towards becoming a principal investigator in any of these settings.
+*I anticipate searching for positions with late 2026 or early 2027 start dates.* I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that mesh laboratory and computational work and permit *remote or hybrid work*. Ultimately, I would like to work towards becoming a principal investigator in any of these settings.
 
 <div class="row">
   <div class="col-12 col-md-12 col-lg-12">
