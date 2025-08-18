@@ -35,9 +35,10 @@ I have taken academic, professional, seasonal, and freelance opportunities to wi
 *I anticipate searching for positions with late 2026 or early 2027 start dates.* Currently I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that < permit hybrid work >. Ultimately, I would like to work towards becoming a principal investigator in any of these settings.
 
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-12 col-md-12 col-lg-12">
     <h2 id="news">news</h2>
     {% include news.liquid %}
   </div>
 </div>
+
 
