@@ -41,13 +41,6 @@ I have a decade of research experience spanning biological, chemical, ecological
   </div>
 </div>
 
-<!-- New full-width row just for publications -->
-<div class="row">
-  <div class="col-12 col-md-12 col-lg-12">
-    <h2 id="publications">selected publications</h2>
-    {% include publications.liquid %}
-  </div>
-</div>
 
 
 
