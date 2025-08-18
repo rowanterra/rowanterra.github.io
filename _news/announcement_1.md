@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Presenting *Computational prospecting for rare earth element feedstocks in Pennsylvania* at the 2025 American Chemical Society national conference in Washington, D.C.
+Presenting [*Computational prospecting for rare earth element feedstocks in Pennsylvania*](https://acs.digitellinc.com/live/35/session/559096) at the 2025 American Chemical Society national conference in Washington, D.C.
