@@ -15,7 +15,7 @@ profile:
     <script async src="//www.instagram.com/embed.js"></script>
 
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
@@ -40,5 +40,13 @@ I have a decade of research experience spanning biological, chemical, ecological
     {% include news.liquid %}
   </div>
 </div>
+
+<div class="row">
+  <div class="col-12">
+    <h2 id="publications">selected publications</h2>
+    {% include selected_papers.liquid %}
+  </div>
+</div>
+
 
 
