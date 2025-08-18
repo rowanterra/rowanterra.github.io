@@ -45,7 +45,7 @@ I have a decade of research experience spanning biological, chemical, ecological
 <div class="row">
   <div class="col-12 col-md-12 col-lg-12">
     <h2 id="publications">selected publications</h2>
-    {% include news.liquid %}
+    {% include publications.liquid %}
   </div>
 </div>
 
