@@ -32,7 +32,7 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 
 I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions.
 
-*I anticipate searching for positions with late 2026 or early 2027 start dates.* I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that mesh laboratory and computational work and permit *remote or hybrid work*. Ultimately, I would like to work towards becoming a principal investigator in any of these settings.
+*I anticipate searching for positions with late 2026 or early 2027 start dates.* I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that mesh laboratory and computational work and permit *hybrid work*. Ultimately, I would like to work towards becoming a principal investigator in any of these settings.
 
 <div class="row">
   <div class="col-12 col-md-12 col-lg-12">
@@ -43,7 +43,7 @@ I have a decade of research experience spanning biological, chemical, ecological
 
 <!-- New full-width row just for publications -->
 <div class="row">
-  <div class="col-12">
+  <div class="col-12 col-md-12 col-lg-12>
     <h2 id="publications">selected publications</h2>
     {% include selected_papers.liquid %}
   </div>
