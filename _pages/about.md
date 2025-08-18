@@ -43,7 +43,7 @@ I have a decade of research experience spanning biological, chemical, ecological
 
 <!-- New full-width row just for publications -->
 <div class="row">
-  <div class="col-10>
+  <div class="col-12>
     <h2 id="publications">selected publications</h2>
     {% include selected_papers.liquid %}
   </div>
