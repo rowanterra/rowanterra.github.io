@@ -27,7 +27,10 @@ latest_posts:
 ---
 I am a Ph.D. candidate conducting research on biogeochemical processes in abandoned mine drainage at <a href="https://www.duq.edu/academics/colleges-and-schools/science-and-engineering/academics/departments-and-programs/biological-sciences/index.php">Duquesne University</a> and <a href="https://edx.netl.doe.gov/sites/geomicrobiology/">NETL-DOE</a> under an <a href="https://orise.orau.gov/index.html">ORISE</a> research fellowship. My current projects (1) characterize AMD feedstocks using field and computational methods while also (2) exploring microbiological mining for critical mineral extraction and recovery. 
 
-<img src="/assets/img/models_website.jpg" alt="description" style="width:300px; float:right; margin: 0 0 15px 15px;">
+
+<div style="text-align:center;">
+  <img src="/assets/img/model_images.png" alt="description" style="width:300px;">
+</div>
 
 
 I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions.
