@@ -37,7 +37,7 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 .responsive-image img {
   display: block;
   margin: 0 auto;
-  width: 550px;   /* default for larger screens */
+  width: 575px;   /* default for larger screens */
 }
 
 /* On smaller screens (mobile) */
