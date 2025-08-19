@@ -9,10 +9,7 @@ profile:
   image: prof_pic.jpg
   image_circular: false
   image_style: "width: 360px;"
-  more_info: >
-    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DMxjU-PMWRG/" data-instgrm-version="14" style="max-width: 320px; margin: auto;">
-    </blockquote>
-    <script async src="//www.instagram.com/embed.js"></script>
+
 
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
@@ -32,7 +29,7 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 
 I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions.
 
-*I anticipate searching for positions with late 2026 or early 2027 start dates.* I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that mesh laboratory and computational work and permit *hybrid work*. Ultimately, I would like to work towards becoming a principal investigator in any of these settings.
+*I anticipate searching for positions with late 2026 or early 2027 start dates.* I am open to work in academic, government, or industry positions with a preference for multi-disciplinary laboratories that mesh laboratory and computational work. Ultimately, I would like be or work towards becoming a principal investigator under any of these settings.
 
 <div class="row">
   <div class="col-12 col-md-12 col-lg-12">
