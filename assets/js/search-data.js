@@ -405,8 +405,8 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-in-this-interview-i-go-over-my-project-highlights-and-discuss-my-experience-as-an-orise-fellow",
-          title: 'In this interview, I go over my project highlights and discuss my experience...',
+            },},{id: "news-in-this-interview-i-discuss-my-ph-d-projects-and-my-experience-as-an-orise-fellow",
+          title: 'In this interview, I discuss my Ph.D. projects and my experience as an...',
           description: "",
           section: "News",},{id: "news-presenting-computational-prospecting-for-rare-earth-element-feedstocks-in-pennsylvania-at-the-2025-american-chemical-society-national-conference-in-washington-d-c",
           title: 'Presenting Computational prospecting for rare earth element feedstocks in Pennsylvania at the 2025...',
