@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Presenting two talks: *Recursive Modeling Connects Geochemistry and Genomics in Critical Minerals Characterization* and *Microbiological Mining of Critical Minerals is Altered by Community Modifying Metal Enrichments* at the Geological Society of America Connects 2025 conference in San Antonio, TX.
+Presenting two talks: (1) *Recursive Modeling Connects Geochemistry and Genomics in Critical Minerals Characterization* and (2) *Microbiological Mining of Critical Minerals is Altered by Community Modifying Metal Enrichments* at the Geological Society of America Connects 2025 conference in San Antonio, TX.
