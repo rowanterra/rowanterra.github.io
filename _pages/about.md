@@ -30,18 +30,18 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 
 
 <div class="responsive-image">
-  <img src="/assets/img/model_images.png" alt="description">
+  <img src="/assets/img/model_fixed.png" alt="description">
 </div>
 
 <style>
 .responsive-image img {
   display: block;
   margin: 0 auto;
-  width: 500px;   /* default for larger screens */
+  width: 550px;   /* default for larger screens */
 }
 
 /* On smaller screens (mobile) */
-@media (max-width: 768px) {
+@media (max-width: 400px) {
   .responsive-image img {
     width: 375px;
   }
