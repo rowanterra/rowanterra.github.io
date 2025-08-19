@@ -29,7 +29,7 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 
 
 <div style="text-align:center;">
-  <img src="/assets/img/model_images.png" alt="description" style="width:300px;">
+  <img src="/assets/img/model_images.png" alt="description" style="width:600px;">
 </div>
 
 
