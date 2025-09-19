@@ -83,6 +83,13 @@
       items:
         - Provost's Award for Outstanding Graduate Research
 
+- title: Grants
+  type: time_table
+  contents:
+    - year: 2025
+      items:
+        - Geological Society of America, $3,000
+
 
 - title: Academic Interests
   type: nested_list
