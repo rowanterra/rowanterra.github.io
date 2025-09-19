@@ -1,24 +1,24 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Rowan Terra",
+    "label": "Compuational Biogeochemist",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "email": "rowan.r.terra(at)gmail(dot)com",
+    "phone": "",
+    "url": "rowanterra.com",
+    "summary": "Ph.D. candidate and ORISE research fellow studying critical mineral aquisition and extraction from abandoned coal mine draiange",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "",
+      "postalCode": "",
+      "city": "",
+      "countryCode": "",
+      "region": ""
     },
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "network": "",
+        "username": "",
+        "url": ""
       }
     ]
   },
@@ -137,7 +137,7 @@
   "skills": [
     {
       "name": "Physics",
-      "level": "Master",
+      "level": "Doctoral",
       "icon": "fa-solid fa-hashtag",
       "keywords": [
         "Quantum Mechanics",
@@ -151,40 +151,33 @@
   ],
   "languages": [
     {
-      "language": "German",
+      "language": "English",
       "fluency": "Native speaker",
       "icon": ""
     },
-    {
-      "language": "English",
-      "fluency": "Fluent",
-      "icon": ""
-    }
-  ],
   "interests": [
     {
-      "name": "Physics",
+      "name": "Biogeochemistry",
       "icon": "fa-solid fa-tag",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Microbiological Mining",
+        "Computational Prospecting",
+        "Novel Biomolecule Discovery",
+        "Synthetic Biology",
+        "Bio-inspired Ligands",
       ]
     }
   ],
   "references": [
     {
-      "name": "Professor John Doe",
+      "name": "Dr. Djuna Gulliver",
       "icon": "fa-solid fa-laptop",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
+      "reference": "Dr. Djuna Gulliver is my supervisor at NETL that can provide reference material and approve collaboration work."
     },
     {
-      "name": "Professor John Doe",
+      "name": "Dr. Nancy Trun",
       "icon": "fa-solid fa-thumbtack",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
+      "reference": "Dr. Nancy Trun is my supervisor at Duquesne that can provide reference materials"
     }
   ],
   "projects": [
