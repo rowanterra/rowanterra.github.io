@@ -40,22 +40,18 @@
             - Sub-description 2.
     - title: Graduate Continuing Education Credits
       institution: Carnegie Mellon University, Pittsburgh, PA, USA
-      year: 2025
+      year: 2023-2025
       description:
-        - Description 1.
-        - Description 2.
+        - Advanced Microbiology, Transition Metal Chemistry
     - title: M.A.T. Science
       institution: University of Pittsburgh, Pittsburgh, PA, USA
       year: 2020
       description:
-        - Description 1.
-        - Description 2.
     - title: B.S. Biological Sciences
       institution: University of Pittsburgh, Pittsburgh, PA, USA
       year: 2020
       description:
         - Minors in chemistry, education, and religious studies
-        - Description 2.
 
 - title: Experience
   type: time_table
@@ -94,13 +90,10 @@
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2023
       items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+        - Provost's Award for Outstanding Graduate Research
+
 
 - title: Academic Interests
   type: nested_list
