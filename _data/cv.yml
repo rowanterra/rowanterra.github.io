@@ -62,25 +62,14 @@
       description:
         - Testing1
         - Testing2
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
 
     - title: Principal
       institution: Terra Artificial Intelligence (terrai)
       year: 2023 - current 
-
-    - title: X
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
+  
+    - title: Scientist
+      institution: Cernositcs 
+      year: 2021-2022
 
     - title: High School Science Educator
       institution: Pittsburgh Public Schools and Oakland Catholic
