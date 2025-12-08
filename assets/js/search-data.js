@@ -382,7 +382,7 @@ ninja.data = [{
           title: 'Presenting two talks: (1) Recursive Modeling Connects Geochemistry and Genomics in Critical Minerals...',
           description: "",
           section: "News",},{id: "news-presenting-a-microbiological-basis-for-critical-mineral-aquisiton-from-abandoned-coal-mines-in-pa-at-the-duquesne-biology-fall-2025-seminar-series",
-          title: 'Presenting [*A Microbiological Basis for Critical Mineral Aquisiton from Abandoned Coal Mines in...',
+          title: 'Presenting A Microbiological Basis for Critical Mineral Aquisiton from Abandoned Coal Mines in...',
           description: "",
           section: "News",},{id: "projects-spatiotemporal-surveys",
           title: 'Spatiotemporal Surveys',
