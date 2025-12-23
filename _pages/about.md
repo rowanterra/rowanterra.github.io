@@ -2,10 +2,10 @@
 layout: about
 title: about
 permalink: /
-subtitle:  <span style="color:#1a73e8; font-weight:500;">
+subtitle: |
   Computational Biogeochemistry
-</span><br>
-Ph.D. Candidate and ORISE Research Fellow
+  Ph.D. Candidate and ORISE Research Fellow
+
 
 
 profile:
