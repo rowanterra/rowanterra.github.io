@@ -2,9 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: |
-  Computational Biogeochemistry
-  Ph.D. Candidate and ORISE Research Fellow
+subtitle: Computational Biogeochemistry    Ph.D. Candidate and ORISE Research Fellow
 
 
 
