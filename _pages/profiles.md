@@ -28,55 +28,55 @@ nav_order: 7
 ## Students Mentored During Ph.D. Studies
 
 - **K. Kelly**  
-  *Department of Biological Sciences*, Duquesne University  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
 - **A. Strassner**  
-  *Department of Biological Sciences*, Duquesne University  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
 - **J. Bowman**  
-  *Department of Computer Science*, Duquesne University  
+  *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
 - **C. Crawford**  
-  *Department of Computer Science*, Duquesne University  
+  *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
 - **J. Ramon**  
-  *Department of Computer Science*, Duquesne University  
+  *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
 - **N. Daalgard**  
-  *Department of Computer Science*, Duquesne University  
+  *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
 - **T. Kellman**  
-  *Department of Environmental Science*, Duquesne University  
+  *Department of Environmental Science*, Duquesne University<br>
   Year(s): 2026  
 
 - **I. Cann**  
-  *Department of Biological Sciences*, Duquesne University  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2023–2026  
 
 - **P. DiGirolamo**  
-  *Department of Biological Sciences*, Duquesne University  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
 - **C. Pugh**  
-  *Department of Biological Sciences*, Duquesne University  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
 - **R. Sumner**  
-  *Department of Biological Sciences*, Duquesne University  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
 - **M. Lamke**  
-  *Department of Biological Sciences*, Duquesne University  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
-- **N. Lamagrana**  
-  *Department of Biological Sciences*, Duquesne University  
+- **N. Lamagna**  
+  *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2022–2023  
 
 
