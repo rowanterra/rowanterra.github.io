@@ -24,8 +24,8 @@ ninja.data = [{
             window.location.href = "/cv/";
           },
         },{id: "nav-people",
-          title: "People",
-          description: "Students mentored by R. Terra",
+          title: "people",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/people/";
