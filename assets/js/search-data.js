@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "cv",
-          description: "A truncated one-page resume with recent experience can be found here. Please reach out to me for my full CV.",
+          description: "A truncated one-page resume with recent experience can be found here. Please email me for a full CV.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
