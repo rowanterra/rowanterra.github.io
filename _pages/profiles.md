@@ -51,4 +51,17 @@ nav_order: 7
 | **A. Thiele** | Psychologie und Psychotherapie | Technische Universität Braunschweig | 2024 |
 | **N. Lamagna ‡** | Biological Sciences | Duquesne University | 2022–2023 |
 
+---
+
+## Principal Investigators and Mentors
+
+*Institutional affiliations reflect appointments during the period of mentorship.*
+
+| Name | Role | Area of Expertise | Department | Institution |
+|------|------|------------------|------------|-------------|
+| **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Department of Biological Sciences | Duquesne University |
+| **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
+| **C. Lopano, Ph.D.** | Research Mentor | Geochemistry | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
+| **K. Kokka, Ed.D.** | Education Research Mentor | STEM Education and Equity | School of Education | University of Pittsburgh |
+
 
