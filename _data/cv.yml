@@ -13,8 +13,8 @@
       institution: Duquesne University, Pittsburgh, PA, USA
       year: 2026
       description:
-        - Biogeochemistry
-        - Computational
+        - Geomicrobiology
+        - Computational Biogeochemistry
 
 - title: Experience
   type: time_table
@@ -23,8 +23,9 @@
       institution: NETL-DOE (via ORISE Fellowship)
       year: 2023–present
       description:
-        - Working on AMD feedstock characterization
+        - Critical mineral feedstock characterization
         - Microbiological mineral recovery research
+        
 - title: Education
   type: time_table
   contents:
