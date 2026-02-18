@@ -55,13 +55,13 @@ nav_order: 7
 
 ## Principal Investigators and Mentors
 
-*Institutional affiliations reflect appointments during the period of mentorship.*
+*Institutional affiliations reflect appointments as of 2026.*
 
-| Name | Role | Area of Expertise | Department | Institution |
-|------|------|------------------|------------|-------------|
-| **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Department of Biological Sciences | Duquesne University |
-| **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
-| **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
-| **K. Kokka, Ed.D.** | MAT Advisor | STEM Education and Equity | School of Education | University of Pittsburgh |
+| Name | Role | Area of Expertise | Institution |
+|------|------|-------------------|-------------|
+| **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Duquesne University |
+| **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | DOE-NETL
+| **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | DOE-NETL
+| **K. Kokka, Ed.D.** | MAT Advisor | STEM Education | University of Nevada, Las Vegas |
 
 
