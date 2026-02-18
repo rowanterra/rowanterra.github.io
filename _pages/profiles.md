@@ -35,20 +35,20 @@ nav_order: 7
 
 | Name | Department | Institution | Years |
 |------|------------|-------------|-------|
-| **J. Bowman‡** | Computer Science | Duquesne University | 2026 |
-| **I. Cann‡** | Biological Sciences | Duquesne University | 2023–2026 |
-| **C. Crawford‡** | Computer Science | Duquesne University | 2026 |
-| **N. Daalgard‡** | Computer Science | Duquesne University | 2026 |
-| **P. DiGirolamo‡** | Biological Sciences | Duquesne University | 2025–2026 |
-| **K. Kelly‡** | Biological Sciences | Duquesne University | 2025–2026 |
-| **T. Kellman‡** | Environmental Science | Duquesne University | 2026 |
+| **J. Bowman ‡** | Computer Science | Duquesne University | 2026 |
+| **I. Cann ‡** | Biological Sciences | Duquesne University | 2023–2026 |
+| **C. Crawford ‡** | Computer Science | Duquesne University | 2026 |
+| **N. Daalgard ‡** | Computer Science | Duquesne University | 2026 |
+| **P. DiGirolamo ‡** | Biological Sciences | Duquesne University | 2025–2026 |
+| **K. Kelly ‡** | Biological Sciences | Duquesne University | 2025–2026 |
+| **T. Kellman ‡** | Environmental Science | Duquesne University | 2026 |
 | **M. Lamke** | Biological Sciences | Duquesne University | 2025–2026 |
 | **C. Pugh** | Biological Sciences | Duquesne University | 2025–2026 |
-| **J. Ramon‡** | Computer Science | Duquesne University | 2026 |
+| **J. Ramon ‡** | Computer Science | Duquesne University | 2026 |
 | **A. Strassner** | Biological Sciences | Duquesne University | 2025–2026 |
 | **R. Sumner** | Biological Sciences | Duquesne University | 2025–2026 |
 | **M. Meinzer** | Psychologie und Psychotherapie | Technische Universität Braunschweig | 2024 |
 | **A. Thiele** | Psychologie und Psychotherapie | Technische Universität Braunschweig | 2024 |
-| **N. Lamagna‡** | Biological Sciences | Duquesne University | 2022–2023 |
+| **N. Lamagna ‡** | Biological Sciences | Duquesne University | 2022–2023 |
 
 
