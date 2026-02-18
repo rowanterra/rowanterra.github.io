@@ -20,6 +20,9 @@ nav_order: 7
     <p>
     Their doctoral research focuses on the coupled geochemical and microbial controls on metal mobility and critical mineral recovery in abandoned mine drainage (AMD) systems, with particular emphasis on 3d- and 4f-block metals in Appalachian coal basins. Rowan integrates environmental microbiology, chemistry, and data science to develop holistic frameworks for understanding and predicting microbe–metal interactions in mining-impacted environments.
     </p>
+    <p>
+    Rowan’s commitment to multidisciplinary research has led to collaborations across multiple departments and institutions. During their Ph.D. studies, they have prioritized undergraduate research training and skills development, resulting in numerous students contributing as co-authors on peer-reviewed publications and manuscripts in preparation.
+    </p>
   </div>
 </div>
 
