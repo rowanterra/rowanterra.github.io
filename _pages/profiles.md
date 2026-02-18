@@ -28,7 +28,7 @@ nav_order: 7
 
 ---
 
-## Students Mentored During Ph.D. Studies
+## Students Mentored
 
 † Contributed significantly to a published manuscript.  
 ‡ Contributed significantly to a manuscript in preparation or under review.
@@ -62,6 +62,6 @@ nav_order: 7
 | **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Department of Biological Sciences | Duquesne University |
 | **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
 | **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
-| **K. Kokka, Ed.D.** | Education Research Mentor | STEM Education and Equity | School of Education | University of Pittsburgh |
+| **K. Kokka, Ed.D.** | MAT Advisor | STEM Education and Equity | School of Education | University of Pittsburgh |
 
 
