@@ -4,6 +4,10 @@ permalink: /cv/
 title: cv
 nav: true
 nav_order: 5
-cv_pdf: RRT_Resume_03.2026.pdf # you can also use external links here
-description: This CV page is under construction, with more to come soon. A one-page resume is available via PDF here. 
+description: A truncated one-page resume with recent experience can be found here. Please reach out to me for my full CV.
 ---
+
+<embed src="{{ '/assets/pdf/RRT_Resume_03.2026.pdf' | relative_url }}" 
+       type="application/pdf" 
+       width="100%" 
+       height="1000px" />
