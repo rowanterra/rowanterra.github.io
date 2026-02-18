@@ -60,8 +60,8 @@ nav_order: 7
 | Name | Role | Area of Expertise | Institution |
 |------|------|-------------------|-------------|
 | **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Duquesne University |
-| **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | DOE-NETL
-| **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | DOE-NETL
+| **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | U.S. Department of Energy, National Energy Technology Laboratory |
+| **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | U.S. Department of Energy, National Energy Technology Laboratory |
 | **K. Kokka, Ed.D.** | MAT Advisor | STEM Education | University of Nevada, Las Vegas |
 
 
