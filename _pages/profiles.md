@@ -21,17 +21,12 @@ nav_order: 7
     Their doctoral research focuses on the coupled geochemical and microbial controls on metal mobility and critical mineral recovery in abandoned mine drainage (AMD) systems, with particular emphasis on 3d- and 4f-block metals in Appalachian coal basins. Rowan integrates environmental microbiology, chemistry, and data science to develop holistic frameworks for understanding and predicting microbe–metal interactions in mining-impacted environments.
     </p>
     <p>
-    Rowan’s commitment to multidisciplinary research has led to collaborations across multiple departments and institutions. During their Ph.D. studies, they have prioritized undergraduate research training and skills development, resulting in numerous students contributing as co-authors on peer-reviewed publications and manuscripts in preparation.
+    Rowan’s commitment to multidisciplinary research has led to collaborations across multiple departments and institutions. During their Ph.D. studies, they have prioritized research training and skills development of undergraduate and graduate students in the lab, resulting in numerous students contributing as co-authors on peer-reviewed publications and manuscripts in preparation.
     </p>
   </div>
 </div>
 
 ---
-
-## Students Mentored During Ph.D. Studies
-
-† Contributed significantly to a published manuscript.  
-‡ Contributed significantly to a manuscript in preparation or under review.
 
 ## Students Mentored During Ph.D. Studies
 
@@ -52,6 +47,8 @@ nav_order: 7
 | **J. Ramon‡** | Computer Science | Duquesne University | 2026 |
 | **A. Strassner** | Biological Sciences | Duquesne University | 2025–2026 |
 | **R. Sumner** | Biological Sciences | Duquesne University | 2025–2026 |
+| **M. Meinzer** | Psychologie und Psychotherapie | Technische Universität Braunschweig | 2024 |
+| **A. Thiele** | Psychologie und Psychotherapie | Technische Universität Braunschweig | 2024 |
 | **N. Lamagna‡** | Biological Sciences | Duquesne University | 2022–2023 |
 
 
