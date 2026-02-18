@@ -27,7 +27,10 @@ nav_order: 7
 
 ## Students Mentored During Ph.D. Studies
 
-- **K. Kelly**  
+† Contributed significantly to a published manuscript.  
+‡ Contributed significantly to a manuscript in preparation or under review.
+
+- **K. Kelly‡**  
   *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
@@ -35,31 +38,31 @@ nav_order: 7
   *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
-- **J. Bowman**  
+- **J. Bowman‡**  
   *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
-- **C. Crawford**  
+- **C. Crawford‡**  
   *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
-- **J. Ramon**  
+- **J. Ramon‡**  
   *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
-- **N. Daalgard**  
+- **N. Daalgard‡**  
   *Department of Computer Science*, Duquesne University<br>
   Year(s): 2026  
 
-- **T. Kellman**  
+- **T. Kellman‡**  
   *Department of Environmental Science*, Duquesne University<br>
   Year(s): 2026  
 
-- **I. Cann**  
+- **I. Cann‡**  
   *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2023–2026  
 
-- **P. DiGirolamo**  
+- **P. DiGirolamo‡**  
   *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
@@ -75,7 +78,7 @@ nav_order: 7
   *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2025–2026  
 
-- **N. Lamagna**  
+- **N. Lamagna‡**  
   *Department of Biological Sciences*, Duquesne University<br>
   Year(s): 2022–2023  
 
