@@ -61,7 +61,7 @@ nav_order: 7
 |------|------|------------------|------------|-------------|
 | **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Department of Biological Sciences | Duquesne University |
 | **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
-| **C. Lopano, Ph.D.** | Research Mentor | Geochemistry | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
+| **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | National Energy Technology Laboratory (NETL) | U.S. Department of Energy |
 | **K. Kokka, Ed.D.** | Education Research Mentor | STEM Education and Equity | School of Education | University of Pittsburgh |
 
 
