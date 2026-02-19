@@ -30,6 +30,8 @@ nav_order: 7
 
 ## Students Mentored
 
+*Institutional affiliations reflect appointments during time of mentorship.*
+
 † Contributed significantly to a published manuscript.  
 ‡ Contributed significantly to a manuscript in preparation or under review.
 
