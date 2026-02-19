@@ -44,7 +44,7 @@ nav_order: 7
 | **T. Kellman ‡** | Environmental Science | Duquesne University | 2026 |
 | **M. Lamke** | Biological Sciences | Duquesne University | 2025–2026 |
 | **C. Pugh** | Biological Sciences | Duquesne University | 2025–2026 |
-| **J. Ramon ‡** | Computer Science | Duquesne University | 2026 |
+| **J. Rahman ‡** | Computer Science | Duquesne University | 2026 |
 | **A. Strassner** | Biological Sciences | Duquesne University | 2025–2026 |
 | **R. Sumner** | Biological Sciences | Duquesne University | 2025–2026 |
 | **M. Meinzer** | Psychologie und Psychotherapie | Technische Universität Braunschweig | 2024 |
