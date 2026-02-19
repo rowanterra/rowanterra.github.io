@@ -38,7 +38,7 @@ nav_order: 7
 | **J. Bowman ‡** | Computer Science | Duquesne University | 2026 |
 | **I. Cann ‡** | Biological Sciences | Duquesne University | 2023–2026 |
 | **C. Crawford ‡** | Computer Science | Duquesne University | 2026 |
-| **N. Daalgard ‡** | Computer Science | Duquesne University | 2026 |
+| **N. Dalgaard ‡** | Computer Science | Duquesne University | 2026 |
 | **P. DiGirolamo ‡** | Computer Science | Stevens Institute of Technology | 2025–2026 |
 | **K. Kelly ‡** | Biological Sciences | Duquesne University | 2025–2026 |
 | **T. Kellman ‡** | Environmental Science | Duquesne University | 2026 |
