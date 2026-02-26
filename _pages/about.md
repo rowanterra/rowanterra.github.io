@@ -29,12 +29,10 @@ latest_posts:
 ---
 I am a Ph.D. candidate conducting research on biogeochemical processes in abandoned mine drainage (AMD) at <a href="https://www.duq.edu/academics/colleges-and-schools/science-and-engineering/academics/departments-and-programs/biological-sciences/index.php">Duquesne University</a> and <a href="https://edx.netl.doe.gov/sites/geomicrobiology/">NETL-DOE</a> under an <a href="https://orise.orau.gov/index.html">ORISE</a> research fellowship. My current projects (1) characterize AMD feedstocks using field and computational methods while also (2) exploring microbiological mining for critical mineral (CMM) extraction and recovery. Three manuscripts are currently under review or in preparation, with several others expected in the next tweleve months. 
 
-
-
 <div class="responsive-image">
   <img
     src="/assets/img/model_fixed.png"
-    alt="description"
+    alt="AMD modeling figure"
     loading="lazy"
     decoding="async"
   >
@@ -52,16 +50,19 @@ I am a Ph.D. candidate conducting research on biogeochemical processes in abando
 }
 </style>
 
-
-I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions. More information can be found in my CV. 
+I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multi-disciplinary approaches to scientific questions. More information can be found in my CV.
 
 *I anticipate searching for post-doctoral or industry positions with late 2026 or early 2027 start dates.* I am open to work in academic, government, or industry settings, with a preference for multi-disciplinary laboratories that mesh bench and computational work. Ultimately, I would like to work towards becoming a principal investigator in any of these environments.
 
-<div class="row">
-  <div class="col-12 col-md-12 col-lg-12">
-    <h2 id="news">news</h2>
-    {% include news.liquid %}
-  </div>
+## news
+{% include news.liquid %}
+<div class="responsive-image">
+  <img
+    src="/assets/img/model_fixed.png"
+    alt="description"
+    loading="lazy"
+    decoding="async"
+  >
 </div>
 
 
