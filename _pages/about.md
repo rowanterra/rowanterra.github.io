@@ -56,14 +56,6 @@ I have a decade of research experience spanning biological, chemical, ecological
 
 ## news
 {% include news.liquid %}
-<div class="responsive-image">
-  <img
-    src="/assets/img/model_fixed.png"
-    alt="description"
-    loading="lazy"
-    decoding="async"
-  >
-</div>
 
 
 
