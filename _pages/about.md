@@ -27,7 +27,7 @@ latest_posts:
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
-I am a Ph.D. candidate conducting research on biogeochemical processes in abandoned mine drainage (AMD) at <a href="https://www.duq.edu/academics/colleges-and-schools/science-and-engineering/academics/departments-and-programs/biological-sciences/index.php">Duquesne University</a> and <a href="https://edx.netl.doe.gov/sites/geomicrobiology/">NETL-DOE</a> under an <a href="https://orise.orau.gov/index.html">ORISE</a> research fellowship. My current projects (1) characterize AMD feedstocks using field and computational methods while also (2) exploring microbiological mining for critical mineral (CMM) extraction and recovery. Three manuscripts are currently under review or in preparation, with several others expected in the next tweleve months. 
+I am a Ph.D. candidate conducting research on biogeochemical processes in abandoned mine drainage (AMD) at <a href="https://www.duq.edu/academics/colleges-and-schools/science-and-engineering/academics/departments-and-programs/biological-sciences/index.php">Duquesne University</a> and <a href="https://edx.netl.doe.gov/sites/geomicrobiology/">NETL-DOE</a> under an <a href="https://orise.orau.gov/index.html">ORISE</a> research fellowship. My current projects (1) characterize AMD feedstocks using field and computational methods while also (2) exploring microbiological mining for critical mineral (CMM) extraction and recovery. Several manuscripts are currently under review or in preparation spanning these directives. 
 
 <div class="responsive-image">
   <img
