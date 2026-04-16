@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Solutions Calculator</title>
+<style>
+/* ─── RESET & TOKENS ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #3a4538;
+  --card:      #e8dcc8;
+  --navy:      #1e1810;
+  --rust:      #c05820;
+  --gold:      #b8a040;
+  --olive:     #4a7a30;
+  --steel:     #3878a8;
+  --border:    #c8b898;
+  --muted:     #6a5e48;
+  --shadow:    0 2px 12px rgba(30,25,15,0.15);
+  --mono:      'Courier New', Courier, monospace;
+  --body:      'Aptos', 'Aptos Display', Calibri, 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  color: var(--navy);
+  min-height: 100vh;
+  padding: 1.75rem 1rem 4rem;
+  line-height: 1.5;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────── */
+header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+header h1 {
+  font-family: var(--body);
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #e8dcc8;
+  letter-spacing: -0.01em;
+}
+
+header h1 em {
+  font-style: normal;
+  color: #e8dcc8;
+}
+
+header p {
+  color: #a8a088;
+  font-size: 0.88rem;
+  margin-top: 0.25rem;
+}
+
+/* ─── LAYOUT ─────────────────────────────────────────────── */
+.top-row {
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.math-row {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── CARDS ──────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.15rem;
+  box-shadow: var(--shadow);
+}
+
+.card-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--rust);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── FORM ───────────────────────────────────────────────── */
+.field { margin-bottom: 0.7rem; }
+.field:last-child { margin-bottom: 0; }
+
+.field > label {
+  display: block;
+  font-size: 0.77rem;
+  font-weight: 600;
+  margin-bottom: 0.28rem;
+  color: var(--navy);
+}
+
+input[type=text],
+input[type=number],
+select {
+  width: 100%;
+  padding: 0.48rem 0.7rem;
+  border: 1.5px solid #c8b898;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #1e1810;
+  background: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+select option {
+  background: #ffffff;
+  color: #1e1810;
+}
+
+input[type=number] { -moz-appearance: textfield; }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button { display: none; }
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #b8a040;
+  box-shadow: 0 0 0 3px rgba(184,160,64,0.15);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 86px;
+  gap: 0.5rem;
+}
+
+.hint {
+  font-size: 0.71rem;
+  color: var(--muted);
+  margin-top: 0.28rem;
+  line-height: 1.4;
+}
+
+.hint.warn { color: #e09060; }
+
+/* ─── AUTOCOMPLETE ───────────────────────────────────────── */
+.ac-wrap { position: relative; }
+
+#ac-list {
+  position: absolute;
+  z-index: 300;
+  top: calc(100% + 2px);
+  left: 0; right: 0;
+  background: #ffffff;
+  border: 1.5px solid #c8b898;
+  border-radius: 0 0 8px 8px;
+  max-height: 240px;
+  overflow-y: auto;
+  display: none;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.30);
+}
+
+#ac-list.open { display: block; }
+
+.ac-item {
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  border-bottom: 1px solid #c8b898;
+}
+.ac-item:last-child { border-bottom: none; }
+.ac-item:hover, .ac-item.hi { background: #f0e8d8; }
+
+.ac-name   { font-size: 0.83rem; font-weight: 600; color: #1e1810; }
+.ac-formula{ font-family: var(--mono); font-size: 0.77rem; color: #6a5e48; }
+.ac-mw     { font-size: 0.71rem; color: #6a5e48; float: right; margin-top: 1px; }
+
+/* ─── TOGGLE ─────────────────────────────────────────────── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.4rem 0 0;
+}
+.toggle-row input[type=checkbox] { width: auto; cursor: pointer; }
+.toggle-row label { font-size: 0.78rem; font-weight: 400; cursor: pointer; color: var(--muted); margin: 0; }
+
+#neq-field    { display: none; }
+#neq-field.show { display: block; }
+#density-field{ display: none; }
+#density-field.show { display: block; }
+
+/* ─── BOARD ──────────────────────────────────────────────── */
+.board {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem 1.3rem;
+  box-shadow: var(--shadow);
+  min-height: 120px;
+}
+
+.board-inner {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 1.3rem;
+  align-items: start;
+}
+
+.board-steps {
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.board-steps::-webkit-scrollbar { width: 4px; }
+.board-steps::-webkit-scrollbar-track { background: transparent; }
+.board-steps::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.board-result {
+  border-left: 1px solid var(--border);
+  padding-left: 1.15rem;
+}
+
+.board-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── MATH STEPS ─────────────────────────────────────────── */
+.m-step { margin-bottom: 0.85rem; }
+
+.m-lbl {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.m-eq {
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  color: #1e1810;
+  line-height: 1;
+}
+
+.m-eq .ln {
+  display: block;
+  padding: 0.15rem 0 0.15rem 0.9rem;
+  line-height: 1.55;
+}
+
+.m-eq .v  { color: var(--rust); font-weight: 600; }
+.m-eq .d  { color: var(--muted); }
+.m-eq .u  { color: var(--olive); }
+.m-eq .w  { color: #b33; font-weight: 600; }
+.m-eq .b  { color: var(--steel); font-weight: 600; }
+
+.m-div {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0.75rem 0;
+}
+
+/* ─── ANSWER ─────────────────────────────────────────────── */
+.m-ans-lbl {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+.m-ans-val {
+  font-family: var(--mono);
+  font-size: 1.85rem;
+  color: var(--rust);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.m-ans-unit {
+  font-size: 0.95rem;
+  color: #1e1810;
+  font-weight: normal;
+  margin-left: 0.2rem;
+}
+
+.m-ans-also {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+/* ─── PREP STEPS ─────────────────────────────────────────── */
+.m-prep { margin-top: 0.9rem; }
+
+.m-prep-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-bottom: 0.45rem;
+}
+
+.m-prep-item {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  color: #1e1810;
+  line-height: 1.45;
+}
+
+.m-prep-num {
+  font-family: var(--mono);
+  color: var(--rust);
+  font-size: 0.7rem;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ─── EMPTY STATE ────────────────────────────────────────── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty .icon { font-size: 2rem; margin-bottom: 0.7rem; opacity: 0.3; }
+.empty p { font-size: 0.8rem; line-height: 1.6; }
+
+/* ─── LABEL ──────────────────────────────────────────────── */
+.label-wrap {
+  border: 1.5px dashed #c8b898;
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem 0.6rem;
+  background: #f5eed8;
+  margin-bottom: 0.7rem;
+  position: relative;
+}
+
+.label-wrap.active {
+  border-style: solid;
+  border-color: #c8b898;
+}
+
+.label-badge {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.7rem;
+  background: #e8dcc8;
+  padding: 0 0.35rem;
+  font-size: 0.58rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6a5e48;
+}
+
+.lbl-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.lbl-formula {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e1810;
+}
+
+.lbl-name {
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.lbl-hr { border: none; border-top: 1px solid var(--border); margin: 0.3rem 0; }
+
+.lbl-amount {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: #1e1810;
+}
+
+.lbl-arrow { color: var(--rust); font-weight: 700; }
+
+.lbl-conc {
+  font-family: var(--mono);
+  font-size: 0.71rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.lbl-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.lbl-meta-item {
+  font-size: 0.67rem;
+  color: var(--muted);
+}
+
+.lbl-meta-item input {
+  display: inline;
+  width: 80px;
+  padding: 0 0.25rem;
+  font-size: 0.67rem;
+  font-family: var(--mono);
+  border: none;
+  border-bottom: 1px solid #c8b898;
+  border-radius: 0;
+  background: transparent;
+  color: #1e1810;
+}
+
+.lbl-meta-item input:focus {
+  outline: none;
+  border-bottom-color: #b8a040;
+  box-shadow: none;
+}
+
+.lbl-store-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  font-size: 0.67rem;
+  color: var(--muted);
+}
+.lbl-store-row span.lbl-store-label { margin-right: 0.1rem; }
+.lbl-store-opt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.4rem;
+  padding: 0 0.3rem;
+  border: 1.5px solid #c8b898;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.12s;
+  line-height: 1;
+}
+.lbl-store-opt:hover { border-color: var(--navy); color: var(--navy); }
+.lbl-store-opt.selected {
+  background: var(--navy);
+  color: var(--card);
+  border-color: var(--navy);
+}
+
+.lbl-empty { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 0.5rem 0; }
+
+/* ─── BUTTONS ────────────────────────────────────────────── */
+.btn-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+.btn {
+  padding: 0.48rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.14s;
+}
+
+.btn-primary { background: #3a4538; color: #e8dcc8; }
+.btn-primary:hover { background: #3a5030; transform: translateY(-1px); }
+
+.btn-ghost { background: transparent; color: #3a3020; border: 1.5px solid #c8b898; }
+.btn-ghost:hover { background: #d8ccb0; }
+.btn:active { transform: scale(0.97); }
+
+/* ─── BASIS TOGGLE ───────────────────────────────────────── */
+.basis-group {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid #c8b898;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 0.35rem;
+}
+
+.basis-btn {
+  flex: 1;
+  padding: 0.42rem 0.4rem;
+  background: #f0e8d8;
+  border: none;
+  border-right: 1px solid #c8b898;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #3a3020;
+  transition: all 0.13s;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.basis-btn:last-child { border-right: none; }
+
+.basis-btn.active {
+  background: #3a4538;
+  color: #e8dcc8;
+  font-weight: 700;
+}
+
+.basis-btn:hover { background: #d8ccb8; color: #1e1810; }
+
+#basis-anhydrous-field,
+#basis-metal-field { display: none; margin-top: 0.6rem; }
+#basis-anhydrous-field.show,
+#basis-metal-field.show { display: block; }
+
+.basis-fields-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+
+
+/* ─── STERILIZE ──────────────────────────────────────────── */
+.m-sterile { margin-top: 0; }
+
+.m-sterile-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.4px;
+}
+
+.m-sterile-auto {
+  background: #3a5030;
+  color: #a8d898;
+  border: 1px solid #4a6838;
+}
+
+.m-sterile-filt {
+  background: #2a4050;
+  color: #90c0e0;
+  border: 1px solid #385870;
+}
+
+.m-sterile-unk {
+  background: #504828;
+  color: #d0c080;
+  border: 1px solid #6a5a38;
+}
+
+.m-sterile-text {
+  font-size: 0.74rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+
+/* ─── SMILES FIELD ───────────────────────────────────────── */
+#smiles-field.shaded {
+  opacity: 0.38;
+  pointer-events: none;
+  user-select: none;
+}
+#smiles-field.shaded input { background: #f0e8d8; }
+#smiles-status.loading { color: var(--muted); animation: spin 0.8s linear infinite; }
+#smiles-status.ok      { color: #2a6020; }
+#smiles-status.err     { color: #b33; }
+@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+.m-sterile-text strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+
+/* ═══ TABS ═══════════════════════════════════════════════ */
+.tab-bar {
+  max-width: 1200px;
+  margin: 0 auto 1.1rem;
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #c8b898;
+}
+
+.tab-btn {
+  padding: 0.55rem 1.4rem;
+  border: none;
+  background: transparent;
+  font-family: var(--body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #a8a088;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.13s, border-color 0.13s;
+}
+
+.tab-btn:hover { color: #e8dcc8; }
+.tab-btn.active { color: #e8dcc8; border-bottom-color: var(--rust); }
+
+/* ═══ MULTI-COMPONENT ═════════════════════════════════════ */
+.mc-header {
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+}
+
+.mc-header-grid {
+  display: grid;
+  grid-template-columns: 1fr 200px 200px;
+  gap: 1rem;
+  align-items: end;
+}
+
+.mc-body {
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+}
+
+/* component row */
+.mc-row {
+  display: grid;
+  grid-template-columns: 2fr 1.1fr 90px 110px 86px 70px 28px;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.mc-row:last-child { border-bottom: none; }
+
+.mc-row-head {
+  display: grid;
+  grid-template-columns: 2fr 1.1fr 90px 110px 86px 70px 28px;
+  gap: 0.45rem;
+  padding: 0 0 0.4rem;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 0.1rem;
+}
+
+.mc-col-hd {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+}
+
+.mc-row input, .mc-row select {
+  padding: 0.32rem 0.5rem;
+  font-size: 0.8rem;
+  border: 1.5px solid #c8b898;
+  border-radius: 5px;
+  background: #ffffff;
+  font-family: inherit;
+  color: #1e1810;
+  width: 100%;
+}
+
+.mc-row input:focus, .mc-row select:focus {
+  outline: none;
+  border-color: #b8a040;
+  box-shadow: 0 0 0 2px rgba(184,160,64,0.15);
+}
+
+.mc-formula-input { font-family: var(--mono) !important; font-size: 0.75rem !important; }
+
+.mc-mass {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--rust);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.mc-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.12s;
+}
+
+.mc-remove:hover { color: #b33; }
+
+.mc-name-wrap { position: relative; }
+.mc-ac-list {
+  position: absolute;
+  z-index: 400;
+  top: calc(100% + 2px);
+  left: 0; right: 0;
+  background: #ffffff;
+  border: 1.5px solid #c8b898;
+  border-radius: 0 0 7px 7px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.30);
+  min-width: 260px;
+}
+
+.mc-ac-list.open { display: block; }
+
+.mc-ac-item {
+  padding: 0.42rem 0.7rem;
+  cursor: pointer;
+  border-bottom: 1px solid #c8b898;
+  font-size: 0.78rem;
+  color: #1e1810;
+}
+.mc-ac-item:last-child { border-bottom: none; }
+.mc-ac-item:hover, .mc-ac-item.mc-hi { background: #f0e8d8; }
+.mc-ac-item .ac-formula { font-family: var(--mono); font-size: 0.72rem; color: #6a5e48; }
+
+/* MC results */
+.mc-results-row {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1rem;
+  align-items: start;
+}
+
+.mc-board { }
+
+.mc-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.mc-summary-table th {
+  text-align: left;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mc-summary-table td {
+  padding: 0.3rem 0.5rem;
+  color: #1e1810;
+  border-bottom: 1px solid #c8b898;
+  vertical-align: middle;
+}
+
+.mc-summary-table td.mass-val {
+  color: var(--rust);
+  font-weight: 700;
+}
+
+.mc-summary-table tr:last-child td { border-bottom: none; }
+
+.mc-total-row {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+}
+
+@media (max-width: 900px) {
+  .mc-results-row { grid-template-columns: 1fr; }
+  .mc-header-grid { grid-template-columns: 1fr 1fr; }
+  .mc-row { grid-template-columns: 1fr 1fr 80px 28px; }
+  .mc-row-head { display: none; }
+  .top-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .top-row { grid-template-columns: 1fr; }
+  .board-inner { grid-template-columns: 1fr; }
+  .board-result {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 1rem;
+    margin-top: 0.75rem;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Stock Solutions <em>Calculator</em></h1>
+  <p>Enter your compound and goal to see the step-by-step math and print a bottle label.</p>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" id="tab-btn-single" onclick="switchTab('single')">Single Compound</button>
+  <button class="tab-btn"        id="tab-btn-multi"  onclick="switchTab('multi')">Multi-Component</button>
+</div>
+
+<div id="tab-single">
+<div class="top-row">
+
+  <!-- ═══ COL 1: COMPOUND ══════════════════════ -->
+  <div class="card">
+    <div class="card-label">① Compound</div>
+
+    <div class="field">
+      <label for="search">Search compound</label>
+      <div class="ac-wrap">
+        <input type="text" id="search" placeholder="e.g. cobalt chloride, NaCl…" autocomplete="off">
+        <div id="ac-list"></div>
+      </div>
+    </div>
+
+    <div class="field" id="smiles-field">
+      <label for="smiles">SMILES <span style="font-weight:400;color:var(--muted)">(paste to auto-fill MW)</span></label>
+      <div style="position:relative">
+        <input type="text" id="smiles" placeholder="e.g. [Co](Cl)Cl or CC(=O)O" style="font-family:var(--mono);padding-right:2.2rem" autocomplete="off" spellcheck="false">
+        <span id="smiles-status" style="position:absolute;right:0.55rem;top:50%;transform:translateY(-50%);font-size:0.8rem"></span>
+      </div>
+      <p class="hint" id="smiles-hint">Paste any SMILES string to look up MW and formula via PubChem. Or use the search above.</p>
+    </div>
+
+    <div class="field">
+      <label for="formula">Display formula <span style="font-weight:400;color:var(--muted)">(for label)</span></label>
+      <input type="text" id="formula" placeholder="e.g. CoCl₂·6H₂O" style="font-family:var(--mono)">
+      <p class="hint">Auto-filled from search or SMILES lookup. Edit for label display.</p>
+    </div>
+
+    <div class="field">
+      <label for="mw">Molecular weight (g/mol)</label>
+      <input type="number" id="mw" placeholder="e.g. 237.93" step="0.001" min="0">
+      <p class="hint">Use the hydrated MW if weighing a hydrate.</p>
+    </div>
+
+    <div class="field">
+      <label for="purity">Purity / assay (%)</label>
+      <input type="number" id="purity" value="100" step="0.1" min="0.01" max="100">
+    </div>
+
+    <div class="toggle-row">
+      <input type="checkbox" id="is-liquid">
+      <label for="is-liquid">Liquid reagent (pipette volume)</label>
+    </div>
+
+    <div class="field" id="density-field" style="margin-top:0.55rem">
+      <label for="density">Density (g/mL)</label>
+      <input type="number" id="density" placeholder="e.g. 1.18 for conc. HCl" step="0.001" min="0">
+    </div>
+  </div>
+
+  <!-- ═══ COL 2: GOAL ═══════════════════════════ -->
+  <div class="card">
+    <div class="card-label">② Your Goal</div>
+
+    <div class="field">
+      <label>Target concentration</label>
+      <div class="pair">
+        <input type="number" id="conc" placeholder="e.g. 10" step="any" min="0">
+        <select id="conc-unit">
+          <option value="M">M</option>
+          <option value="mM" selected>mM</option>
+          <option value="µM">µM</option>
+          <option value="nM">nM</option>
+          <option value="ppm">ppm</option>
+          <option value="ppb">ppb</option>
+          <option value="% w/v">% w/v</option>
+          <option value="mg/mL">mg/mL</option>
+          <option value="mg/L">mg/L</option>
+          <option value="µg/L">µg/L</option>
+          <option value="g/L">g/L</option>
+          <option value="N">N</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" id="neq-field">
+      <label for="neq">Equivalents / mole (n-factor)</label>
+      <input type="number" id="neq" value="1" min="1" step="1">
+      <p class="hint">Acids/bases: H⁺ or OH⁻ donated. Redox: electrons transferred.</p>
+    </div>
+
+    <div class="field">
+      <label>Final volume</label>
+      <div class="pair">
+        <input type="number" id="vol" placeholder="e.g. 500" step="any" min="0">
+        <select id="vol-unit">
+          <option value="mL" selected>mL</option>
+          <option value="L">L</option>
+          <option value="µL">µL</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="ppm-note" class="hint" style="display:none">
+      <strong>Note:</strong> 1 ppm = 1 mg/L for dilute aqueous solutions.
+    </div>
+
+    <div class="field" style="margin-top:0.6rem">
+      <label>Concentration expressed as</label>
+      <div class="basis-group">
+        <button class="basis-btn active" data-basis="full"      onclick="setBasis('full')">Full compound<br><span style="font-size:0.67rem;opacity:0.7">as weighed</span></button>
+        <button class="basis-btn"        data-basis="anhydrous" onclick="setBasis('anhydrous')">Anhydrous salt<br><span style="font-size:0.67rem;opacity:0.7">ignore H₂O</span></button>
+        <button class="basis-btn"        data-basis="metal"     onclick="setBasis('metal')">Metal only<br><span style="font-size:0.67rem;opacity:0.7">cation basis</span></button>
+      </div>
+
+      <div id="basis-anhydrous-field">
+        <div class="field" style="margin-bottom:0;margin-top:0.5rem">
+          <label for="mw-anhydrous">Anhydrous MW (g/mol)</label>
+          <input type="number" id="mw-anhydrous" placeholder="e.g. 129.84 for CoCl₂" step="0.001" min="0">
+        </div>
+      </div>
+
+      <div id="basis-metal-field">
+        <div class="basis-fields-inner" style="margin-top:0.5rem">
+          <div class="field" style="margin-bottom:0">
+            <label for="metal-sym">Element</label>
+            <input type="text" id="metal-sym" placeholder="Co" style="font-family:var(--mono)" maxlength="4">
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="mw-metal">Atomic mass (g/mol)</label>
+            <input type="number" id="mw-metal" placeholder="58.93" step="0.001" min="0">
+          </div>
+        </div>
+        <div class="field" style="margin-top:0.45rem;margin-bottom:0">
+          <label for="metal-count">Metal atoms per formula unit</label>
+          <input type="number" id="metal-count" value="1" min="1" step="1">
+          <p class="hint">Usually 1. Use 2 for e.g. Al₂(SO₄)₃.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ COL 3: BOTTLE LABEL ════════════════════ -->
+  <div class="card" id="label-card">
+    <div class="card-label">③ Bottle Label</div>
+
+    <div class="label-wrap" id="label-wrap">
+      <span class="label-badge">Preview</span>
+      <div id="label-body">
+        <p class="lbl-empty">Fill in Compound and Goal…</p>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="saveLabelPng('label-wrap')">Save PNG</button>
+      <button class="btn btn-ghost"   onclick="copyLabel()" id="copy-btn">Copy</button>
+    </div>
+  </div>
+
+</div><!-- /.top-row -->
+
+<!-- ═══ MATH ROW ══════════════════════════════════════════ -->
+<div class="math-row">
+  <div class="board" id="board">
+    <div class="empty" id="empty-state">
+      <div class="icon"></div>
+      <p>Fill in compound and goal above. The step-by-step math will appear here.</p>
+    </div>
+    <div id="math-content" style="display:none">
+      <div class="board-title" id="board-heading"></div>
+      <div class="board-inner">
+        <div class="board-steps" id="board-steps"></div>
+        <div class="board-result" id="board-result"></div>
+      </div>
+    </div>
+  </div>
+</div><!-- /.math-row -->
+</div><!-- /#tab-single -->
+
+<!-- ═══ TAB 2: MULTI-COMPONENT ══════════════════════════════ -->
+<div id="tab-multi" style="display:none">
+
+  <div class="mc-header card">
+    <div class="mc-header-grid">
+      <div class="field" style="margin-bottom:0">
+        <label for="mc-name">Solution name</label>
+        <input type="text" id="mc-name" placeholder="e.g. 1x PBS, LB Broth, TAE buffer…" oninput="mcCalc()">
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label>Final volume</label>
+        <div class="pair">
+          <input type="number" id="mc-vol" placeholder="500" value="500" step="any" min="0" oninput="mcCalc()">
+          <select id="mc-vol-unit" onchange="mcCalc()">
+            <option value="mL" selected>mL</option>
+            <option value="L">L</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label for="mc-preset">Load preset</label>
+        <select id="mc-preset" onchange="loadPreset(this.value)">
+          <option value="">-- choose --</option>
+          <option value="pbs">1x PBS</option>
+          <option value="te">TE Buffer (10/1)</option>
+          <option value="tae50x">50x TAE</option>
+          <option value="lb">LB Broth</option>
+          <option value="tbs">TBS Buffer</option>
+          <option value="sds">SDS-PAGE Running Buffer</option>
+          <option value="ripa">RIPA Lysis Buffer (approx.)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="mc-body card">
+    <div class="card-label">Components</div>
+    <div class="mc-row-head">
+      <span class="mc-col-hd">Compound</span>
+      <span class="mc-col-hd">Formula</span>
+      <span class="mc-col-hd">MW (g/mol)</span>
+      <span class="mc-col-hd">Concentration</span>
+      <span class="mc-col-hd">Unit</span>
+      <span class="mc-col-hd">To weigh</span>
+      <span></span>
+    </div>
+    <div id="mc-rows"></div>
+    <button class="btn btn-ghost" onclick="addComponent()" style="margin-top:0.8rem;font-size:0.8rem">+ Add component</button>
+  </div>
+
+  <div class="mc-results-row">
+    <div class="board mc-board" id="mc-board">
+      <div class="empty" id="mc-empty">
+        <div class="icon"></div>
+        <p>Add components and a volume to see the recipe summary.</p>
+      </div>
+      <div id="mc-math" style="display:none"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">③ Bottle Label</div>
+      <div class="label-wrap" id="mc-label-wrap">
+        <span class="label-badge">Preview</span>
+        <div id="mc-label-body"><p class="lbl-empty">Fill in components above…</p></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveLabelPng('mc-label-wrap', 'solution')">Save PNG</button>
+        <button class="btn btn-ghost" onclick="copyMcLabel()" id="mc-copy-btn">Copy</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#tab-multi -->
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   CHEMICALS DATABASE
+   ════════════════════════════════════════════════════════════ */
+const DB = [
+  // Cobalt
+  { name:"Cobalt(II) Chloride Hexahydrate",        formula:"CoCl\u2082\u00B76H\u2082O",         mw:237.93, mw_anhydrous:129.84, metal_sym:"Co", mw_metal:58.933 , sterilize:"filter"},
+  { name:"Cobalt(II) Chloride (anhydrous)",         formula:"CoCl\u2082",                         mw:129.84, metal_sym:"Co", mw_metal:58.933 , sterilize:"filter"},
+  // Copper
+  { name:"Copper(II) Sulfate Pentahydrate",         formula:"CuSO\u2084\u00B75H\u2082O",          mw:249.69, mw_anhydrous:159.61, metal_sym:"Cu", mw_metal:63.546 , sterilize:"filter"},
+  { name:"Copper(II) Sulfate (anhydrous)",          formula:"CuSO\u2084",                          mw:159.61, metal_sym:"Cu", mw_metal:63.546 , sterilize:"filter"},
+  { name:"Copper(II) Chloride Dihydrate",           formula:"CuCl\u2082\u00B72H\u2082O",           mw:170.48, mw_anhydrous:134.45, metal_sym:"Cu", mw_metal:63.546 , sterilize:"filter"},
+  // Zinc
+  { name:"Zinc Sulfate Heptahydrate",               formula:"ZnSO\u2084\u00B77H\u2082O",           mw:287.56, mw_anhydrous:161.47, metal_sym:"Zn", mw_metal:65.38  , sterilize:"filter"},
+  { name:"Zinc Chloride",                           formula:"ZnCl\u2082",                           mw:136.30, metal_sym:"Zn", mw_metal:65.38  , sterilize:"filter"},
+  // Iron
+  { name:"Iron(II) Sulfate Heptahydrate",           formula:"FeSO\u2084\u00B77H\u2082O",           mw:278.01, mw_anhydrous:151.91, metal_sym:"Fe", mw_metal:55.845 , sterilize:"filter"},
+  { name:"Iron(III) Chloride Hexahydrate",          formula:"FeCl\u2083\u00B76H\u2082O",           mw:270.30, mw_anhydrous:162.20, metal_sym:"Fe", mw_metal:55.845 , sterilize:"filter"},
+  { name:"Iron(III) Chloride (anhydrous)",          formula:"FeCl\u2083",                           mw:162.20, metal_sym:"Fe", mw_metal:55.845 , sterilize:"filter"},
+  // Manganese
+  { name:"Manganese(II) Chloride Tetrahydrate",     formula:"MnCl\u2082\u00B74H\u2082O",           mw:197.91, mw_anhydrous:125.84, metal_sym:"Mn", mw_metal:54.938 , sterilize:"filter"},
+  { name:"Manganese(II) Sulfate Monohydrate",       formula:"MnSO\u2084\u00B7H\u2082O",            mw:169.02, mw_anhydrous:150.99, metal_sym:"Mn", mw_metal:54.938 , sterilize:"filter"},
+  // Nickel
+  { name:"Nickel(II) Chloride Hexahydrate",         formula:"NiCl\u2082\u00B76H\u2082O",           mw:237.69, mw_anhydrous:129.60, metal_sym:"Ni", mw_metal:58.693 , sterilize:"filter"},
+  { name:"Nickel(II) Sulfate Hexahydrate",          formula:"NiSO\u2084\u00B76H\u2082O",           mw:262.85, mw_anhydrous:154.77, metal_sym:"Ni", mw_metal:58.693 , sterilize:"filter"},
+  // Sodium / Potassium basics
+  { name:"Sodium Chloride",                         formula:"NaCl",                                 mw:58.44,  metal_sym:"Na", mw_metal:22.990 , sterilize:"autoclave"},
+  { name:"Potassium Chloride",                      formula:"KCl",                                  mw:74.55,  metal_sym:"K",  mw_metal:39.098 , sterilize:"autoclave"},
+  { name:"Sodium Hydroxide",                        formula:"NaOH",                                 mw:40.00,  neq:1, metal_sym:"Na", mw_metal:22.990 , sterilize:"autoclave"},
+  { name:"Potassium Hydroxide",                     formula:"KOH",                                  mw:56.11,  neq:1, metal_sym:"K",  mw_metal:39.098 , sterilize:"autoclave"},
+  // Calcium / Magnesium
+  { name:"Calcium Chloride Dihydrate",              formula:"CaCl\u2082\u00B72H\u2082O",            mw:147.01, mw_anhydrous:110.98, metal_sym:"Ca", mw_metal:40.078 , sterilize:"autoclave"},
+  { name:"Calcium Chloride (anhydrous)",            formula:"CaCl\u2082",                            mw:110.98, metal_sym:"Ca", mw_metal:40.078 , sterilize:"autoclave"},
+  { name:"Magnesium Chloride Hexahydrate",          formula:"MgCl\u2082\u00B76H\u2082O",            mw:203.30, mw_anhydrous:95.21,  metal_sym:"Mg", mw_metal:24.305 , sterilize:"autoclave"},
+  { name:"Magnesium Sulfate Heptahydrate",          formula:"MgSO\u2084\u00B77H\u2082O",            mw:246.47, mw_anhydrous:120.37, metal_sym:"Mg", mw_metal:24.305 , sterilize:"autoclave"},
+  // Phosphates
+  { name:"Potassium Phosphate Monobasic",           formula:"KH\u2082PO\u2084",                     mw:136.09 , sterilize:"autoclave"},
+  { name:"Potassium Phosphate Dibasic",             formula:"K\u2082HPO\u2084",                     mw:174.18 , sterilize:"autoclave"},
+  { name:"Sodium Phosphate Monobasic Monohydrate",  formula:"NaH\u2082PO\u2084\u00B7H\u2082O",     mw:137.99, mw_anhydrous:119.98 , sterilize:"autoclave"},
+  { name:"Sodium Phosphate Dibasic Heptahydrate",   formula:"Na\u2082HPO\u2084\u00B77H\u2082O",    mw:268.07, mw_anhydrous:141.96 , sterilize:"autoclave"},
+  // Buffers
+  { name:"Tris Base",                               formula:"C\u2084H\u2081\u2081NO\u2083",          mw:121.14 , sterilize:"autoclave"},
+  { name:"Tris Hydrochloride",                      formula:"Tris\u00B7HCl",                         mw:157.60 , sterilize:"autoclave"},
+  { name:"HEPES Free Acid",                         formula:"C\u2088H\u2081\u2087N\u2082O\u2084S",  mw:238.30, neq:1 , sterilize:"filter"},
+  // Chelators
+  { name:"EDTA Disodium Salt Dihydrate",            formula:"Na\u2082EDTA\u00B72H\u2082O",           mw:372.24, neq:2, mw_anhydrous:336.21 , sterilize:"autoclave"},
+  { name:"EDTA Free Acid",                          formula:"H\u2084EDTA",                            mw:292.24, neq:4 , sterilize:"autoclave"},
+  // Sugars
+  { name:"D-Glucose (Dextrose)",                    formula:"C\u2086H\u2081\u2082O\u2086",            mw:180.16 , sterilize:"filter"},
+  { name:"Sucrose",                                 formula:"C\u2081\u2082H\u2082\u2082O\u2081\u2081",mw:342.30 , sterilize:"filter"},
+  { name:"Lactose Monohydrate",                     formula:"C\u2081\u2082H\u2082\u2082O\u2081\u2081\u00B7H\u2082O",mw:360.31, mw_anhydrous:342.30 , sterilize:"filter"},
+  // Other salts
+  { name:"Ammonium Sulfate",                        formula:"(NH\u2084)\u2082SO\u2084",               mw:132.14 , sterilize:"autoclave"},
+  { name:"Ammonium Chloride",                       formula:"NH\u2084Cl",                             mw:53.49  , sterilize:"autoclave"},
+  { name:"Ammonium Bicarbonate",                    formula:"NH\u2084HCO\u2083",                      mw:79.06  , sterilize:"filter"},
+  { name:"Sodium Sulfate Anhydrous",                formula:"Na\u2082SO\u2084",                       mw:142.04 , sterilize:"autoclave"},
+  { name:"Sodium Acetate Trihydrate",               formula:"CH\u2083COONa\u00B73H\u2082O",           mw:136.08, mw_anhydrous:82.03 , sterilize:"autoclave"},
+  { name:"Sodium Bicarbonate",                      formula:"NaHCO\u2083",                            mw:84.01,  neq:1 , sterilize:"filter"},
+  { name:"Sodium Carbonate",                        formula:"Na\u2082CO\u2083",                       mw:105.99, neq:2 , sterilize:"autoclave"},
+  { name:"Potassium Nitrate",                       formula:"KNO\u2083",                              mw:101.10 , sterilize:"autoclave"},
+  { name:"Boric Acid",                              formula:"H\u2083BO\u2083",                         mw:61.83,  neq:1 , sterilize:"filter"},
+  // Rare earths
+  { name:"Cerium(III) Chloride Heptahydrate",       formula:"CeCl\u2083\u00B77H\u2082O",              mw:372.58, mw_anhydrous:246.48, metal_sym:"Ce", mw_metal:140.116 , sterilize:"filter"},
+  { name:"Lanthanum(III) Chloride Heptahydrate",    formula:"LaCl\u2083\u00B77H\u2082O",              mw:371.37, mw_anhydrous:245.27, metal_sym:"La", mw_metal:138.905 , sterilize:"filter"},
+  { name:"Neodymium(III) Chloride Hexahydrate",     formula:"NdCl\u2083\u00B76H\u2082O",              mw:358.69, mw_anhydrous:250.60, metal_sym:"Nd", mw_metal:144.242 , sterilize:"filter"},
+  { name:"Yttrium(III) Chloride Hexahydrate",       formula:"YCl\u2083\u00B76H\u2082O",               mw:303.36, mw_anhydrous:195.27, metal_sym:"Y",  mw_metal:88.906  , sterilize:"filter"},
+  { name:"Europium(III) Chloride Hexahydrate",      formula:"EuCl\u2083\u00B76H\u2082O",              mw:366.41, mw_anhydrous:258.32, metal_sym:"Eu", mw_metal:151.964 , sterilize:"filter"},
+  // Aluminum
+  { name:"Aluminum Sulfate Octadecahydrate",        formula:"Al\u2082(SO\u2084)\u2083\u00B718H\u2082O",mw:666.43, mw_anhydrous:342.15, metal_sym:"Al", mw_metal:26.982, metal_count:2 , sterilize:"filter"},
+  { name:"Aluminum Chloride Hexahydrate",           formula:"AlCl\u2083\u00B76H\u2082O",              mw:241.43, mw_anhydrous:133.34, metal_sym:"Al", mw_metal:26.982 , sterilize:"filter"},
+  // Chromium / Vanadium
+  { name:"Chromium(III) Chloride Hexahydrate",      formula:"CrCl₃·6H₂O",              mw:266.45, mw_anhydrous:158.35, metal_sym:"Cr", mw_metal:51.996, sterilize:"filter" },
+  { name:"Vanadyl Sulfate Pentahydrate",             formula:"VOSO₄·5H₂O",              mw:299.15, mw_anhydrous:163.00, metal_sym:"V",  mw_metal:50.942, sterilize:"filter" },
+  { name:"Sodium Molybdate Dihydrate",               formula:"Na₂MoO₄·2H₂O",       mw:241.95, mw_anhydrous:205.92, metal_sym:"Mo", mw_metal:95.96,  sterilize:"filter" },
+  // More REEs
+  { name:"Scandium(III) Chloride Hexahydrate",       formula:"ScCl₃·6H₂O",              mw:291.44, mw_anhydrous:151.32, metal_sym:"Sc", mw_metal:44.956, sterilize:"filter" },
+  { name:"Praseodymium(III) Chloride Heptahydrate",  formula:"PrCl₃·7H₂O",              mw:373.37, mw_anhydrous:247.27, metal_sym:"Pr", mw_metal:140.908,sterilize:"filter" },
+  { name:"Samarium(III) Chloride Hexahydrate",       formula:"SmCl₃·6H₂O",              mw:373.82, mw_anhydrous:265.72, metal_sym:"Sm", mw_metal:150.36, sterilize:"filter" },
+  { name:"Gadolinium(III) Chloride Hexahydrate",     formula:"GdCl₃·6H₂O",              mw:380.70, mw_anhydrous:272.61, metal_sym:"Gd", mw_metal:157.25, sterilize:"filter" },
+  { name:"Terbium(III) Chloride Hexahydrate",        formula:"TbCl₃·6H₂O",              mw:373.37, mw_anhydrous:265.27, metal_sym:"Tb", mw_metal:158.925,sterilize:"filter" },
+  { name:"Dysprosium(III) Chloride Hexahydrate",     formula:"DyCl₃·6H₂O",              mw:376.93, mw_anhydrous:268.83, metal_sym:"Dy", mw_metal:162.50, sterilize:"filter" },
+  { name:"Holmium(III) Chloride Hexahydrate",        formula:"HoCl₃·6H₂O",              mw:379.36, mw_anhydrous:271.26, metal_sym:"Ho", mw_metal:164.930,sterilize:"filter" },
+  { name:"Erbium(III) Chloride Hexahydrate",         formula:"ErCl₃·6H₂O",              mw:381.70, mw_anhydrous:273.61, metal_sym:"Er", mw_metal:167.259,sterilize:"filter" },
+  { name:"Ytterbium(III) Chloride Hexahydrate",      formula:"YbCl₃·6H₂O",              mw:387.48, mw_anhydrous:279.38, metal_sym:"Yb", mw_metal:173.045,sterilize:"filter" },
+  { name:"Lutetium(III) Chloride Hexahydrate",       formula:"LuCl₃·6H₂O",              mw:389.48, mw_anhydrous:281.38, metal_sym:"Lu", mw_metal:174.967,sterilize:"filter" },
+  { name:"Thulium(III) Chloride Hexahydrate",        formula:"TmCl₃·6H₂O",              mw:383.39, mw_anhydrous:275.30, metal_sym:"Tm", mw_metal:168.934,sterilize:"filter" },
+  // More transition metals
+  { name:"Cobalt(II) Sulfate Heptahydrate",          formula:"CoSO₄·7H₂O",              mw:281.10, mw_anhydrous:154.99, metal_sym:"Co", mw_metal:58.933, sterilize:"filter" },
+  { name:"Cadmium Chloride Hemipentahydrate",        formula:"CdCl₂·2.5H₂O",            mw:228.35, mw_anhydrous:183.32, metal_sym:"Cd", mw_metal:112.411,sterilize:"filter" },
+  { name:"Lead(II) Nitrate",                        formula:"Pb(NO₃)₂",                      mw:331.21, metal_sym:"Pb",  mw_metal:207.2,  sterilize:"filter" },
+  { name:"Silver Nitrate",                           formula:"AgNO₃",                              mw:169.87, metal_sym:"Ag",  mw_metal:107.868,sterilize:"filter" },
+  { name:"Sodium Tungstate Dihydrate",               formula:"Na₂WO₄·2H₂O",        mw:329.85, mw_anhydrous:293.82, metal_sym:"W", mw_metal:183.84, sterilize:"filter" },
+  { name:"Lithium Chloride",                         formula:"LiCl",                                   mw:42.39,  metal_sym:"Li",  mw_metal:6.941,  sterilize:"autoclave" },
+  { name:"Cesium Chloride",                          formula:"CsCl",                                   mw:168.36, metal_sym:"Cs",  mw_metal:132.905,sterilize:"autoclave" },
+  { name:"Rubidium Chloride",                        formula:"RbCl",                                   mw:120.92, metal_sym:"Rb",  mw_metal:85.468, sterilize:"autoclave" },
+  { name:"Barium Chloride Dihydrate",                formula:"BaCl₂·2H₂O",              mw:244.26, mw_anhydrous:208.23, metal_sym:"Ba", mw_metal:137.327,sterilize:"filter" },
+  { name:"Strontium Chloride Hexahydrate",           formula:"SrCl₂·6H₂O",              mw:266.62, mw_anhydrous:158.53, metal_sym:"Sr", mw_metal:87.62,  sterilize:"filter" },
+  // Good buffers
+  { name:"MES Monohydrate",                          formula:"C₆H₁₃NO₄S·H₂O", mw:213.25, sterilize:"filter" },
+  { name:"MES Free Acid",                            formula:"C₆H₁₃NO₄S",           mw:195.24, sterilize:"filter" },
+  { name:"MOPS Free Acid",                           formula:"C₇H₁₅NO₄S",           mw:209.26, sterilize:"filter" },
+  { name:"MOPS Sodium Salt",                         formula:"C₇H₁₄NNaO₄S",         mw:231.25, sterilize:"filter" },
+  { name:"PIPES Free Acid",                          formula:"C₈H₁₈N₂O₆S₂",mw:302.37, sterilize:"filter" },
+  { name:"Bicine",                                   formula:"C₆H₁₃NO₄",            mw:163.17, sterilize:"filter" },
+  { name:"Tricine",                                  formula:"C₆H₁₃NO₅",            mw:179.17, sterilize:"filter" },
+  { name:"BES Free Acid",                            formula:"C₆H₁₅NO₅S",           mw:213.25, sterilize:"filter" },
+  { name:"TES Free Acid",                            formula:"C₆H₁₅NO₆S",           mw:229.25, sterilize:"filter" },
+  { name:"ACES Free Acid",                           formula:"C₄H₈N₂O₄S",           mw:182.20, sterilize:"filter" },
+  { name:"CAPS",                                     formula:"C₉H₁₉NO₃S",           mw:221.32, sterilize:"filter" },
+  { name:"Sodium Citrate Tribasic Dihydrate",        formula:"Na₃C₆H₅O₇·2H₂O",mw:294.10, mw_anhydrous:258.07, sterilize:"autoclave" },
+  { name:"Citric Acid Monohydrate",                  formula:"C₆H₈O₇·H₂O",     mw:210.14, mw_anhydrous:192.12, neq:3, sterilize:"filter" },
+  // Organic acids / reducing / other biochem
+  { name:"Oxalic Acid Dihydrate",                    formula:"C₂H₂O₄·2H₂O",    mw:126.07, mw_anhydrous:90.04,  neq:2, sterilize:"filter" },
+  { name:"Tartaric Acid",                            formula:"C₄H₆O₆",                   mw:150.09, neq:2, sterilize:"filter" },
+  { name:"Malic Acid",                               formula:"C₄H₆O₅",                   mw:134.09, neq:2, sterilize:"filter" },
+  { name:"Succinic Acid",                            formula:"C₄H₆O₄",                   mw:118.09, neq:2, sterilize:"filter" },
+  { name:"Fumaric Acid",                             formula:"C₄H₄O₄",                   mw:116.07, neq:2, sterilize:"filter" },
+  { name:"Lactic Acid (85%)",                        formula:"CH₃CHOHCOOH",                       mw:90.08,  liquid:true, density:1.21, purity:85, neq:1, sterilize:"filter" },
+  { name:"DTT (Dithiothreitol)",                     formula:"C₄H₁₀O₂S₂",      mw:154.25, sterilize:"filter" },
+  { name:"TCEP Hydrochloride",                       formula:"C₉H₁₆ClO₆P",          mw:286.65, sterilize:"filter" },
+  { name:"Beta-Mercaptoethanol",                     formula:"HOCH₂CH₂SH",                   mw:78.13,  liquid:true, density:1.114, purity:99, sterilize:"filter" },
+  { name:"Imidazole",                                formula:"C₃H₄N₂",                   mw:68.08,  sterilize:"filter" },
+  { name:"Urea",                                     formula:"CH₄N₂O",                        mw:60.06,  sterilize:"filter" },
+  { name:"Guanidine Hydrochloride",                  formula:"CH₅N₃·HCl",               mw:95.53,  sterilize:"filter" },
+  { name:"DMSO",                                     formula:"(CH₃)₂SO",                      mw:78.13,  liquid:true, density:1.100, purity:99.9, sterilize:"filter" },
+  { name:"Glycerol",                                 formula:"C₃H₈O₃",                   mw:92.09,  liquid:true, density:1.261, purity:99,   sterilize:"autoclave" },
+  { name:"Glycine",                                  formula:"C₂H₅NO₂",                  mw:75.03,  sterilize:"autoclave" },
+  { name:"L-Alanine",                                formula:"C₃H₇NO₂",                  mw:89.09,  sterilize:"autoclave" },
+  { name:"L-Histidine",                              formula:"C₆H₉N₃O₂",            mw:155.15, sterilize:"filter" },
+  { name:"L-Glutamine",                              formula:"C₅H₁₀N₂O₃",      mw:146.15, sterilize:"filter" },
+  // Detergents
+  { name:"SDS (Sodium Dodecyl Sulfate)",             formula:"C₁₂H₂₅NaO₄S",    mw:288.38, sterilize:"filter" },
+  { name:"Tween 20 (Polysorbate 20)",                formula:"Tween 20",                          mw:1228,   liquid:true, density:1.10, purity:100, sterilize:"filter" },
+  { name:"Triton X-100",                             formula:"Triton X-100",                      mw:647,    liquid:true, density:1.065,purity:100, sterilize:"filter" },
+  // Antibiotics
+  { name:"Ampicillin Sodium",                        formula:"C₁₆H₁₈N₃NaO₄S",mw:371.39,sterilize:"filter" },
+  { name:"Kanamycin Sulfate",                        formula:"Kanamycin·SO₄",                mw:582.58, sterilize:"filter" },
+  { name:"Chloramphenicol",                          formula:"C₁₁H₁₂Cl₂N₂O₅",mw:323.13,sterilize:"filter" },
+  { name:"Tetracycline Hydrochloride",               formula:"C₂₂H₂₅ClN₂O₈",mw:480.90,sterilize:"filter" },
+  { name:"Streptomycin Sulfate",                     formula:"Streptomycin·SO₄",             mw:1457.4, sterilize:"filter" },
+  { name:"Gentamicin Sulfate",                       formula:"Gentamicin·SO₄",               mw:575,    sterilize:"filter" },
+  { name:"Hygromycin B",                             formula:"Hygromycin B",                      mw:527,    sterilize:"filter" },
+  { name:"Blasticidin S Hydrochloride",              formula:"C₁₇H₂₆ClN₇O₅",mw:422.89,sterilize:"filter" },
+  { name:"Zeocin",                                   formula:"Zeocin",                                 mw:1540,   sterilize:"filter" },
+  // Molecular biology
+  { name:"IPTG",                                     formula:"C₉H₁₈O₅S",            mw:238.30, sterilize:"filter" },
+  { name:"X-Gal",                                    formula:"C₁₄H₁₅BrClNO₆",  mw:408.63, sterilize:"filter" },
+  { name:"Dithioerythritol (DTE)",                   formula:"C₄H₁₀O₂S₂",      mw:154.25, sterilize:"filter" },
+  // More inorganic
+  { name:"Sodium Selenate",                          formula:"Na₂SeO₄",                      mw:188.94, metal_sym:"Se", mw_metal:78.96, sterilize:"filter" },
+  { name:"Sodium Selenite",                          formula:"Na₂SeO₃",                      mw:172.94, metal_sym:"Se", mw_metal:78.96, sterilize:"filter" },
+  { name:"Zinc Nitrate Hexahydrate",                 formula:"Zn(NO₃)₂·6H₂O",      mw:297.48, mw_anhydrous:189.40, metal_sym:"Zn", mw_metal:65.38,  sterilize:"filter" },
+  { name:"Ferrous Ammonium Sulfate Hexahydrate",     formula:"(NH₄)₂Fe(SO₄)₂·6H₂O", mw:392.14, metal_sym:"Fe", mw_metal:55.845, sterilize:"filter" },
+  { name:"Sodium Fluoride",                          formula:"NaF",                                    mw:41.99,  sterilize:"autoclave" },
+  { name:"Potassium Iodide",                         formula:"KI",                                     mw:166.00, sterilize:"filter" },
+  { name:"Sodium Iodide",                            formula:"NaI",                                    mw:149.89, sterilize:"filter" },
+  // Liquid reagents
+  { name:"Hydrochloric Acid (conc., 37%)",          formula:"HCl",                                   mw:36.46,  neq:1, liquid:true, density:1.18,  purity:37   },
+  { name:"Sulfuric Acid (conc., 95–98%)",           formula:"H\u2082SO\u2084",                        mw:98.08,  neq:2, liquid:true, density:1.84,  purity:95   },
+  { name:"Phosphoric Acid (85%)",                   formula:"H\u2083PO\u2084",                         mw:97.99,  neq:3, liquid:true, density:1.685, purity:85   },
+  { name:"Acetic Acid Glacial (99.7%)",             formula:"CH\u2083COOH",                            mw:60.05,  neq:1, liquid:true, density:1.049, purity:99.7 },
+  { name:"Nitric Acid (conc., 70%)",                formula:"HNO\u2083",                               mw:63.01,  neq:1, liquid:true, density:1.413, purity:70   },
+];
+
+/* ════════════════════════════════════════════════════════════
+   UTILITIES
+   ════════════════════════════════════════════════════════════ */
+function fmt(n, places) {
+  if (!isFinite(n) || n === undefined) return '--';
+  if (n === 0) return '0';
+  const a = Math.abs(n);
+  if (a >= 1e5 || a < 1e-5) return n.toExponential(3);
+  if (places !== undefined) return parseFloat(n.toFixed(places)).toString();
+  let d = a >= 100 ? 2 : a >= 10 ? 3 : a >= 1 ? 4 : 5;
+  return parseFloat(n.toFixed(d)).toString();
+}
+
+function fmtMassAlt(g) {
+  const alts = [];
+  if (g < 1   && g > 0)    alts.push(`${fmt(g * 1e3)} mg`);
+  if (g < 1e-3 && g > 0)   alts.push(`${fmt(g * 1e6)} µg`);
+  if (g >= 1e4)             alts.push(`${fmt(g / 1e3)} kg`);
+  return alts;
+}
+
+/* ════════════════════════════════════════════════════════════
+   AUTOCOMPLETE
+   ════════════════════════════════════════════════════════════ */
+/* Normalize a formula string for fuzzy matching:
+   strip subscript/superscript digits -> regular, · -> nothing,
+   spaces, hyphens -> nothing, lowercase */
+function normF(s) {
+  if (!s) return '';
+  const SUB = '₀₁₂₃₄₅₆₇₈₉';
+  const SUP = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+  let r = s.toLowerCase();
+  for (let i = 0; i < 10; i++) {
+    r = r.split(SUB[i]).join(String(i));
+    r = r.split(SUP[i]).join(String(i));
+  }
+  // middle dot, bullet, asterisk, dot -> nothing
+  r = r.replace(/[·•⋅°*.\s\-]/g, '');
+  return r;
+}
+
+const searchEl  = document.getElementById('search');
+const acList    = document.getElementById('ac-list');
+let acMatches   = [];
+let hiIdx       = -1;
+
+// When formula field is edited directly, try to match DB and populate MW etc.
+document.getElementById('formula').addEventListener('change', () => {
+  const raw = document.getElementById('formula').value.trim();
+  if (!raw) return;
+  const nq = normF(raw);
+  const match = DB.find(c => normF(c.formula) === nq || normF(c.name) === nq);
+  if (match) {
+    // Only fill if MW is empty or user hasn't already chosen a compound
+    if (!document.getElementById('mw').value) {
+      selectChem(match);
+    } else {
+      // Silently update basis/metal fields if they're empty
+      if (match.mw_anhydrous && !document.getElementById('mw-anhydrous').value)
+        document.getElementById('mw-anhydrous').value = match.mw_anhydrous;
+      if (match.metal_sym && !document.getElementById('metal-sym').value) {
+        document.getElementById('metal-sym').value = match.metal_sym;
+        document.getElementById('mw-metal').value  = match.mw_metal;
+        document.getElementById('metal-count').value = match.metal_count ?? 1;
+      }
+    }
+  }
+});
+
+searchEl.addEventListener('input', () => {
+  const q = searchEl.value.toLowerCase().trim();
+  const nq = normF(q);
+  hiIdx = -1;
+  if (!q) { acList.classList.remove('open'); return; }
+
+  acMatches = DB.filter(c =>
+    c.name.toLowerCase().includes(q) ||
+    normF(c.formula).includes(nq) ||
+    c.formula.toLowerCase().includes(q)
+  ).slice(0, 10);
+
+  if (!acMatches.length) { acList.classList.remove('open'); return; }
+
+  acList.innerHTML = acMatches.map((c, i) => `
+    <div class="ac-item" data-i="${i}">
+      <span class="ac-mw">${c.mw} g/mol</span>
+      <div class="ac-name">${c.name}</div>
+      <div class="ac-formula">${c.formula}</div>
+    </div>`).join('');
+
+  acList.classList.add('open');
+  acList.querySelectorAll('.ac-item').forEach(el =>
+    el.addEventListener('mousedown', e => { e.preventDefault(); selectChem(acMatches[+el.dataset.i]); })
+  );
+});
+
+searchEl.addEventListener('keydown', e => {
+  const items = acList.querySelectorAll('.ac-item');
+  if (!acList.classList.contains('open') || !items.length) return;
+  if (e.key === 'ArrowDown') { e.preventDefault(); hiIdx = Math.min(hiIdx+1, items.length-1); }
+  else if (e.key === 'ArrowUp')  { e.preventDefault(); hiIdx = Math.max(hiIdx-1, 0); }
+  else if (e.key === 'Enter' && hiIdx >= 0) { e.preventDefault(); selectChem(acMatches[hiIdx]); return; }
+  else if (e.key === 'Escape') { acList.classList.remove('open'); return; }
+  items.forEach((el,i) => el.classList.toggle('hi', i === hiIdx));
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ac-wrap')) acList.classList.remove('open');
+});
+
+function updateSmilesShade() {
+  const hasCompound = document.getElementById('mw').value && document.getElementById('formula').value;
+  document.getElementById('smiles-field').classList.toggle('shaded', !!hasCompound);
+}
+
+function selectChem(c) {
+  searchEl.value = c.name;
+  document.getElementById('formula').value = c.formula;
+  document.getElementById('mw').value = c.mw;
+  document.getElementById('purity').value = c.purity ?? 100;
+  const liq = c.liquid ?? false;
+  document.getElementById('is-liquid').checked = liq;
+  document.getElementById('density-field').classList.toggle('show', liq);
+  if (liq && c.density) document.getElementById('density').value = c.density;
+  if (c.neq) document.getElementById('neq').value = c.neq;
+
+  // Basis fields
+  if (c.mw_anhydrous) document.getElementById('mw-anhydrous').value = c.mw_anhydrous;
+  else document.getElementById('mw-anhydrous').value = '';
+  if (c.metal_sym)  document.getElementById('metal-sym').value   = c.metal_sym;
+  else document.getElementById('metal-sym').value = '';
+  if (c.mw_metal)   document.getElementById('mw-metal').value    = c.mw_metal;
+  else document.getElementById('mw-metal').value = '';
+  document.getElementById('metal-count').value = c.metal_count ?? 1;
+
+  acList.classList.remove('open');
+  updateSmilesShade();
+  calculate();
+}
+
+/* ─── SMILES LOOKUP ────────────────────────────────────────
+   Calls PubChem REST API to resolve any SMILES string.
+   ════════════════════════════════════════════════════════ */
+let smilesTimer = null;
+
+document.getElementById('smiles').addEventListener('input', () => {
+  clearTimeout(smilesTimer);
+  const v = document.getElementById('smiles').value.trim();
+  const st = document.getElementById('smiles-status');
+  const hint = document.getElementById('smiles-hint');
+  if (!v) { st.textContent = ''; st.className = ''; hint.textContent = 'Paste any SMILES string to look up MW and formula via PubChem. Or use the search above.'; return; }
+  st.textContent = '↻'; st.className = 'loading';
+  hint.textContent = 'Looking up on PubChem...';
+  smilesTimer = setTimeout(() => lookupSMILES(v), 600);
+});
+
+async function lookupSMILES(smiles) {
+  const st   = document.getElementById('smiles-status');
+  const hint = document.getElementById('smiles-hint');
+  try {
+    const url = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${encodeURIComponent(smiles)}/property/MolecularFormula,MolecularWeight,IUPACName/JSON`;
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error('not found');
+    const data = await res.json();
+    const props = data.PropertyTable.Properties[0];
+
+    const mf  = props.MolecularFormula || '';
+    const mw  = parseFloat(props.MolecularWeight) || 0;
+    const name = props.IUPACName || '';
+
+    // Fill fields (only if empty or this is a fresh SMILES lookup)
+    if (mf) document.getElementById('formula').value = mf;
+    if (mw) document.getElementById('mw').value = mw;
+    if (name && !document.getElementById('search').value)
+      document.getElementById('search').value = name.length > 60 ? name.slice(0,57)+'...' : name;
+
+    st.textContent = 'OK'; st.className = 'ok';
+    hint.textContent = `PubChem: ${mf}  /  ${mw} g/mol`;
+    calculate();
+  } catch(e) {
+    st.textContent = 'ERR'; st.className = 'err';
+    hint.textContent = 'Not found on PubChem. Check SMILES or enter MW manually.';
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   LIVE INPUT BINDINGS
+   ════════════════════════════════════════════════════════════ */
+['formula','mw','purity','density','conc','vol'].forEach(id =>
+  document.getElementById(id).addEventListener('input', calculate)
+);
+['formula','mw'].forEach(id =>
+  document.getElementById(id).addEventListener('input', updateSmilesShade)
+);
+searchEl.addEventListener('input', () => {
+  if (!searchEl.value.trim()) updateSmilesShade();
+});
+
+document.getElementById('conc-unit').addEventListener('change', () => {
+  const u = document.getElementById('conc-unit').value;
+  document.getElementById('neq-field').classList.toggle('show', u === 'N');
+  document.getElementById('ppm-note').style.display = (u === 'ppm' || u === 'ppb') ? '' : 'none';
+  calculate();
+});
+
+document.getElementById('vol-unit').addEventListener('change', calculate);
+document.getElementById('neq').addEventListener('input', calculate);
+['mw-anhydrous','mw-metal','metal-count'].forEach(id =>
+  document.getElementById(id).addEventListener('input', calculate)
+);
+
+let currentBasis = 'full';
+
+function setBasis(b) {
+  currentBasis = b;
+  document.querySelectorAll('.basis-btn').forEach(btn =>
+    btn.classList.toggle('active', btn.dataset.basis === b)
+  );
+  document.getElementById('basis-anhydrous-field').classList.toggle('show', b === 'anhydrous');
+  document.getElementById('basis-metal-field').classList.toggle('show', b === 'metal');
+  calculate();
+}
+
+
+
+document.getElementById('is-liquid').addEventListener('change', () => {
+  document.getElementById('density-field').classList.toggle(
+    'show', document.getElementById('is-liquid').checked
+  );
+  calculate();
+});
+
+/* ════════════════════════════════════════════════════════════
+   CALCULATE
+   ════════════════════════════════════════════════════════════ */
+function calculate() {
+  const formula   = document.getElementById('formula').value.trim() || '--';
+  const mw        = parseFloat(document.getElementById('mw').value);
+  const purity    = parseFloat(document.getElementById('purity').value) / 100 || 1.0;
+  const concVal   = parseFloat(document.getElementById('conc').value);
+  const concUnit  = document.getElementById('conc-unit').value;
+  const volVal    = parseFloat(document.getElementById('vol').value);
+  const volUnit   = document.getElementById('vol-unit').value;
+  const neq       = Math.max(1, parseInt(document.getElementById('neq').value) || 1);
+  const isLiquid  = document.getElementById('is-liquid').checked;
+  const density   = parseFloat(document.getElementById('density').value);
+
+  // Basis
+  const basis       = currentBasis;
+  const mwAnhydrous = parseFloat(document.getElementById('mw-anhydrous').value);
+  const mwMetal     = parseFloat(document.getElementById('mw-metal').value);
+  const metalSym    = document.getElementById('metal-sym').value.trim();
+  const metalCount  = Math.max(1, parseInt(document.getElementById('metal-count').value) || 1);
+
+  // basisMW = MW of the "thing" the concentration refers to
+  let basisMW = mw;
+  let basisLabel = null;
+  if (basis === 'anhydrous' && mwAnhydrous > 0) {
+    basisMW = mwAnhydrous;
+    basisLabel = { type:'anhydrous', mw: mwAnhydrous };
+  } else if (basis === 'metal' && mwMetal > 0) {
+    basisMW = (mwMetal * metalCount);   // effective MW for concentration math
+    basisLabel = { type:'metal', sym: metalSym || '?', mw_per_atom: mwMetal, count: metalCount };
+  }
+
+  if (!concVal || concVal <= 0 || !volVal || volVal <= 0) { showEmpty(); return; }
+
+  const molarUnits = ['M','mM','µM','nM','N'];
+  if (molarUnits.includes(concUnit) && !(basisMW > 0)) {
+    showEmpty('Enter the molecular weight (g/mol) to calculate molar concentrations.');
+    return;
+  }
+
+  // Volume in L and mL
+  const volL  = volUnit === 'mL' ? volVal/1000 : volUnit === 'µL' ? volVal/1e6 : volVal;
+  const volMl = volL * 1000;
+
+  // Calculate using basisMW (the MW of whatever the concentration unit refers to)
+  let massG_basis_pure, concM = null;
+
+  switch (concUnit) {
+    case 'M':
+      concM = concVal;
+      massG_basis_pure = concM * volL * basisMW;
+      break;
+    case 'mM':
+      concM = concVal / 1e3;
+      massG_basis_pure = concM * volL * basisMW;
+      break;
+    case 'µM':
+      concM = concVal / 1e6;
+      massG_basis_pure = concM * volL * basisMW;
+      break;
+    case 'nM':
+      concM = concVal / 1e9;
+      massG_basis_pure = concM * volL * basisMW;
+      break;
+    case 'ppm':
+      massG_basis_pure = (concVal * volL) / 1e3;
+      if (basisMW > 0) concM = massG_basis_pure / (basisMW * volL);
+      break;
+    case 'ppb':
+      massG_basis_pure = (concVal * volL) / 1e6;
+      if (basisMW > 0) concM = massG_basis_pure / (basisMW * volL);
+      break;
+    case '% w/v':
+      massG_basis_pure = (concVal / 100) * volMl;
+      if (basisMW > 0) concM = massG_basis_pure / (basisMW * volL);
+      break;
+    case 'mg/mL':
+      massG_basis_pure = concVal * volMl / 1e3;
+      if (basisMW > 0) concM = massG_basis_pure / (basisMW * volL);
+      break;
+    case 'mg/L':
+      massG_basis_pure = concVal * volL / 1e3;
+      if (basisMW > 0) concM = massG_basis_pure / (basisMW * volL);
+      break;
+    case 'µg/L':
+      massG_basis_pure = concVal * volL / 1e6;
+      if (basisMW > 0) concM = massG_basis_pure / (basisMW * volL);
+      break;
+    case 'g/L':
+      massG_basis_pure = concVal * volL;
+      if (basisMW > 0) concM = massG_basis_pure / (basisMW * volL);
+      break;
+    case 'N':
+      massG_basis_pure = concVal * volL * (basisMW / neq);
+      concM = concVal / neq;
+      break;
+  }
+
+  // Convert mass of basis to mass of compound actually weighed
+  // massG_pure_weighed = massG_basis_pure × (mw_weighed / basisMW)
+  const basisFactor = (mw > 0 && basisMW > 0 && basis !== 'full') ? (mw / basisMW) : 1.0;
+  const massG_pure = massG_basis_pure * basisFactor;
+  const massG      = massG_pure / purity;
+
+  // Liquid reagent
+  let stockM = null, pipetteVol = null;
+  if (isLiquid && density > 0 && mw > 0) {
+    stockM = (density * 1e3 * purity) / mw;
+    if (concM != null) pipetteVol = (concM * volL / stockM) * 1e3;
+  }
+
+  // Look up sterilize recommendation from DB
+  const dbEntry = DB.find(c => normF(c.formula) === normF(formula) || c.name === document.getElementById('search').value.trim());
+  const sterilizeRec = dbEntry ? (dbEntry.sterilize || null) : null;
+
+  const D = { formula, mw, purity, concVal, concUnit, volVal, volUnit,
+              volL, volMl, neq, massG, massG_pure, massG_basis_pure,
+              concM, isLiquid, density, stockM, pipetteVol,
+              basis, basisMW, basisLabel, basisFactor,
+              metalSym, metalCount, sterilizeRec };
+
+  renderBoard(D);
+  renderLabel(D);
+}
+
+/* ════════════════════════════════════════════════════════════
+   RENDER BOARD
+   ════════════════════════════════════════════════════════════ */
+function showEmpty(msg) {
+  document.getElementById('empty-state').innerHTML = msg
+    ? `<div class="icon"></div><p>${msg}</p>`
+    : `<div class="icon"></div><p>Fill in compound and goal above. The step-by-step math will appear here.</p>`;
+  document.getElementById('empty-state').style.display = 'flex';
+  document.getElementById('math-content').style.display = 'none';
+}
+
+function ln(content) {
+  return `<span class="ln">${content}</span>`;
+}
+
+function renderBoard(D) {
+  const { formula, mw, purity, concVal, concUnit, volVal, volUnit,
+          volL, volMl, neq, massG, massG_pure, massG_basis_pure, concM,
+          isLiquid, density, stockM, pipetteVol,
+          basis, basisMW, basisLabel, basisFactor, sterilizeRec } = D;
+
+  let h = '';
+
+  // Basis tag in heading
+  let basisTag = '';
+  if (basisLabel) {
+    if (basisLabel.type === 'anhydrous') basisTag = ` <span style="color:var(--muted);font-size:0.78em">[anhydrous basis]</span>`;
+    else if (basisLabel.type === 'metal') basisTag = ` <span style="color:var(--muted);font-size:0.78em">[${basisLabel.sym} basis]</span>`;
+  }
+
+  /* ── Compound info ── */
+  h += step('Compound');
+  h += eq(
+    formula !== '--' ? ln(`<span class="v">${formula}</span>`) : '',
+    mw  > 0 ? ln(`<span class="d">MW (weighed)  = </span><span class="v">${mw}</span><span class="u"> g/mol</span>`) : '',
+    basisLabel && basisLabel.type === 'anhydrous' ? ln(`<span class="d">MW (anhydrous)= </span><span class="v">${basisLabel.mw}</span><span class="u"> g/mol</span>`) : '',
+    basisLabel && basisLabel.type === 'metal' ? ln(`<span class="d">MW (${basisLabel.sym})       = </span><span class="v">${basisLabel.mw_per_atom}</span><span class="u"> g/mol</span>`) : '',    purity < 1 ? ln(`<span class="d">purity        = </span><span class="v">${(purity*100).toFixed(1)}</span><span class="u"> %</span>`) : '',
+    isLiquid && density > 0 ? ln(`<span class="d">density       = </span><span class="v">${density}</span><span class="u"> g/mL</span>`) : '',
+    isLiquid && stockM  ? ln(`<span class="d">stock         = </span><span class="v">${fmt(stockM)}</span><span class="u"> M</span>`) : ''
+  );
+
+  h += `<hr class="m-div">`;
+
+
+  /* ── Calculation steps by unit ── */
+  const U = concUnit;
+
+  if (['M','mM','µM','nM'].includes(U)) {
+    const scale     = U==='M' ? 1 : U==='mM' ? 1e3 : U==='µM' ? 1e6 : 1e9;
+    const scaleStr  = U==='M' ? '' : ` ÷ ${scale.toLocaleString()}`;
+    const n         = concM * volL;
+
+    h += step(`Step 1: Convert to mol/L`);
+    h += eq(
+      ln(`<span class="d">C = </span><span class="v">${concVal}</span><span class="u"> ${U}${scaleStr}</span>`),
+      ln(`<span class="d">C = </span><span class="v">${fmt(concM)}</span><span class="u"> mol/L</span>`)
+    );
+
+    h += step('Step 2: Moles needed  &nbsp;<span style="color:var(--muted);font-size:0.75em">n = C × V</span>');
+    h += eq(
+      ln(`<span class="d">n = </span><span class="v">${fmt(concM)}</span><span class="u"> mol/L</span><span class="d"> × </span><span class="v">${fmt(volL)}</span><span class="u"> L</span>`),
+      ln(`<span class="d">n = </span><span class="v">${fmt(n)}</span><span class="u"> mol</span>`)
+    );
+
+    h += step('Step 3: Mass  &nbsp;<span style="color:var(--muted);font-size:0.75em">mass = n × MW</span>');
+    h += eq(
+      ln(`<span class="d">mass = </span><span class="v">${fmt(n)}</span><span class="u"> mol</span><span class="d"> × </span><span class="v">${fmt(mw)}</span><span class="u"> g/mol</span>`),
+      ln(`<span class="d">mass = </span><span class="v">${fmt(massG_pure)}</span><span class="u"> g</span>`)
+    );
+
+    if (purity < 1) {
+      h += step(`Step 4: Purity correction`);
+      h += eq(
+        ln(`<span class="d">mass = ${fmt(massG_pure)} g ÷ ${purity.toFixed(4)}</span>`),
+        ln(`<span class="d">mass = </span><span class="v">${fmt(massG)}</span><span class="u"> g</span>`)
+      );
+    }
+  }
+
+  else if (U === 'ppm') {
+    const mg = massG_pure * 1e3;
+    h += step('Definition');
+    h += eq(ln(`<span class="d">1 ppm (aqueous) = 1 mg per liter</span>`));
+
+    h += step('Mass in milligrams  &nbsp;<span style="color:var(--muted);font-size:0.75em">mass(mg) = C × V</span>');
+    h += eq(
+      ln(`<span class="d">mass = </span><span class="v">${concVal}</span><span class="u"> mg/L</span><span class="d"> × </span><span class="v">${fmt(volL)}</span><span class="u"> L</span>`),
+      ln(`<span class="d">mass = </span><span class="v">${fmt(mg)}</span><span class="u"> mg  = </span><span class="v">${fmt(massG_pure)}</span><span class="u"> g</span>`)
+    );
+
+    if (purity < 1) {
+      h += step('Purity correction');
+      h += eq(ln(`<span class="d">mass = </span><span class="v">${fmt(massG)}</span><span class="u"> g</span><span class="d"> (after ÷${(purity*100).toFixed(1)}%)</span>`));
+    }
+
+    if (concM != null) {
+      h += step('Molar equivalent (for reference)');
+      h += eq(ln(`<span class="b">≈ ${fmt(concM*1e6)} µM  =  ${fmt(concM*1e3)} mM</span>`));
+    }
+  }
+
+  else if (U === 'ppb') {
+    const ug = massG_pure * 1e6;
+    h += step('Definition');
+    h += eq(ln(`<span class="d">1 ppb (aqueous) = 1 µg per liter</span>`));
+
+    h += step('Mass in micrograms  &nbsp;<span style="color:var(--muted);font-size:0.75em">mass(µg) = C × V</span>');
+    h += eq(
+      ln(`<span class="d">mass = </span><span class="v">${concVal}</span><span class="u"> µg/L</span><span class="d"> × </span><span class="v">${fmt(volL)}</span><span class="u"> L</span>`),
+      ln(`<span class="d">mass = </span><span class="v">${fmt(ug)}</span><span class="u"> µg  = </span><span class="v">${fmt(massG_pure * 1e3)}</span><span class="u"> mg</span>`)
+    );
+
+    if (concM != null) {
+      h += step('Molar equivalent (for reference)');
+      h += eq(ln(`<span class="b">≈ ${fmt(concM*1e9)} nM  =  ${fmt(concM*1e6)} µM</span>`));
+    }
+  }
+
+  else if (U === '% w/v') {
+    h += step('Definition');
+    h += eq(ln(`<span class="d">% w/v = grams per 100 mL</span>`));
+
+    h += step('Mass  &nbsp;<span style="color:var(--muted);font-size:0.75em">mass = (C/100) × V(mL)</span>');
+    h += eq(
+      ln(`<span class="d">mass = (</span><span class="v">${concVal}</span><span class="d"> / 100) × </span><span class="v">${fmt(volMl)}</span><span class="u"> mL</span>`),
+      ln(`<span class="d">mass = </span><span class="v">${fmt(massG_pure)}</span><span class="u"> g</span>`)
+    );
+
+    if (purity < 1) {
+      h += step('Purity correction');
+      h += eq(ln(`<span class="d">adjusted = </span><span class="v">${fmt(massG)}</span><span class="u"> g</span>`));
+    }
+
+    if (concM != null) {
+      h += step('Molar equivalent (for reference)');
+      h += eq(ln(`<span class="b">≈ ${fmt(concM*1e3)} mM</span>`));
+    }
+  }
+
+  else if (U === 'mg/mL' || U === 'g/L' || U === 'mg/L' || U === 'µg/L') {
+    let massLabel, massEq, massResult;
+
+    if (U === 'mg/mL') {
+      massLabel = 'mass(mg) = C × V(mL)';
+      massEq = `<span class="v">${concVal}</span><span class="u"> mg/mL</span><span class="d"> × </span><span class="v">${fmt(volMl)}</span><span class="u"> mL</span>`;
+      massResult = `<span class="v">${fmt(massG_pure * 1e3)}</span><span class="u"> mg  = </span><span class="v">${fmt(massG_pure)}</span><span class="u"> g</span>`;
+    } else if (U === 'mg/L') {
+      massLabel = 'mass(mg) = C × V(L)';
+      massEq = `<span class="v">${concVal}</span><span class="u"> mg/L</span><span class="d"> × </span><span class="v">${fmt(volL)}</span><span class="u"> L</span>`;
+      massResult = `<span class="v">${fmt(massG_pure * 1e3)}</span><span class="u"> mg  = </span><span class="v">${fmt(massG_pure)}</span><span class="u"> g</span>`;
+    } else if (U === 'µg/L') {
+      massLabel = 'mass(µg) = C × V(L)';
+      massEq = `<span class="v">${concVal}</span><span class="u"> µg/L</span><span class="d"> × </span><span class="v">${fmt(volL)}</span><span class="u"> L</span>`;
+      massResult = `<span class="v">${fmt(massG_pure * 1e6)}</span><span class="u"> µg  = </span><span class="v">${fmt(massG_pure * 1e3)}</span><span class="u"> mg</span>`;
+    } else {
+      massLabel = 'mass(g) = C × V(L)';
+      massEq = `<span class="v">${concVal}</span><span class="u"> g/L</span><span class="d"> × </span><span class="v">${fmt(volL)}</span><span class="u"> L</span>`;
+      massResult = `<span class="v">${fmt(massG_pure)}</span><span class="u"> g</span>`;
+    }
+
+    h += step(`Mass  &nbsp;<span style="color:var(--muted);font-size:0.75em">${massLabel}</span>`);
+    h += eq(
+      ln(`<span class="d">mass = </span>${massEq}`),
+      ln(`<span class="d">mass = </span>${massResult}`)
+    );
+    if (purity < 1) {
+      h += step('Purity correction');
+      h += eq(ln(`<span class="d">adjusted = </span><span class="v">${fmt(massG)}</span><span class="u"> g</span>`));
+    }
+    if (concM != null) {
+      h += step('Molar equivalent (for reference)');
+      h += eq(ln(`<span class="b">≈ ${fmt(concM*1e3)} mM  =  ${fmt(concM*1e6)} µM</span>`));
+    }
+  }
+
+  else if (U === 'N') {
+    const eqW = mw / neq;
+    const equivalents = concVal * volL;
+
+    h += step('Step 1: Equivalent weight  &nbsp;<span style="color:var(--muted);font-size:0.75em">EW = MW / n</span>');
+    h += eq(
+      ln(`<span class="d">EW = </span><span class="v">${fmt(mw)}</span><span class="d"> / </span><span class="v">${neq}</span>`),
+      ln(`<span class="d">EW = </span><span class="v">${fmt(eqW)}</span><span class="u"> g/eq</span>`)
+    );
+
+    h += step('Step 2: Equivalents needed  &nbsp;<span style="color:var(--muted);font-size:0.75em">eq = N × V</span>');
+    h += eq(
+      ln(`<span class="d">eq = </span><span class="v">${concVal}</span><span class="u"> N</span><span class="d"> × </span><span class="v">${fmt(volL)}</span><span class="u"> L</span>`),
+      ln(`<span class="d">eq = </span><span class="v">${fmt(equivalents)}</span><span class="u"> equivalents</span>`)
+    );
+
+    h += step('Step 3: Mass  &nbsp;<span style="color:var(--muted);font-size:0.75em">mass = eq × EW</span>');
+    h += eq(
+      ln(`<span class="d">mass = </span><span class="v">${fmt(equivalents)}</span><span class="d"> × </span><span class="v">${fmt(eqW)}</span><span class="u"> g/eq</span>`),
+      ln(`<span class="d">mass = </span><span class="v">${fmt(massG_pure)}</span><span class="u"> g</span>`)
+    );
+
+    if (purity < 1) {
+      h += step('Purity correction');
+      h += eq(ln(`<span class="d">adjusted = </span><span class="v">${fmt(massG)}</span><span class="u"> g</span>`));
+    }
+  }
+
+  /* ── Basis conversion (appended to steps) ── */
+  if (basisLabel && basisFactor !== 1 && mw > 0 && basisMW > 0) {
+    const basisName = basisLabel.type === 'anhydrous'
+      ? `anhydrous (${basisMW} g/mol)`
+      : `${basisLabel.count > 1 ? basisLabel.count + '\u00d7' : ''}${basisLabel.sym} (${basisLabel.mw_per_atom} g/mol)`;
+    h += `<hr class="m-div">`;
+    h += step(`Basis: ${basisName} \u2192 as weighed`);
+    h += eq(
+      ln(`<span class="d">factor = </span><span class="v">${fmt(mw)}</span><span class="d"> / </span><span class="v">${fmt(basisMW)}</span><span class="d"> = </span><span class="v">${fmt(basisFactor)}</span>`),
+      ln(`<span class="d">mass = </span><span class="v">${fmt(massG_basis_pure)}</span><span class="u"> g</span><span class="d"> \u00d7 </span><span class="v">${fmt(basisFactor)}</span><span class="d"> = </span><span class="w">${fmt(massG_pure)} g</span>`)
+    );
+  }
+
+  /* ── RIGHT PANE: answer + prep ── */
+  let r = '';
+  r += `<div class="m-ans-lbl">${isLiquid && pipetteVol != null ? 'Pipette out' : 'Weigh out'}</div>`;
+
+  if (isLiquid && pipetteVol != null) {
+    r += `<div class="m-ans-val">${fmt(pipetteVol)}<span class="m-ans-unit">mL</span></div>`;
+    r += `<div class="m-ans-also">stock (${fmt(stockM)} M)</div>`;
+  } else {
+    r += `<div class="m-ans-val">${fmt(massG)}<span class="m-ans-unit">g</span></div>`;
+    const alts = fmtMassAlt(massG);
+    if (alts.length) r += `<div class="m-ans-also">= ${alts.join(' = ')}</div>`;
+    if      (massG < 0.005) r += `<div class="m-ans-also w">Note:Very small - use stock dilution</div>`;
+    else if (massG < 0.05)  r += `<div class="m-ans-also b">Analytical balance (\u00b10.0001 g)</div>`;
+  }
+
+  r += `<div class="m-prep" style="margin-top:1rem"><div class="m-prep-title">How to prepare</div>`;
+  const fill   = Math.round(volMl * 0.7);
+  const fStr   = formula !== '--' ? formula : 'compound';
+  const acidFormulas = ['HCl','H\u2082SO\u2084','HNO\u2083','H\u2083PO\u2084','H₂SO₄','HNO₃','H₃PO₄'];
+  const isAcid = acidFormulas.some(a => formula === a || formula.startsWith(a));
+
+  if (isLiquid && pipetteVol != null) {
+    r += prep(`Measure <strong>${fmt(pipetteVol)} mL</strong> of ${fStr}.`);
+    r += prep(`Add slowly to ~${fill} mL solvent.`);
+    if (isAcid) r += prep(`<span style="color:#b33">Note:Add acid to water, not water to acid.</span>`);
+  } else {
+    r += prep(`Weigh <strong>${fmt(massG)} g</strong> of ${fStr}.`);
+    r += prep(`Dissolve in ~${fill} mL solvent.`);
+    r += prep(`Transfer to ${volVal} ${volUnit} volumetric flask.`);
+    r += prep(`Bring to volume mark, mix well.`);
+  }
+  r += prep('Label immediately.');
+  r += `</div>`;
+
+  /* sterilize section */
+  r += `<div class="m-sterile">`;
+  r += `<div class="m-prep-title" style="margin-top:1rem">Sterilize if needed</div>`;
+  if (sterilizeRec === 'autoclave') {
+    r += `<div class="m-sterile-badge m-sterile-auto">Autoclave-compatible</div>`;
+    r += `<div class="m-sterile-text">This compound is generally autoclave stable (121°C, 15 min). Autoclaving or 0.22 µm filtration both work. <strong>Always verify with your safety/protocol documentation before autoclaving any solution.</strong></div>`;
+  } else if (sterilizeRec === 'filter') {
+    r += `<div class="m-sterile-badge m-sterile-filt">0.22 µm Filter recommended</div>`;
+    r += `<div class="m-sterile-text">This compound may degrade, precipitate, or volatilize under autoclave conditions. Filter-sterilize through a 0.22 µm membrane instead. <strong>Verify with your protocol before proceeding.</strong></div>`;
+  } else {
+    r += `<div class="m-sterile-badge m-sterile-unk">Check requirements</div>`;
+    r += `<div class="m-sterile-text">Sterilization needs depend on your application. Common options: 0.22 µm filtration (gentle, widely applicable) or autoclaving (121°C, 15 min, for heat-stable solutions). Consult your protocol.</div>`;
+  }
+  r += `</div>`;
+
+  /* ── Write to DOM ── */
+  document.getElementById('board-heading').innerHTML =
+    `Making ${volVal}\u202f${volUnit} of ${concVal}\u202f${concUnit}` + (basisTag ? ` ${basisTag}` : '');
+  document.getElementById('board-steps').innerHTML  = h;
+  document.getElementById('board-result').innerHTML = r;
+  document.getElementById('math-content').style.display = 'block';
+  document.getElementById('empty-state').style.display  = 'none';
+}
+
+function step(label) {
+  return `<div class="m-step"><div class="m-lbl">${label}</div>`;
+}
+
+function eq(...lines) {
+  const inner = lines.filter(Boolean).join('');
+  return `<div class="m-eq">${inner}</div></div>`;
+}
+
+function prep(text) {
+  return `<div class="m-prep-item"><span class="m-prep-num">→</span><span>${text}</span></div>`;
+}
+
+/* ════════════════════════════════════════════════════════════
+   RENDER LABEL
+   ════════════════════════════════════════════════════════════ */
+function renderLabel(D) {
+  const { formula, mw, purity, concVal, concUnit, volVal, volUnit,
+          massG, isLiquid, pipetteVol, basis, basisLabel } = D;
+  const nameVal  = document.getElementById('search').value.trim() || formula;
+  const lw       = document.getElementById('label-wrap');
+  const lb       = document.getElementById('label-body');
+  lw.classList.add('active');
+
+  const pStr      = purity < 1 ? ` (${(purity*100).toFixed(1)}%)` : '';
+  const amountStr = isLiquid && pipetteVol != null
+    ? `${fmt(pipetteVol)} mL stock`
+    : `${fmt(massG)} g${pStr}`;
+
+  let basisStr = '';
+  if (basisLabel) {
+    if (basisLabel.type === 'anhydrous') basisStr = ' [anhydrous]';
+    else if (basisLabel.type === 'metal') basisStr = ` [as ${basisLabel.sym}]`;
+  }
+
+  const today = new Date().toLocaleDateString();
+
+  lb.innerHTML = `
+    <div class="lbl-top">
+      <span class="lbl-formula">${formula !== '--' ? formula : nameVal}</span>
+      <span class="lbl-name">${nameVal}</span>
+    </div>
+    <hr class="lbl-hr">
+    <div class="lbl-amount">${amountStr} <span class="lbl-arrow">→</span> ${volVal} ${volUnit} &nbsp;|&nbsp; <span style="color:var(--rust)">${concVal} ${concUnit}${basisStr}</span></div>
+    <div class="lbl-conc">${mw > 0 ? 'MW = ' + mw + ' g/mol' : ''}</div>
+    <div class="lbl-meta">
+      <span class="lbl-meta-item">By: <input id="lbl-by" placeholder="____" style="width:38px"></span>
+      <span class="lbl-meta-item">Date: <input id="lbl-date" placeholder="__________" style="width:72px"></span>
+      <span class="lbl-meta-item">pH: <input id="lbl-ph" placeholder="____" style="width:36px"></span>
+    </div>
+    <div class="lbl-store-row">
+      <span class="lbl-store-label">Storage:</span>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="RT">RT</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="4C">4°C</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="-20C">-20°C</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="-80C">-80°C</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="other">other</button>
+    </div>`;
+}
+
+/* ════════════════════════════════════════════════════════════
+   STORAGE TOGGLE
+   ════════════════════════════════════════════════════════════ */
+function toggleStore(btn) {
+  /* Toggle selected state; allow only one selected per label card */
+  const row = btn.closest('.lbl-store-row');
+  const wasSelected = btn.classList.contains('selected');
+  row.querySelectorAll('.lbl-store-opt').forEach(b => b.classList.remove('selected'));
+  if (!wasSelected) btn.classList.add('selected');
+}
+
+function getSelectedStorage(wrapId) {
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return '';
+  const sel = wrap.querySelector('.lbl-store-opt.selected');
+  return sel ? sel.textContent.trim() : '';
+}
+
+/* ════════════════════════════════════════════════════════════
+   PRINT / COPY
+   ════════════════════════════════════════════════════════════ */
+function saveLabelPng(wrapId, fallbackName) {
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  const bodyId = wrapId === 'label-wrap' ? 'label-body' : 'mc-label-body';
+  const lb = document.getElementById(bodyId);
+  if (!lb || lb.querySelector('.lbl-empty')) return;
+
+  /* Gather text from the rendered label DOM */
+  const formulaEl = lb.querySelector('.lbl-formula');
+  const nameEl    = lb.querySelector('.lbl-name');
+  const amountEls = lb.querySelectorAll('.lbl-amount');
+  const concEl    = lb.querySelector('.lbl-conc');
+
+  const formulaTxt = formulaEl ? formulaEl.textContent.trim() : '';
+  const nameTxt    = nameEl ? nameEl.textContent.trim() : '';
+  const concTxt    = concEl ? concEl.textContent.trim() : '';
+
+  /* Collect amount lines (multi-component can have several) */
+  const amountLines = [];
+  amountEls.forEach(el => {
+    amountLines.push(el.textContent.trim().replace(/\s+/g, ' '));
+  });
+
+  /*
+     Label layout (always all rows, blank if empty):
+       Formula
+       Name
+       ────────────
+       dilution info
+       MW = ...
+       By: ____    Date: 00/00/0000
+       pH: ____    Storage: __________
+  */
+  const S   = 3;
+  const pad = 14 * S;
+  const lh  = 17 * S;
+  const smLh = 15 * S;
+  const ruleGap = 7 * S;
+
+  const fFormula = `bold ${13*S}px 'Courier New', monospace`;
+  const fName    = `italic ${9.5*S}px system-ui, sans-serif`;
+  const fMono    = `${10*S}px 'Courier New', monospace`;
+  const fSmall   = `${9*S}px 'Courier New', monospace`;
+  const fMeta    = `${8.5*S}px system-ui, sans-serif`;
+
+  const tmp = document.createElement('canvas').getContext('2d');
+  tmp.textBaseline = 'top';
+  const tw = (font, text) => { tmp.font = font; return tmp.measureText(text).width; };
+
+  /* Read meta fields */
+  const getField = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  let metaBy, metaDt, metaPh;
+  if (wrapId === 'label-wrap') {
+    metaBy = getField('lbl-by'); metaDt = getField('lbl-date');
+    metaPh = getField('lbl-ph');
+  } else {
+    metaBy = getField('mc-lbl-by'); metaDt = getField('mc-lbl-date');
+    metaPh = getField('mc-lbl-ph');
+  }
+  const selectedStorage = getSelectedStorage(wrapId);
+
+  const byTxt = 'By: ' + (metaBy || '____');
+  const dtTxt = 'Date: ' + (metaDt || '___________');
+  const phTxt = 'pH: ' + (metaPh || '____');
+  /* One line: "By: ____   Date: ___________   pH: ____" */
+  const metaGap = 12 * S;
+  const metaLineTxt = byTxt + '   ' + dtTxt + '   ' + phTxt;
+
+  /* Storage options for circle drawing */
+  const storeOpts = ['RT', '4\u00B0C', '-20\u00B0C', '-80\u00B0C', 'other'];
+
+  /* Measure max width from actual content */
+  let maxW = 0;
+  const chk = (f, t) => { const w = tw(f, t); if (w > maxW) maxW = w; };
+  chk(fFormula, formulaTxt);
+  if (nameTxt && nameTxt !== formulaTxt) chk(fName, nameTxt);
+  amountLines.forEach(l => chk(fMono, l));
+  if (concTxt) chk(fSmall, concTxt);
+  chk(fMeta, metaLineTxt);
+  /* Storage row width */
+  const stLabelW = tw(fMeta, 'Storage:  ');
+  let stCirclesW = 0;
+  const pillPad = 10 * S;
+  const pillGap = 6 * S;
+  storeOpts.forEach(opt => { stCirclesW += tw(fMeta, opt) + pillPad + pillGap; });
+  stCirclesW -= pillGap; /* no gap after last */
+  const stRowW = stLabelW + stCirclesW;
+  if (stRowW > maxW) maxW = stRowW;
+
+  const W = Math.ceil(maxW + pad * 2);
+
+  /* Fixed height */
+  const storeRowH = 16 * S;
+  let totalH = pad;
+  totalH += lh;                      /* formula */
+  totalH += smLh;                    /* name */
+  totalH += ruleGap;                 /* rule */
+  totalH += amountLines.length * lh; /* dilution */
+  totalH += smLh;                    /* MW */
+  totalH += 6 * S;                   /* gap */
+  totalH += smLh;                    /* By / Date / pH (one line) */
+  totalH += storeRowH;               /* storage circles */
+  totalH += pad;
+  const H = Math.ceil(totalH);
+
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  ctx.textBaseline = 'top';
+
+  /* Border */
+  const bdr = 6 * S;
+  ctx.beginPath();
+  ctx.moveTo(bdr, 0); ctx.lineTo(W-bdr, 0); ctx.arcTo(W,0,W,bdr,bdr);
+  ctx.lineTo(W, H-bdr); ctx.arcTo(W,H,W-bdr,H,bdr);
+  ctx.lineTo(bdr, H); ctx.arcTo(0,H,0,H-bdr,bdr);
+  ctx.lineTo(0, bdr); ctx.arcTo(0,0,bdr,0,bdr);
+  ctx.closePath();
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 1.5 * S;
+  ctx.stroke();
+
+  /* Draw */
+  ctx.fillStyle = '#000';
+  let y = pad;
+
+  /* Formula */
+  ctx.font = fFormula;
+  ctx.fillText(formulaTxt, pad, y);
+  y += lh;
+
+  /* Name */
+  ctx.font = fName;
+  if (nameTxt && nameTxt !== formulaTxt) {
+    ctx.fillText(nameTxt, pad, y);
+  }
+  y += smLh;
+
+  /* Rule */
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 0.75 * S;
+  ctx.beginPath();
+  ctx.moveTo(pad, y + 1*S);
+  ctx.lineTo(W - pad, y + 1*S);
+  ctx.stroke();
+  y += ruleGap;
+
+  /* Dilution */
+  ctx.font = fMono;
+  ctx.fillStyle = '#000';
+  amountLines.forEach(line => {
+    ctx.fillText(line, pad, y);
+    y += lh;
+  });
+
+  /* MW */
+  ctx.font = fSmall;
+  if (concTxt) ctx.fillText(concTxt, pad, y);
+  y += smLh;
+
+  /* Meta: By / Date / pH on one line */
+  y += 6 * S;
+  ctx.font = fMeta;
+  ctx.fillStyle = '#000';
+  ctx.fillText(metaLineTxt, pad, y);
+  y += smLh;
+
+  /* Storage with oval options */
+  ctx.fillText('Storage:', pad, y);
+  let sx = pad + tw(fMeta, 'Storage:  ');
+  const ovalH = 11 * S;
+  const ovalY = y - 1 * S;
+  storeOpts.forEach(opt => {
+    const optW = tw(fMeta, opt);
+    const pillW = optW + 10 * S;
+    const pillR = ovalH / 2;
+    /* Map data-store values for matching */
+    const dataVal = opt === '4°C' ? '4C' : opt === '-20°C' ? '-20C' : opt === '-80°C' ? '-80C' : opt;
+    const isSelected = selectedStorage === opt || selectedStorage === dataVal;
+
+    /* Draw pill/oval */
+    ctx.beginPath();
+    ctx.moveTo(sx + pillR, ovalY);
+    ctx.lineTo(sx + pillW - pillR, ovalY);
+    ctx.arcTo(sx + pillW, ovalY, sx + pillW, ovalY + pillR, pillR);
+    ctx.arcTo(sx + pillW, ovalY + ovalH, sx + pillW - pillR, ovalY + ovalH, pillR);
+    ctx.lineTo(sx + pillR, ovalY + ovalH);
+    ctx.arcTo(sx, ovalY + ovalH, sx, ovalY + ovalH - pillR, pillR);
+    ctx.arcTo(sx, ovalY, sx + pillR, ovalY, pillR);
+    ctx.closePath();
+
+    if (isSelected) {
+      ctx.fillStyle = '#000';
+      ctx.fill();
+      ctx.fillStyle = '#fff';
+      ctx.fillText(opt, sx + 5*S, y);
+      ctx.fillStyle = '#000';
+    } else {
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 0.75 * S;
+      ctx.stroke();
+      ctx.fillStyle = '#000';
+      ctx.fillText(opt, sx + 5*S, y);
+    }
+    sx += pillW + 6 * S;
+  });
+
+  /* Download */
+  const link = document.createElement('a');
+  let fname = fallbackName || 'label';
+  if (formulaTxt) fname = formulaTxt.replace(/[^a-zA-Z0-9_-]/g, '_');
+  link.download = fname + '_label.png';
+  link.href = c.toDataURL('image/png');
+  link.click();
+}
+
+function copyLabel() {
+  const lb = document.getElementById('label-body');
+  if (!lb || lb.querySelector('.lbl-empty')) return;
+
+  const get = sel => lb.querySelector(sel)?.textContent?.trim() ?? '';
+  const val = id  => document.getElementById(id)?.value?.trim() ?? '';
+
+  const lines = [
+    get('.lbl-formula'),
+    get('.lbl-name'),
+    '-'.repeat(30),
+    get('.lbl-amount'),
+    get('.lbl-conc'),
+    val('lbl-by')    ? 'Prepared by: ' + val('lbl-by')   : '',
+    val('lbl-date')  ? 'Date: '        + val('lbl-date')  : '',
+    val('lbl-ph')    ? 'pH: '          + val('lbl-ph')    : '',
+    getSelectedStorage('label-wrap') ? 'Storage: ' + getSelectedStorage('label-wrap') : '',
+  ].filter(Boolean).join('\n');
+
+  navigator.clipboard.writeText(lines).then(() => {
+    const btn = document.getElementById('copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = orig, 2200);
+  }).catch(() => alert('Copy failed. Please select the text and copy manually.'));
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   TAB SWITCHING
+   ════════════════════════════════════════════════════════════ */
+function switchTab(t) {
+  document.getElementById('tab-single').style.display = t === 'single' ? '' : 'none';
+  document.getElementById('tab-multi').style.display  = t === 'multi'  ? '' : 'none';
+  document.getElementById('tab-btn-single').classList.toggle('active', t === 'single');
+  document.getElementById('tab-btn-multi').classList.toggle('active',  t === 'multi');
+}
+
+/* ════════════════════════════════════════════════════════════
+   MULTI-COMPONENT STATE
+   ════════════════════════════════════════════════════════════ */
+let mcComps = [];
+let mcUID   = 1;
+
+const MC_PRESETS = {
+  pbs: { name:'1x PBS', comps:[
+    { name:'Sodium Chloride',                       formula:'NaCl',                     mw:58.44,  conc:137,   unit:'mM'    },
+    { name:'Potassium Chloride',                    formula:'KCl',                      mw:74.55,  conc:2.7,   unit:'mM'    },
+    { name:'Sodium Phosphate Dibasic Heptahydrate', formula:'Na₂HPO₄·7H₂O', mw:268.07, conc:10, unit:'mM' },
+    { name:'Potassium Phosphate Monobasic',         formula:'KH₂PO₄',          mw:136.09, conc:1.8,   unit:'mM'    },
+  ]},
+  te: { name:'TE Buffer', comps:[
+    { name:'Tris Base',       formula:'Tris',       mw:121.14, conc:10,  unit:'mM' },
+    { name:'EDTA Free Acid',  formula:'H₄EDTA', mw:292.24, conc:1,   unit:'mM' },
+  ]},
+  tae50x: { name:'50x TAE Buffer', comps:[
+    { name:'Tris Base',                         formula:'Tris',     mw:121.14, conc:2,   unit:'M'  },
+    { name:'Acetic Acid Glacial (99.7%)',        formula:'CH₃COOH', mw:60.05, conc:1, unit:'M' },
+    { name:'EDTA Disodium Salt Dihydrate',       formula:'Na₂EDTA·2H₂O', mw:372.24, conc:50, unit:'mM' },
+  ]},
+  lb: { name:'LB Broth', comps:[
+    { name:'Sodium Chloride', formula:'NaCl', mw:58.44, conc:10, unit:'g/L' },
+    { name:'Tryptone (peptone)', formula:'Tryptone', mw:0, conc:10, unit:'g/L' },
+    { name:'Yeast Extract',      formula:'Yeast extract', mw:0, conc:5,  unit:'g/L' },
+  ]},
+  tbs: { name:'TBS Buffer (10x)', comps:[
+    { name:'Tris Base',       formula:'Tris', mw:121.14, conc:200, unit:'mM' },
+    { name:'Sodium Chloride', formula:'NaCl', mw:58.44,  conc:1.5, unit:'M'  },
+  ]},
+  sds: { name:'SDS-PAGE Running Buffer (10x)', comps:[
+    { name:'Tris Base',                formula:'Tris',  mw:121.14, conc:250,  unit:'mM'  },
+    { name:'Glycine',                  formula:'C₂H₅NO₂', mw:75.03, conc:1.92, unit:'M' },
+    { name:'SDS (Sodium Dodecyl Sulfate)', formula:'SDS', mw:288.38, conc:1, unit:'% w/v' },
+  ]},
+  ripa: { name:'RIPA Lysis Buffer', comps:[
+    { name:'Tris Base',       formula:'Tris', mw:121.14, conc:50,  unit:'mM'    },
+    { name:'Sodium Chloride', formula:'NaCl', mw:58.44,  conc:150, unit:'mM'    },
+    { name:'SDS (Sodium Dodecyl Sulfate)', formula:'SDS', mw:288.38, conc:0.1, unit:'% w/v' },
+    { name:'Sodium Deoxycholate', formula:'C₂₄H₃₉NaO₄', mw:414.6, conc:0.5, unit:'% w/v' },
+    { name:'EDTA Free Acid',  formula:'H₄EDTA', mw:292.24, conc:1, unit:'mM' },
+  ]},
+};
+
+function loadPreset(key) {
+  if (!key) return;
+  const p = MC_PRESETS[key];
+  if (!p) return;
+  document.getElementById('mc-name').value = p.name;
+  mcComps = p.comps.map(c => ({ ...c, id: mcUID++ }));
+  renderMcRows();
+  mcCalc();
+  document.getElementById('mc-preset').value = '';
+}
+
+function addComponent() {
+  mcComps.push({ id: mcUID++, name:'', formula:'', mw:'', conc:'', unit:'mM' });
+  renderMcRows();
+}
+
+function removeComp(id) {
+  mcComps = mcComps.filter(c => c.id !== id);
+  renderMcRows();
+  mcCalc();
+}
+
+function updateComp(id, field, value) {
+  const c = mcComps.find(x => x.id === id);
+  if (c) { c[field] = value; mcCalc(); }
+}
+
+/* Render all component rows */
+function renderMcRows() {
+  const container = document.getElementById('mc-rows');
+  if (!mcComps.length) {
+    container.innerHTML = '<div style="color:var(--muted);font-size:0.8rem;padding:0.5rem 0;text-align:center">No components yet. Click + Add component or load a preset.</div>';
+    return;
+  }
+  container.innerHTML = mcComps.map(c => `
+    <div class="mc-row" id="mcrow-${c.id}">
+      <div class="mc-name-wrap">
+        <input type="text" class="mc-name-inp" value="${escHtml(c.name)}" placeholder="Search compound…"
+          autocomplete="off" spellcheck="false"
+          oninput="mcSearchInput(${c.id}, this.value)"
+          onblur="setTimeout(()=>closeMcAc(${c.id}),180)">
+        <div class="mc-ac-list" id="mc-ac-${c.id}"></div>
+      </div>
+      <input type="text" class="mc-formula-input" value="${escHtml(c.formula)}" placeholder="Formula"
+        style="font-family:var(--mono)"
+        oninput="updateComp(${c.id},'formula',this.value)">
+      <input type="number" value="${c.mw || ''}" placeholder="MW"
+        oninput="updateComp(${c.id},'mw',parseFloat(this.value)||0)">
+      <input type="number" value="${c.conc || ''}" placeholder="Amount" step="any" min="0"
+        oninput="updateComp(${c.id},'conc',parseFloat(this.value)||0)">
+      <select onchange="updateComp(${c.id},'unit',this.value)">${mcUnitOptions(c.unit)}</select>
+      <div class="mc-mass" id="mc-mass-${c.id}">-</div>
+      <button class="mc-remove" onclick="removeComp(${c.id})" title="Remove">×</button>
+    </div>`).join('');
+}
+
+function escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function mcUnitOptions(sel) {
+  const units = ['M','mM','µM','nM','ppm','ppb','% w/v','mg/mL','mg/L','g/L'];
+  return units.map(u => `<option value="${u}"${u===sel?' selected':''}>${u}</option>`).join('');
+}
+
+/* Per-component autocomplete */
+function mcSearchInput(id, q) {
+  const c = mcComps.find(x => x.id === id);
+  if (c) c.name = q;
+  const nq  = normF(q);
+  const box = document.getElementById(`mc-ac-${id}`);
+  if (!q.trim()) { box.classList.remove('open'); return; }
+  const matches = DB.filter(d =>
+    d.name.toLowerCase().includes(q.toLowerCase()) ||
+    normF(d.formula).includes(nq)
+  ).slice(0,8);
+  if (!matches.length) { box.classList.remove('open'); return; }
+  box.innerHTML = matches.map((d,i) => `
+    <div class="mc-ac-item" onmousedown="mcSelectChem(${id}, ${i}, event)">
+      <span style="font-weight:600">${d.name}</span>
+      <div class="ac-formula">${d.formula} &nbsp; ${d.mw} g/mol</div>
+    </div>`).join('');
+  box._matches = matches;
+  box.classList.add('open');
+}
+
+function mcSelectChem(id, i, e) {
+  e.preventDefault();
+  const box = document.getElementById(`mc-ac-${id}`);
+  const d   = box._matches[i];
+  const c   = mcComps.find(x => x.id === id);
+  if (!c || !d) return;
+  c.name    = d.name;
+  c.formula = d.formula;
+  c.mw      = d.mw;
+  box.classList.remove('open');
+  renderMcRows();
+  mcCalc();
+}
+
+function closeMcAc(id) {
+  const box = document.getElementById(`mc-ac-${id}`);
+  if (box) box.classList.remove('open');
+}
+
+/* Calculate all component masses */
+function mcCalc() {
+  const volVal  = parseFloat(document.getElementById('mc-vol').value) || 0;
+  const volUnit = document.getElementById('mc-vol-unit').value;
+  const volL    = volUnit === 'L' ? volVal : volVal / 1000;
+  const volMl   = volL * 1000;
+
+  let anyResult = false;
+
+  mcComps.forEach(c => {
+    const el = document.getElementById(`mc-mass-${c.id}`);
+    if (!el) return;
+    if (!c.conc || c.conc <= 0 || volL <= 0) { el.textContent = '-'; return; }
+
+    let massG = 0;
+    const u = c.unit;
+    const mw = parseFloat(c.mw) || 0;
+    const massUnits = ['g/L','mg/mL','% w/v','ppm','ppb','mg/L'];
+
+    if (massUnits.includes(u)) {
+      if (u==='g/L')    massG = c.conc * volL;
+      if (u==='mg/mL')  massG = c.conc * volMl / 1000;
+      if (u==='% w/v')  massG = (c.conc/100) * volMl;
+      if (u==='ppm')    massG = c.conc * volL / 1000;
+      if (u==='ppb')    massG = c.conc * volL / 1e6;
+      if (u==='mg/L')   massG = c.conc * volL / 1000;
+    } else {
+      if (!mw) { el.textContent = 'need MW'; return; }
+      let concM = 0;
+      if (u==='M')    concM = c.conc;
+      if (u==='mM')   concM = c.conc/1e3;
+      if (u==='µM') concM = c.conc/1e6;
+      if (u==='nM')   concM = c.conc/1e9;
+      if (u==='N')    concM = c.conc;
+      massG = concM * volL * mw;
+    }
+
+    c._massG = massG;
+    const a = Math.abs(massG);
+    let display = massG >= 0.01 ? fmt(massG)+' g' : massG >= 1e-5 ? fmt(massG*1000)+' mg' : fmt(massG*1e6)+' µg';
+    el.textContent = display;
+    anyResult = true;
+  });
+
+  if (anyResult && volL > 0) {
+    renderMcBoard(volL, volMl, volVal, volUnit);
+    renderMcLabel(volVal, volUnit);
+  } else {
+    document.getElementById('mc-empty').style.display = 'flex';
+    document.getElementById('mc-math').style.display  = 'none';
+  }
+}
+
+function renderMcBoard(volL, volMl, volVal, volUnit) {
+  const name = document.getElementById('mc-name').value.trim() || 'Solution';
+  const valid = mcComps.filter(c => c._massG != null && c.conc > 0);
+  if (!valid.length) return;
+
+  let h = `<div class="board-title">Recipe: ${name} &nbsp;·&nbsp; ${volVal} ${volUnit}</div>`;
+  h += `<table class="mc-summary-table">
+    <thead><tr>
+      <th>Compound</th><th>Formula</th><th>Concentration</th><th>To weigh / pipette</th>
+    </tr></thead><tbody>`;
+
+  valid.forEach(c => {
+    const a   = Math.abs(c._massG);
+    const disp = c._massG >= 0.01 ? fmt(c._massG)+' g' : c._massG >= 1e-5 ? fmt(c._massG*1000)+' mg' : fmt(c._massG*1e6)+' µg';
+    h += `<tr>
+      <td>${escHtml(c.name || 'Component')}</td>
+      <td style="font-family:var(--mono)">${escHtml(c.formula||'')}</td>
+      <td style="font-family:var(--mono)">${c.conc} ${escHtml(c.unit)}</td>
+      <td class="mass-val">${disp}</td>
+    </tr>`;
+  });
+
+  h += `</tbody></table>`;
+  h += `<div class="mc-total-row">Total volume: ${volVal} ${volUnit} &nbsp;·&nbsp; ${valid.length} component${valid.length!==1?'s':''}</div>`;
+
+  // Prep steps
+  h += `<div class="m-prep" style="margin-top:1rem"><div class="m-prep-title">How to prepare</div>`;
+  const fill = Math.round(volMl * 0.7);
+  valid.forEach((c,i) => {
+    const a   = Math.abs(c._massG);
+    const disp = c._massG >= 0.01 ? fmt(c._massG)+' g' : c._massG >= 1e-5 ? fmt(c._massG*1000)+' mg' : fmt(c._massG*1e6)+' µg';
+    h += prep(`Weigh <strong>${disp}</strong> of ${escHtml(c.formula || c.name || 'component')}.`);
+  });
+  h += prep(`Combine all in ~${fill} mL solvent. Stir until fully dissolved.`);
+  h += prep(`Adjust pH if required, then bring to ${volVal} ${volUnit} final volume.`);
+  h += prep('Filter-sterilize or autoclave as appropriate. Label immediately.');
+  h += `</div>`;
+
+  const em = document.getElementById('mc-empty');
+  const mc = document.getElementById('mc-math');
+  em.style.display = 'none';
+  mc.style.display = 'block';
+  mc.innerHTML = h;
+}
+
+function renderMcLabel(volVal, volUnit) {
+  const name    = document.getElementById('mc-name').value.trim() || 'Multi-component solution';
+  const valid   = mcComps.filter(c => c._massG != null && c.conc > 0);
+  const lw      = document.getElementById('mc-label-wrap');
+  const lb      = document.getElementById('mc-label-body');
+  if (!valid.length) { lb.innerHTML = '<p class="lbl-empty">Fill in components above…</p>'; lw.classList.remove('active'); return; }
+  lw.classList.add('active');
+  const today   = new Date().toLocaleDateString();
+  const lines   = valid.map(c => {
+    const disp = c._massG >= 0.01 ? fmt(c._massG)+' g' : c._massG >= 1e-5 ? fmt(c._massG*1000)+' mg' : fmt(c._massG*1e6)+' µg';
+    return `<div class="lbl-amount" style="font-size:0.72rem">${escHtml(c.formula||c.name)} <span class="lbl-arrow">→</span> <span style="color:var(--rust)">${c.conc} ${escHtml(c.unit)}</span> &nbsp;<span style="color:var(--muted);font-size:0.68rem">(${disp})</span></div>`;
+  }).join('');
+
+  lb.innerHTML = `
+    <div class="lbl-top"><span class="lbl-formula">${escHtml(name)}</span></div>
+    <hr class="lbl-hr">
+    ${lines}
+    <div class="lbl-conc" style="margin-top:0.3rem">Final volume: ${volVal} ${volUnit}</div>
+    <div class="lbl-meta">
+      <span class="lbl-meta-item">By: <input id="mc-lbl-by" placeholder="____" style="width:38px"></span>
+      <span class="lbl-meta-item">Date: <input id="mc-lbl-date" placeholder="__________" style="width:72px"></span>
+      <span class="lbl-meta-item">pH: <input id="mc-lbl-ph" placeholder="____" style="width:36px"></span>
+    </div>
+    <div class="lbl-store-row">
+      <span class="lbl-store-label">Storage:</span>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="RT">RT</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="4C">4°C</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="-20C">-20°C</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="-80C">-80°C</button>
+      <button class="lbl-store-opt" onclick="toggleStore(this)" data-store="other">other</button>
+    </div>`;
+}
+
+function copyMcLabel() {
+  const lb = document.getElementById('mc-label-body');
+  if (!lb) return;
+  const name = document.getElementById('mc-name').value.trim() || 'Solution';
+  const valid = mcComps.filter(c => c._massG != null && c.conc > 0);
+  const volVal = document.getElementById('mc-vol').value;
+  const volUnit = document.getElementById('mc-vol-unit').value;
+  const lines = [name, '-'.repeat(30)];
+  valid.forEach(c => {
+    const disp = c._massG >= 0.01 ? fmt(c._massG)+' g' : fmt(c._massG*1000)+' mg';
+    lines.push(`${c.formula||c.name}: ${c.conc} ${c.unit} (${disp})`);
+  });
+  lines.push(`Volume: ${volVal} ${volUnit}`);
+  const val = id => document.getElementById(id);
+  if (val('mc-lbl-by')?.value)    lines.push('By: ' + val('mc-lbl-by').value);
+  if (val('mc-lbl-date')?.value)  lines.push('Date: ' + val('mc-lbl-date').value);
+  if (val('mc-lbl-ph')?.value)    lines.push('pH: ' + val('mc-lbl-ph').value);
+  const mcSt = getSelectedStorage('mc-label-wrap');
+  if (mcSt) lines.push('Storage: ' + mcSt);
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    const btn = document.getElementById('mc-copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2200);
+  });
+}
+
+/* Init with one empty row */
+addComponent();
+
+</script>
+<footer style="text-align:center;margin-top:2.5rem;padding-bottom:2rem;font-size:0.75rem;color:#8a8870;">
+  R. Terra 2026
+</footer>
+</body>
+</html>

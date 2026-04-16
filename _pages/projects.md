@@ -1,11 +1,11 @@
 ---
 layout: page
-title: projects
-permalink: /projects/
-description: A growing collection of your cool projects.
-nav: false
+title: tools
+permalink: /tools/
+description: Lab tools and calculators.
+nav: true
 nav_order: 3
-display_categories: [ongoing projects, completed projects]
+display_categories: [calculators]
 horizontal: false
 ---
 
