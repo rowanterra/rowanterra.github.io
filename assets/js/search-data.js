@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
+        },{id: "nav-tools",
+          title: "tools",
+          description: "Lab tools and calculators.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/tools/";
+          },
         },{id: "nav-cv",
           title: "cv",
           description: "A truncated one-page resume with recent experience can be found here. Please email me for a full CV.",
@@ -436,6 +443,11 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-stock-solutions-calculator",
+          title: 'Stock Solutions Calculator',
+          description: "Step-by-step solution preparation with automatic mass/volume calculations, bottle labels, and multi-component recipes.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/solutions_calculator/";
             },},{
         id: 'social-email',
         title: 'email',
