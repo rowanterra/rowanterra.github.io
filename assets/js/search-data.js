@@ -383,10 +383,7 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-presenting-computational-approaches-assist-in-critical-mineral-recovery-and-remediation-effort-prioritization-within-miningaffected-systems-at-the-the-american-society-of-reclamation-sciences-2026-conference-in-laramie-wy",
-          title: 'Presenting Computational approaches assist in critical mineral recovery and remediation effort prioritization within...',
-          description: "",
-          section: "News",},{id: "news-in-this-interview-i-discuss-my-ph-d-projects-and-my-experience-as-an-orise-fellow",
+            },},{id: "news-in-this-interview-i-discuss-my-ph-d-projects-and-my-experience-as-an-orise-fellow",
           title: 'In this interview, I discuss my Ph.D. projects and my experience as an...',
           description: "",
           section: "News",},{id: "news-invited-to-present-computational-biogeochemistry-assists-in-critical-mineral-recovery-from-abandoned-coal-mine-drainage-and-associated-precipitants-at-the-wilds-community-partnership-symposium",
@@ -397,6 +394,9 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "news-received-the-american-society-of-reclamation-sciences-ph-d-level-memorial-scholarship-award",
           title: 'Received the American Society of Reclamation Sciences Ph.D. Level Memorial Scholarship Award.',
+          description: "",
+          section: "News",},{id: "news-presenting-computational-approaches-assist-in-critical-mineral-recovery-and-remediation-effort-prioritization-within-miningaffected-systems-at-the-the-american-society-of-reclamation-sciences-2026-conference-in-laramie-wy",
+          title: 'Presenting Computational approaches assist in critical mineral recovery and remediation effort prioritization within...',
           description: "",
           section: "News",},{id: "projects-spatiotemporal-surveys",
           title: 'Spatiotemporal Surveys',
