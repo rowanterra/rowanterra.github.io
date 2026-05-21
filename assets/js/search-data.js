@@ -383,14 +383,14 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-in-this-interview-i-discuss-my-ph-d-projects-and-my-experience-as-an-orise-fellow",
+            },},{id: "news-presenting-computational-approaches-assist-in-critical-mineral-recovery-and-remediation-effort-prioritization-within-miningaffected-systems-at-the-the-american-society-of-reclamation-sciences-2026-conference-in-laramie-wy",
+          title: 'Presenting Computational approaches assist in critical mineral recovery and remediation effort prioritization within...',
+          description: "",
+          section: "News",},{id: "news-in-this-interview-i-discuss-my-ph-d-projects-and-my-experience-as-an-orise-fellow",
           title: 'In this interview, I discuss my Ph.D. projects and my experience as an...',
           description: "",
           section: "News",},{id: "news-invited-to-present-computational-biogeochemistry-assists-in-critical-mineral-recovery-from-abandoned-coal-mine-drainage-and-associated-precipitants-at-the-wilds-community-partnership-symposium",
           title: 'Invited to present Computational Biogeochemistry Assists in Critical Mineral Recovery from Abandoned Coal...',
-          description: "",
-          section: "News",},{id: "news-presenting-two-talks-1-recursive-modeling-connects-geochemistry-and-genomics-in-critical-minerals-characterization-and-2-microbiological-mining-of-critical-minerals-is-altered-by-community-modifying-metal-enrichments-at-the-geological-society-of-america-connects-2025-conference-in-san-antonio-tx",
-          title: 'Presenting two talks: (1) Recursive Modeling Connects Geochemistry and Genomics in Critical Minerals...',
           description: "",
           section: "News",},{id: "news-presenting-a-microbiological-basis-for-critical-mineral-aquisiton-from-abandoned-coal-mines-in-pa-at-the-duquesne-biology-fall-2025-seminar-series",
           title: 'Presenting A Microbiological Basis for Critical Mineral Aquisiton from Abandoned Coal Mines in...',
