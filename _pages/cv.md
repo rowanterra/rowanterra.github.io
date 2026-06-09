@@ -4,7 +4,7 @@ permalink: /cv/
 title: cv
 nav: true
 nav_order: 5
-description: Please find my CV below.
+description: Please find my CV below
 ---
 
 <iframe
