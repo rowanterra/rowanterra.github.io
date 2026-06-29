@@ -8,7 +8,7 @@ subtitle: Computational Biogeochemistry    Ph.D. Candidate and ORISE Research Fe
 
 profile:
   align: right
-  image: IMG_3313.PNG
+  image: prof_pic.jpg
   image_circular: false
   image_style: "width: 320px;"
 
