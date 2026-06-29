@@ -18,20 +18,22 @@ latest_posts:
   limit: 3
 ---
 
-<img src="/assets/img/prof_pic.png" alt="Rowan R. Terra" class="float-profile" loading="eager" decoding="async">
+<img src="/assets/img/prof_pic.jpg" alt="Rowan R. Terra" class="float-profile" loading="eager" decoding="async">
 
 <style>
 .float-profile {
   float: right;
-  width: 320px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 50%;
   margin: 0 0 1.25rem 1.5rem;
 }
 @media (max-width: 768px) {
   .float-profile {
     float: none;
     display: block;
-    width: 100%;
-    max-width: 320px;
     margin: 0 auto 1.25rem;
   }
 }
