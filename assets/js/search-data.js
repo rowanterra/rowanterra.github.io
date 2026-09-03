@@ -443,6 +443,11 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-corrplotpy",
+          title: 'corrplotpy',
+          description: "A Python port of the R package corrplot 0.95, with a style builder that writes the Python or R code for a plot and a side-by-side comparison with R.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/corrplotpy/";
             },},{id: "projects-stock-solutions-calculator",
           title: 'Stock Solutions Calculator',
           description: "Step-by-step solution preparation with automatic mass/volume calculations, bottle labels, and multi-component recipes.",
