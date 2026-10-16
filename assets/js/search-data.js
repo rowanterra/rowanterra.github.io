@@ -57,17 +57,17 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "projects-corrplotpy",
           title: 'corrplotpy',
-          description: "A Python port of the R package corrplot 0.95, with a style builder that writes the Python or R code for a plot and a side-by-side comparison with R.",
+          description: "Python port of the R package corrplot, with a style builder.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/corrplotpy/";
-            },},{id: "projects-analytical-lab-results-parser-and-evaluator",
-          title: 'Analytical Lab Results Parser and Evaluator',
-          description: "Reads an ICP results workbook, compares the instruments side by side, flags QC and QA results outside limits, and writes conservative values, figures and a PDF report.",
+            },},{id: "projects-lab-results-parser",
+          title: 'Lab Results Parser',
+          description: "Instrument comparison and QC/QA check for RFA workbooks.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/lab_results_parser/";
             },},{id: "projects-stock-solutions-calculator",
           title: 'Stock Solutions Calculator',
-          description: "Step-by-step solution preparation with automatic mass/volume calculations, bottle labels, and multi-component recipes.",
+          description: "Mass or volume for a stock solution, with a bottle label.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/solutions_calculator/";
             },},{
