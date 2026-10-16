@@ -60,6 +60,11 @@ ninja.data = [{
           description: "A Python port of the R package corrplot 0.95, with a style builder that writes the Python or R code for a plot and a side-by-side comparison with R.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/corrplotpy/";
+            },},{id: "projects-analytical-lab-results-parser-and-evaluator",
+          title: 'Analytical Lab Results Parser and Evaluator',
+          description: "Reads an ICP results workbook, compares the instruments side by side, flags QC and QA results outside limits, and writes conservative values, figures and a PDF report.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/lab_results_parser/";
             },},{id: "projects-stock-solutions-calculator",
           title: 'Stock Solutions Calculator',
           description: "Step-by-step solution preparation with automatic mass/volume calculations, bottle labels, and multi-component recipes.",
