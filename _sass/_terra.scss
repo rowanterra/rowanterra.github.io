@@ -378,3 +378,8 @@ ninja-keys {
   border: 1px solid $site-divider;
   background: #fff;
 }
+
+// Tools page: smaller cards, so the software and tools rows fit on one screen
+.projects .card .card-body { padding: 0.6rem 0.75rem; }
+.projects .card .card-title { font-size: 1rem; }
+.projects .card .card-text { font-size: 0.82rem; line-height: 1.35; }
