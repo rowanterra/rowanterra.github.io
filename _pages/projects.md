@@ -5,7 +5,7 @@ permalink: /tools/
 description: Lab tools and calculators.
 nav: true
 nav_order: 3
-display_categories: [software, tools, calculators]
+display_categories: [software, utilities]
 horizontal: false
 ---
 

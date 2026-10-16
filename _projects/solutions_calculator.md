@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Stock Solutions Calculator
-description: Step-by-step solution preparation with automatic mass/volume calculations, bottle labels, and multi-component recipes.
+description: Mass or volume for a stock solution, with a bottle label.
 img: assets/img/solutions-calculator-thumb.png
 importance: 1
-category: calculators
+category: utilities
 redirect: /assets/html/solutions-calculator.html
 ---

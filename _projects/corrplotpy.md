@@ -1,7 +1,7 @@
 ---
 layout: page
 title: corrplotpy
-description: A Python port of the R package corrplot 0.95, with a style builder that writes the Python or R code for a plot and a side-by-side comparison with R.
+description: Python port of the R package corrplot, with a style builder.
 img: assets/img/corrplotpy-thumb.png
 importance: 1
 category: software
