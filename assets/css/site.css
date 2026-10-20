@@ -1,0 +1,181 @@
+/* rowanterra.com stylesheet.
+   Colors and type follow terracognita.earth. No web fonts, no external files.
+   Breakpoint: 576px. Below it the nav collapses and text is left-aligned. */
+
+:root {
+  --paper: #f6f3ee;
+  --card: #fbfaf7;
+  --ink: #2b2f2c;
+  --muted: #667c7f;
+  --forest: #24503d;
+  --green: #357a53;
+  --taupe: #d3c4b0;
+  --line: #cfc8bb;
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px/1.55 var(--font);
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--green); text-decoration: none; }
+a:hover { color: var(--forest); text-decoration: underline; }
+h1, h2, h3 { font-weight: 700; line-height: 1.2; margin: 0 0 .5em; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.9rem; margin-top: 1.4em; }
+h3 { font-size: 1.25rem; }
+p { margin: 0 0 1em; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+.wrap { max-width: 932px; margin: 0 auto; padding: 0 16px; }
+main { padding: 48px 0 32px; }
+
+/* Top bar: forest with the contour drawing */
+.bar {
+  background: var(--forest) url("/assets/img/topo_bar.svg") center / cover no-repeat;
+  color: var(--taupe);
+}
+.bar .wrap { display: flex; align-items: center; min-height: 56px; gap: 12px; }
+.brand { color: var(--taupe); font-weight: 700; font-size: 1.25rem; margin-right: auto; }
+.brand:hover { color: #fff; text-decoration: none; }
+.nav { display: flex; align-items: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.nav a { display: block; color: var(--taupe); font-size: 15px; padding: 14px 8px 12px; }
+.nav a:hover { color: #fff; text-decoration: none; }
+.nav a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px 0 var(--taupe); }
+.nav .tc a {
+  background: var(--green); color: #fff; font-weight: 700;
+  padding: 4px 12px; margin-left: 10px; line-height: 1.4;
+}
+.nav .tc a:hover { background: var(--paper); color: var(--forest); }
+.menu-btn {
+  display: none; background: none; border: 0; padding: 10px 4px; cursor: pointer;
+}
+.menu-btn span { display: block; width: 24px; height: 2px; margin: 5px 0; background: var(--taupe); }
+
+/* Page heading */
+.subtitle { color: var(--forest); font-size: 1.05rem; margin-top: -.25rem; }
+
+/* Home page */
+.portrait {
+  float: right; width: 300px; height: 300px; object-fit: cover; object-position: center 30%;
+  border-radius: 50%; margin: 0 0 1.25rem 1.5rem;
+}
+.figure { clear: both; text-align: center; margin: 2rem 0; }
+.figure img { width: 100%; max-width: 575px; opacity: .9; }
+
+/* Consulting band */
+.tc-band {
+  clear: both; display: flex; align-items: center; justify-content: space-between; gap: 18px 28px;
+  margin: 2rem 0; padding: 26px 28px;
+  background: var(--forest) url("/assets/img/topo_bar.svg") center / cover no-repeat;
+}
+.tc-band img { flex: 0 0 auto; width: 180px; display: block; }
+.tc-band .copy { flex: 1 1 auto; }
+.tc-band h2 { font-size: 1.25rem; color: var(--taupe); margin: 0 0 6px; }
+.tc-band p { color: var(--paper); margin: 0; max-width: 520px; }
+.tc-band .btn {
+  flex: 0 0 auto; background: var(--green); color: #fff; font-weight: 700; padding: 11px 28px;
+}
+.tc-band .btn:hover { background: var(--paper); color: var(--forest); text-decoration: none; }
+
+/* Ruled tables: top, header and bottom rules only */
+table { border-collapse: collapse; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); margin: 0 0 1.5rem; }
+th, td { text-align: left; vertical-align: top; padding: 2px 16px 2px 0; }
+thead th { border-bottom: 1px solid var(--ink); }
+.scroll { overflow-x: auto; }
+
+/* News list */
+.news { width: 100%; }
+.news th { width: 20%; white-space: nowrap; padding: 8px 12px 8px 0; }
+.news td { padding: 8px 0; }
+
+/* People page */
+.bio { display: flex; align-items: flex-start; gap: 2rem; }
+.bio img { width: 240px; flex: 0 0 auto; }
+.note { font-style: italic; }
+
+/* Tools page */
+.category {
+  text-align: right; color: var(--taupe); font-size: 2rem; margin: 2.5rem 0 1rem;
+  padding-bottom: 4px; border-bottom: 1px solid var(--taupe);
+}
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(156px, 1fr)); gap: 30px; }
+.card {
+  display: block; background: #fff; color: var(--ink); box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
+}
+.card:hover { text-decoration: none; color: var(--ink); box-shadow: 0 3px 10px rgba(0, 0, 0, .28); }
+.card img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.card .body { padding: .6rem .75rem .8rem; }
+.card .name { font-size: 1rem; margin: 0 0 .3rem; }
+.card .desc { font-size: .82rem; line-height: 1.35; color: #4f5a57; margin: 0; }
+.card .gh { display: inline-block; margin-top: .3rem; }
+.card .gh svg { width: 16px; height: 16px; fill: var(--green); }
+
+/* Publications */
+.filter {
+  width: 100%; max-width: 350px; padding: 9px 12px; font: inherit;
+  border: 1px solid #b9b1a3; background: var(--card); color: var(--ink); margin: .5rem 0 1rem;
+}
+.year { text-align: right; color: var(--muted); font-size: 2rem; border-top: 1px solid var(--line); padding-top: 1rem; margin: 1.5rem 0 1rem; }
+.pub { display: grid; grid-template-columns: 125px 1fr; gap: 0 30px; margin-bottom: 2rem; }
+.pub .abbr { display: block; background: var(--green); color: #fff; font-size: 12px; font-weight: 700; text-align: center; padding: 1px 4px; margin-bottom: 6px; }
+.pub .cover { width: 125px; box-shadow: 0 2px 6px rgba(0, 0, 0, .2); }
+.pub .title { font-weight: 700; }
+.pub .venue { font-style: italic; }
+.pub .links { margin-top: 6px; display: flex; gap: 10px; }
+.pub .links a, .pub .links button {
+  font: 11px/1 var(--font); text-transform: uppercase; padding: 6px 16px;
+  border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer;
+}
+.pub .links a:hover, .pub .links button:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
+.pub pre { white-space: pre-wrap; font-size: 12px; background: var(--card); border: 1px solid var(--line); padding: 10px; margin-top: 8px; }
+
+/* CV page */
+.cv-download { display: inline-block; background: var(--green); color: #fff; font-weight: 700; padding: 8px 20px; margin-bottom: 1rem; }
+.cv-download:hover { background: var(--forest); color: #fff; text-decoration: none; }
+.cv-pages img { display: block; width: 100%; margin: 0 0 16px; border: 1px solid var(--line); background: #fff; }
+
+/* Contact icons on the home page */
+.social { text-align: center; margin: 2.5rem 0 0; }
+.social a { display: inline-block; margin: 0 8px; }
+.social svg { height: 48px; width: auto; fill: var(--ink); }
+.social a:hover svg { fill: var(--forest); }
+.social p { font-size: 13px; margin-top: .75rem; }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; text-align: center; padding: 14px 0; }
+
+/* Justified paragraphs on screens 576px and wider */
+@media (min-width: 576px) {
+  main .prose p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+}
+
+/* Phones */
+@media (max-width: 575.98px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  main { padding-top: 28px; }
+  .menu-btn { display: block; }
+  .bar .wrap { flex-wrap: wrap; }
+  .nav { display: none; flex-basis: 100%; flex-direction: column; align-items: flex-end; padding-bottom: 8px; }
+  .nav.open { display: flex; }
+  .nav a { padding: 8px 4px; }
+  .nav a[aria-current="page"] { box-shadow: none; font-weight: 700; }
+  .nav .tc a { margin: 6px 0 0; padding: 4px 12px; }
+  .portrait { float: none; display: block; margin: 0 auto 1.25rem; width: 240px; height: 240px; }
+  .tc-band { flex-direction: column; align-items: flex-start; padding: 22px 20px; }
+  .tc-band img { width: 160px; }
+  .bio { flex-direction: column; gap: 1rem; }
+  .bio img { width: 200px; }
+  .news th { width: auto; }
+  .cards { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .pub { grid-template-columns: 80px 1fr; gap: 0 16px; }
+  .pub .cover { width: 80px; }
+  .year, .category { font-size: 1.6rem; }
+  .social svg { height: 38px; }
+}
