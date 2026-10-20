@@ -7,21 +7,21 @@ nav: true
 nav_order: 7
 ---
 
-## Rowan R. Terra
+## Rowan R. Terra, Ph.D.
 
 <div style="display: flex; align-items: flex-start; gap: 2rem;">
   <img src="/assets/img/prof_pic.jpg" width="240">
 
   <div>
     <p>
-    Rowan R. Terra is a Biology Ph.D. candidate and Oak Ridge Institute for Science and Education (ORISE) research fellow dually advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL).
+    Rowan R. Terra, Ph.D., is a computational biogeochemist and Oak Ridge Institute for Science and Education (ORISE) research fellow. Rowan earned a Ph.D. in Biological Sciences from Duquesne University in 2026, co-advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL). In November 2026 Rowan tentatively begins a postdoctoral position with Carnegie Mellon University (CMU) and NETL.
     </p>
 
     <p>
-    Their doctoral research focuses on the coupled geochemical and microbial controls on metal mobility and critical mineral recovery in abandoned mine drainage (AMD) systems, with particular emphasis on 3d- and 4f-block metals in Appalachian coal basins. Rowan integrates environmental microbiology, chemistry, and data science to develop holistic frameworks for understanding and predicting microbe–metal interactions in mining-impacted environments.
+    Their doctoral research focused on the coupled geochemical and microbial controls on metal mobility and critical mineral recovery in abandoned mine drainage (AMD) systems, with particular emphasis on 3d- and 4f-block metals in Appalachian coal basins. Rowan integrates environmental microbiology, chemistry, and data science to develop holistic frameworks for understanding and predicting microbe–metal interactions in mining-impacted environments.
     </p>
     <p>
-    Rowan’s commitment to multidisciplinary research has led to collaborations across multiple departments and institutions. During their Ph.D. studies, they have prioritized research training and skills development of undergraduate and graduate students in the lab, resulting in numerous students contributing as co-authors on peer-reviewed publications and manuscripts in preparation.
+    Rowan’s commitment to multidisciplinary research has led to collaborations across multiple departments and institutions. During their Ph.D. studies, they prioritized research training and skills development of undergraduate and graduate students in the lab, resulting in numerous students contributing as co-authors on peer-reviewed publications and manuscripts in preparation.
     </p>
   </div>
 </div>

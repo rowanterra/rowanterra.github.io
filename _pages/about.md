@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Computational Biogeochemistry Ph.D. Candidate and ORISE Research Fellow
+subtitle: Computational Biogeochemist and ORISE Research Fellow
 profile:
   align: right
   image_circular: false
@@ -51,11 +51,11 @@ latest_posts:
 }
 </style>
 
-I am a Ph.D. candidate conducting research on biogeochemical processes in abandoned mine drainage (AMD) at <a href="https://www.duq.edu/academics/colleges-and-schools/science-and-engineering/academics/departments-and-programs/biological-sciences/index.php">Duquesne University</a> and <a href="https://edx.netl.doe.gov/sites/geomicrobiology/">NETL-DOE</a> under an <a href="https://orise.orau.gov/index.html">ORISE</a> research fellowship. My current projects (1) characterize AMD feedstocks using field and computational methods while also (2) exploring microbiological mining for critical mineral (CMM) extraction and recovery. Several manuscripts are currently under review or in preparation spanning these directives.
+I hold a Ph.D. in Biological Sciences from <a href="https://www.duq.edu/academics/colleges-and-schools/science-and-engineering/academics/departments-and-programs/biological-sciences/index.php">Duquesne University</a> (2026). My doctoral research on biogeochemical processes in abandoned mine drainage (AMD) was carried out at Duquesne and <a href="https://edx.netl.doe.gov/sites/geomicrobiology/">NETL-DOE</a> under an <a href="https://orise.orau.gov/index.html">ORISE</a> research fellowship. These projects (1) characterized AMD feedstocks using field and computational methods and (2) explored microbiological mining for critical mineral (CMM) extraction and recovery. We are now preparing the remaining manuscripts from this work for publication.
 
 I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multidisciplinary approaches to scientific questions. More information can be found in my CV.
 
-*I anticipate searching for postdoctoral or industry positions with late 2026 or early 2027 start dates.* I am open to work in academic, government, or industry settings, with a preference for multidisciplinary laboratories that mesh bench and computational work. Ultimately, I would like to work toward becoming a principal investigator in any of these environments.
+*In November 2026 I tentatively begin a postdoctoral position with Carnegie Mellon University (CMU) and NETL.* I am open to longer-term tenure-track and research and development (R&D) positions in academic, industrial, and government settings, with a preference for multidisciplinary laboratories that mesh bench and computational work. I also continue my consulting work through Terra Cognita LLC. Ultimately, I would like to work toward becoming a principal investigator in any of these environments.
 
 <div class="tc-band">
   <img class="tc-logo" src="/assets/img/terra_cognita_lockup.svg" alt="Terra Cognita, Earth, Known" width="180" height="96">

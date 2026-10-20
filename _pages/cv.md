@@ -7,7 +7,7 @@ nav_order: 5
 description: Please find my CV below
 ---
 
-<p><a class="cv-download" href="{{ '/assets/pdf/terra_cv_2026-10-04_web.pdf' | relative_url }}">Download the CV (PDF)</a></p>
+<p><a class="cv-download" href="{{ '/assets/pdf/terra_cv_2026-10-20_web.pdf' | relative_url }}">Download the CV (PDF)</a></p>
 
 <div class="cv-pages">
 {% for i in (1..6) %}
