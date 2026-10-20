@@ -383,3 +383,20 @@ ninja-keys {
 .projects .card .card-body { padding: 0.6rem 0.75rem; }
 .projects .card .card-title { font-size: 1rem; }
 .projects .card .card-text { font-size: 0.82rem; line-height: 1.35; }
+
+// Justified body paragraphs on wider screens; cards, bands and tables stay left-aligned
+@media (min-width: 576px) {
+  .post article p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  .post article .card p,
+  .post article .tc-band p,
+  .post article td p,
+  .post article .news p {
+    text-align: left;
+    hyphens: manual;
+    -webkit-hyphens: manual;
+  }
+}
