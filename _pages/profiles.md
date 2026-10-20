@@ -7,14 +7,14 @@ nav: true
 nav_order: 7
 ---
 
-## Rowan R. Terra, Ph.D.
+## Rowan R. Terra
 
 <div style="display: flex; align-items: flex-start; gap: 2rem;">
   <img src="/assets/img/prof_pic.jpg" width="240">
 
   <div>
     <p>
-    Rowan R. Terra, Ph.D., is a computational biogeochemist and Oak Ridge Institute for Science and Education (ORISE) research fellow. Rowan earned a Ph.D. in Biological Sciences from Duquesne University in 2026, co-advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL). In November 2026 Rowan tentatively begins a postdoctoral position with Carnegie Mellon University (CMU) and NETL.
+    Rowan R. Terra is a computational biogeochemist. Rowan successfully defended a Ph.D. in Biological Sciences at Duquesne University in October 2026 (degree conferral pending), co-advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL). In November 2026 Rowan tentatively begins as an Oak Ridge Institute for Science and Education (ORISE) postdoctoral research fellow with Carnegie Mellon University and NETL.
     </p>
 
     <p>
@@ -61,6 +61,7 @@ nav_order: 7
 
 | Name | Role | Area of Expertise | Institution |
 |------|------|-------------------|-------------|
+| **Y. (Alex) Guo, Ph.D.** | Postdoctoral Mentor | Chemistry | Carnegie Mellon University |
 | **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Duquesne University |
 | **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | National Energy Technology Laboratory |
 | **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | National Energy Technology Laboratory |

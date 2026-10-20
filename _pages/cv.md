@@ -11,6 +11,6 @@ description: Please find my CV below
 
 <div class="cv-pages">
 {% for i in (1..6) %}
-  <img src="{{ '/assets/img/cv/terra_cv_2026-10-04_p' | append: i | append: '.png' | relative_url }}" alt="CV page {{ i }} of 6" width="1275" height="1650" loading="lazy">
+  <img src="{{ '/assets/img/cv/terra_cv_2026-10-20_p' | append: i | append: '.png' | relative_url }}" alt="CV page {{ i }} of 6" width="1275" height="1650" loading="lazy">
 {% endfor %}
 </div>
