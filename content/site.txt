@@ -1,0 +1,12 @@
+# Site settings. One "key: value" per line. Lines that start with # are notes.
+name: Rowan R. Terra
+url: https://rowanterra.com
+description: Rowan R. Terra, computational biogeochemistry, environmental microbiology, and critical mineral recovery from abandoned mine drainage.
+keywords: biogeochemistry, geochemistry, microbiology, abandoned mine drainage, critical minerals, rare earth elements
+contact_note: rowan.r.terra(at)gmail(dot)com | terrar(at)duq(dot)edu
+email: rowan.r.terra@gmail.com
+github: https://github.com/rowanterra
+linkedin: https://www.linkedin.com/in/rowan-terra
+orcid: https://orcid.org/0009-0001-3890-705X
+scholar: https://scholar.google.com/citations?user=BSpwNNoAAAAJ
+consulting_url: https://terracognita.earth

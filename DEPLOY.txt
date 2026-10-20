@@ -1,0 +1,35 @@
+rowanterra.com: switch from the al-folio site to this build (2026-10-20)
+
+The old site stays in the history and under the tag al-folio-2026-10-20. GitHub Pages keeps serving the
+gh-pages branch, so no Pages setting changes. The new workflow (.github/workflows/deploy.yml) replaces the
+old one of the same name and writes gh-pages from public/.
+
+1. Preview the new build before anything is committed:
+     cd ~/"Terra Cognita LLC/website-templates/rowanterra-site_rebuild_2026-10-20"
+     python3 -m http.server -d public 8000
+   Open http://localhost:8000 and click through every page at laptop and phone widths. Ctrl-C to stop.
+
+2. Replace the repository contents on a new branch:
+     cd ~/Documents/rowanterra.github.io
+     git switch main && git pull --ff-only
+     git tag al-folio-2026-10-20
+     git switch -c rebuild-2026-10-20
+     git rm -r -q .
+     rsync -a --exclude .git ~/"Terra Cognita LLC/website-templates/rowanterra-site_rebuild_2026-10-20/" ./
+     git add -A
+     git commit -m "Rebuild the site as plain HTML from a standard-library Python script"
+
+3. Build and check inside the repository, then preview once more:
+     python3 tools/build_site.py && python3 tests/check_site.py
+     python3 -m http.server -d public 8000
+
+4. Publish:
+     git switch main
+     git merge --ff-only rebuild-2026-10-20
+     git push origin main al-folio-2026-10-20
+
+5. Check the Actions tab: the "Deploy site" run should finish in under a minute. Then load
+   https://rowanterra.com and the five pages. A browser may show the old pages for a few minutes
+   from its cache.
+
+To go back to the old site: git revert the rebuild commit on main and push, or check out the tag.
