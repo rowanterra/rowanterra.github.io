@@ -219,10 +219,19 @@ def frame(site: dict, title: str, body: str, path: str, today: str, script: str 
 {body}
 </div></main>
 <footer><div class="wrap">&copy; Copyright {today[:4]} {site['name']}. Last updated: {long_date(today)}.</div></footer>
-{JS_MENU}{script}
+{JS_MENU}{script}{counter_tag(site)}
 </body>
 </html>
 """
+
+
+def counter_tag(site: dict) -> str:
+    """Script tag of the GoatCounter counter served from this site; an empty string when site.txt has no goatcounter key."""
+    code = site.get("goatcounter", "").strip()
+    if not code:
+        return ""
+    return (f'<script data-goatcounter="https://{html.escape(code)}.goatcounter.com/count" '
+            'async src="/assets/js/count.js"></script>')
 
 
 def long_date(iso: str) -> str:

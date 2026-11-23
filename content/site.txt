@@ -10,3 +10,5 @@ linkedin: https://www.linkedin.com/in/rowan-terra
 orcid: https://orcid.org/0009-0001-3890-705X
 scholar: https://scholar.google.com/citations?user=BSpwNNoAAAAJ
 consulting_url: https://terracognita.earth
+# GoatCounter site code, the part before .goatcounter.com. An empty value turns page counting off.
+goatcounter: rowanterra
