@@ -35,6 +35,10 @@ Common changes:
 - **Tool card:** add `content/tools/<name>.md` with `title`, `description`, `category` (`software` or `utilities`), `order`, `page`, `thumb`, and optional `github`. The tool page goes in `public/assets/html/`, the square thumbnail (about 770 px) in `public/assets/img/`.
 - **CV:** replace the PDF in `public/assets/pdf/` (name `terra_cv_YYYY-MM-DD_web.pdf`) and the page images in `public/assets/img/cv/` (`terra_cv_YYYY-MM-DD_pN.png`, 1275 x 1650 px). The build links the newest PDF and every page image.
 
+## Page counts
+
+GoatCounter counts page views without cookies. The counter script is a copy kept at `public/assets/js/count.js`, so no page loads a script from another host. Each page view sends one request to `https://<code>.goatcounter.com/count`. The `goatcounter` key in `content/site.txt` holds the site code, and an empty value removes the counter script from every page.
+
 ## Hosting
 
 GitHub Pages, branch `gh-pages`, custom domain `rowanterra.com` (`public/CNAME`). `public/.nojekyll` stops GitHub from running Jekyll on the files. Any static host can serve `public/` unchanged.
