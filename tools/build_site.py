@@ -26,6 +26,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT, PUBLIC = ROOT / "content", ROOT / "public"
+PAGE_DESC = {
+    "publications": "Publications by Rowan R. Terra in environmental microbiology, geoscience education and science teaching.",
+    "tools": "Free lab tools and calculators by Rowan R. Terra: corrplotpy, a lab results parser, and a stock solutions calculator.",
+    "cv": "Curriculum vitae of Rowan R. Terra, computational biogeochemist and data scientist.",
+    "people": "Rowan R. Terra, with the students mentored and the principal investigators worked with.",
+    "news": "News from Rowan R. Terra: papers, talks, and positions.",
+}
 NAV = [("about", "/"), ("publications", "/publications/"), ("tools", "/tools/"), ("cv", "/cv/"), ("people", "/people/")]
 
 
@@ -188,7 +195,8 @@ JS_PUBS = ("<script>(function(){var f=document.querySelector('.filter');document
 
 def frame(site: dict, title: str, body: str, path: str, today: str, script: str = "", brand: bool = True) -> str:
     """Full HTML document: head, top bar, main, footer."""
-    full = site["name"] if title == "about" else f"{site['name']} | {title}"
+    full = site["name"] + " | data analysis and scientific software" if title == "about" else f"{site['name']} | {title}"
+    desc = PAGE_DESC.get(title, site["description"])
     nav = "".join(
         f'<li><a href="{href}"' + (' aria-current="page"' if href == path else "") + f">{label}</a></li>"
         for label, href in NAV)
@@ -200,12 +208,14 @@ def frame(site: dict, title: str, body: str, path: str, today: str, script: str 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(full)}</title>
-<meta name="description" content="{html.escape(site['description'])}">
+<meta name="description" content="{html.escape(desc)}">
 <meta name="keywords" content="{html.escape(site['keywords'])}">
 <meta name="author" content="{html.escape(site['name'])}">
 <link rel="canonical" href="{site['url']}{path}">
 <meta property="og:title" content="{html.escape(full)}">
-<meta property="og:description" content="{html.escape(site['description'])}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <meta property="og:url" content="{site['url']}{path}">
 <meta property="og:image" content="{site['url']}/assets/img/prof_pic.jpg">
 <link rel="icon" href="/assets/img/favicon.ico">
@@ -298,8 +308,8 @@ def build(today: str) -> list:
 </div>
 <div class="tc-band">
 <img src="/assets/img/terra_cognita_lockup.svg" alt="Terra Cognita, Earth, Known" width="180" height="96">
-<div class="copy"><h2>Consulting</h2><p>I run Terra Cognita LLC, a consulting firm for scientific computing, data analysis, and modeling.</p></div>
-<a class="btn" href="{site['consulting_url']}">Visit Terra Cognita</a>
+<div class="copy"><h2>Consulting and freelance work</h2><p>Terra Cognita LLC opens to new clients in early 2027 and will take on data analysis, statistics, publication figures, dashboards, and custom lab software. Clients can be research groups, schools, health studies, and environmental firms, inside and outside mining.</p></div>
+<a class="btn" href="{site['consulting_url']}">See services</a>
 </div>
 <h2>news</h2>
 {news_table()}
@@ -319,13 +329,13 @@ def build(today: str) -> list:
     # Tools
     tools = [(read_page(f)[0], f.stem) for f in sorted((CONTENT / "tools").glob("*.md"))]
     gh = icons["github"]
-    parts = ['<h1>tools</h1>\n<p>Lab tools and calculators.</p>']
+    parts = [f'<h1>tools</h1>\n<p>Lab tools and calculators, free to use. Terra Cognita LLC builds tools of this kind for clients. See <a href="{site["consulting_url"]}">Terra Cognita</a>.</p>']
     for cat in ("software", "utilities"):
         cards = []
         for t, _ in sorted([x for x in tools if x[0]["category"] == cat], key=lambda x: int(x[0].get("order", 99))):
             ghl = (f'<span class="gh" title="GitHub repository"><svg viewBox="{gh["vb"]}" aria-hidden="true"><path d="{gh["d"]}"/></svg></span>'
                    if t.get("github") else "")
-            cards.append(f'<a class="card" href="{t["page"]}"><img src="{t["thumb"]}" alt="{html.escape(t["title"])}" loading="lazy">'
+            cards.append(f'<a class="card" href="{t["page"]}"><img src="{t["thumb"]}" alt="{html.escape(t["title"])} screenshot" loading="lazy">'
                          f'<div class="body"><h3 class="name">{html.escape(t["title"])}</h3><p class="desc">{html.escape(t["description"])}</p>{ghl}</div></a>')
         parts.append(f'<h2 class="category" id="{cat}">{cat}</h2>\n<div class="cards">{"".join(cards)}</div>')
     write("tools/index.html", frame(site, "tools", "\n".join(parts), "/tools/", today)); pages.append("/tools/")
