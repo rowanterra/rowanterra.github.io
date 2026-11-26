@@ -1,0 +1,5 @@
+---
+title: publications
+---
+
+I have several publications expected in 2026. The topics covered in these manuscripts will include (1) Spatiotemporal Biogeochemistry from Field Surveys, (2) Biological Mining, (3) Computational Prospecting for REE/CMM in fluid and solid feedstocks, (4) Genome Announcements, and (5) Educational Studies.

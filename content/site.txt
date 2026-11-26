@@ -1,0 +1,14 @@
+# Site settings. One "key: value" per line. Lines that start with # are notes.
+name: Rowan R. Terra
+url: https://rowanterra.com
+description: Rowan R. Terra, computational biogeochemist and data scientist. Data analysis, statistics, figures, and scientific software for environmental, education, and health research.
+keywords: data analysis, statistics, scientific software, Python, R, survey analysis, data visualization, biogeochemistry, environmental microbiology, abandoned mine drainage, critical minerals
+contact_note: rowan.r.terra(at)gmail(dot)com | terrar(at)duq(dot)edu
+email: rowan.r.terra@gmail.com
+github: https://github.com/rowanterra
+linkedin: https://www.linkedin.com/in/rowan-terra
+orcid: https://orcid.org/0009-0001-3890-705X
+scholar: https://scholar.google.com/citations?user=BSpwNNoAAAAJ
+consulting_url: https://terracognita.earth
+# GoatCounter site code, the part before .goatcounter.com. An empty value turns page counting off.
+goatcounter: rowanterra
