@@ -21,6 +21,7 @@ import datetime
 import html
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -33,7 +34,7 @@ PAGE_DESC = {
     "people": "Rowan R. Terra, with the students mentored and the principal investigators worked with.",
     "news": "News from Rowan R. Terra: papers, talks, and positions.",
 }
-NAV = [("about", "/"), ("publications", "/publications/"), ("tools", "/tools/"), ("cv", "/cv/"), ("people", "/people/")]
+NAV = [("about", "/"), ("publications", "/publications/"), ("tools", "/tools/"), ("people", "/people/")]
 
 
 # ---------------------------------------------------------------- reading content
@@ -250,6 +251,23 @@ def long_date(iso: str) -> str:
     return f"{d:%B} {d.day}, {d.year}"
 
 
+
+def cv_pdfs() -> list:
+    """Return the CV PDFs in public/assets/pdf, oldest first."""
+    return sorted((PUBLIC / "assets" / "pdf").glob("terra_cv_*_web.pdf"))
+
+
+def build_cv_page(site: dict, today: str, pages: list) -> None:
+    """Write the CV page from the newest CV PDF and its page images."""
+    cv_pdf = cv_pdfs()[-1].name
+    cv_imgs = sorted((PUBLIC / "assets" / "img" / "cv").glob("*.png"), key=lambda p: int(re.search(r"_p(\d+)\.png$", p.name).group(1)))
+    imgs = "\n".join(f'<img src="/assets/img/cv/{p.name}" alt="CV page {i} of {len(cv_imgs)}" width="1275" height="1650" loading="lazy">'
+                     for i, p in enumerate(cv_imgs, 1))
+    cv = (f'<h1>cv</h1>\n<p><a class="cv-download" href="/assets/pdf/{cv_pdf}">Download the CV (PDF)</a></p>\n'
+          f'<div class="cv-pages">\n{imgs}\n</div>')
+    write("cv/index.html", frame(site, "cv", cv, "/cv/", today)); pages.append("/cv/")
+
+
 def write(rel: str, text: str) -> None:
     """Write a file under public/, creating folders."""
     p = PUBLIC / rel
@@ -342,18 +360,17 @@ def build(today: str) -> list:
     for t, slug in tools:                       # old card links from the previous site
         write(f"projects/{slug}/index.html", redirect(t["page"]))
 
-    # CV
-    cv_pdf = sorted((PUBLIC / "assets" / "pdf").glob("terra_cv_*_web.pdf"))[-1].name
-    cv_imgs = sorted((PUBLIC / "assets" / "img" / "cv").glob("*.png"), key=lambda p: int(re.search(r"_p(\d+)\.png$", p.name).group(1)))
-    imgs = "\n".join(f'<img src="/assets/img/cv/{p.name}" alt="CV page {i} of {len(cv_imgs)}" width="1275" height="1650" loading="lazy">'
-                     for i, p in enumerate(cv_imgs, 1))
-    cv = (f'<h1>cv</h1>\n<p><a class="cv-download" href="/assets/pdf/{cv_pdf}">Download the CV (PDF)</a></p>\n'
-          f'<div class="cv-pages">\n{imgs}\n</div>')
-    write("cv/index.html", frame(site, "cv", cv, "/cv/", today)); pages.append("/cv/")
+    # CV: an unlisted page, linked from the people page, built only when a CV PDF is present.
+    if not cv_pdfs():
+        shutil.rmtree(PUBLIC / "cv", ignore_errors=True)
+    else:
+        build_cv_page(site, today, pages)
 
     # People
     meta, body = read_page(CONTENT / "people.md")
-    write("people/index.html", frame(site, "people", f'<h1>people</h1>\n<div class="prose">{markdown(body)}</div>', "/people/", today))
+    cv_link = '<p><a class="cv-download" href="/cv/">View CV</a></p>' if cv_pdfs() else ""
+    people = markdown(body).replace("<!-- cv-link -->", cv_link)
+    write("people/index.html", frame(site, "people", f'<h1>people</h1>\n<div class="prose">{people}</div>', "/people/", today))
     pages.append("/people/")
 
     # News

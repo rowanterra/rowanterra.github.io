@@ -14,6 +14,8 @@ Their doctoral research focused on the coupled geochemical and microbial control
 
 Rowan’s commitment to multidisciplinary research has led to collaborations across multiple departments and institutions. During their Ph.D. studies, they prioritized research training and skills development of undergraduate and graduate students in the lab, resulting in numerous students contributing as co-authors on peer-reviewed publications and manuscripts in preparation.
 
+<!-- cv-link -->
+
 </div>
 </div>
 
