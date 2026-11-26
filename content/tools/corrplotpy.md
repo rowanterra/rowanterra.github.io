@@ -1,6 +1,6 @@
 ---
 title: corrplotpy
-description: Python port of the R package corrplot, with a style builder.
+description: Python port of the R package corrplot, with a style builder. For analysts who want corrplot figures in a Python workflow.
 category: software
 order: 1
 page: /assets/html/corrplotpy.html

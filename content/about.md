@@ -7,4 +7,4 @@ I successfully defended my Ph.D. in Biological Sciences at <a href="https://www.
 
 I have a decade of research experience spanning biological, chemical, ecological, and computational sciences. These opportunities have helped me flesh out my preference for multidisciplinary approaches to scientific questions. More information can be found in my CV.
 
-*In November 2026 I tentatively begin a postdoctoral position with Carnegie Mellon University and NETL, with continued support from my ORISE fellowship.* I am open to longer-term tenure-track and research and development (R&D) positions in academic, industrial, and government settings, with a preference for multidisciplinary laboratories that mesh bench and computational work. Ultimately, I would like to work toward becoming a principal investigator in any of these environments. I also continue my consulting work through Terra Cognita LLC.
+In November 2026 I joined the DOE-NETL HERMES initiative as an ORISE Postdoctoral Research Fellow. In 2027 I plan to move into industry, and I am excited to broaden my offerings and take on new projects through Terra Cognita LLC once my government role ends in early 2027.
