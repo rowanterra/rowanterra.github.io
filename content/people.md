@@ -8,7 +8,7 @@ title: people
 <img src="/assets/img/prof_pic.jpg" alt="Rowan R. Terra" width="240" height="242">
 <div>
 
-Rowan R. Terra is a computational biogeochemist. Rowan successfully defended a Ph.D. in Biological Sciences at Duquesne University in October 2026 (degree conferral pending), co-advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL). In November 2026 Rowan tentatively begins a postdoctoral position with Carnegie Mellon University and NETL, with continued support from the Oak Ridge Institute for Science and Education (ORISE) fellowship.
+Rowan R. Terra is a computational biogeochemist. Rowan successfully defended a Ph.D. in Biological Sciences at Duquesne University in October 2026 (degree conferral pending), co-advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL). In November 2026 Rowan joined the DOE-NETL HERMES initiative, with continued support from the Oak Ridge Institute for Science and Education (ORISE) fellowship. Rowan is considering a transition to industry in 2027 to work on a wider range of applied projects.
 
 Their doctoral research focused on the coupled geochemical and microbial controls on metal mobility and critical mineral recovery in abandoned mine drainage (AMD) systems, with particular emphasis on 3d- and 4f-block metals in Appalachian coal basins. Rowan integrates environmental microbiology, chemistry, and data science to develop holistic frameworks for understanding and predicting microbe–metal interactions in mining-impacted environments.
 
@@ -52,7 +52,6 @@ Rowan’s commitment to multidisciplinary research has led to collaborations acr
 
 | Name | Role | Area of Expertise | Institution |
 |------|------|-------------------|-------------|
-| **Y. Guo, Ph.D.** | Postdoctoral Mentor | Chemistry | Carnegie Mellon University |
 | **N. Trun, Ph.D.** | Doctoral Co-Advisor | Microbiology | Duquesne University |
 | **D. Gulliver, Ph.D.** | Doctoral Co-Advisor | Geomicrobiology | National Energy Technology Laboratory |
 | **C. Lopano, Ph.D.** | Research Mentor | Geochemistry and Minerology | National Energy Technology Laboratory |
