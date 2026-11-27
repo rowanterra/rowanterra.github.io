@@ -337,9 +337,7 @@ def build(today: str) -> list:
     # Publications
     meta, body = read_page(CONTENT / "publications.md")
     entries = parse_bib((CONTENT / "papers.bib").read_text(encoding="utf-8"))
-    figure = ('<div class="figure"><img src="/assets/img/model_fixed.png" alt="Models under development: CMM in AMD fluids, '
-              'CMM in AMD precipitants, CMM and AMD microbiology" width="1400" height="849" loading="lazy"></div>')
-    pub = (f'<h1>publications</h1>\n<div class="prose">{markdown(body)}</div>\n{figure}\n'
+    pub = (f'<h1>publications</h1>\n<div class="prose">{markdown(body)}</div>\n'
            f'<input class="filter" type="search" placeholder="Type to filter" aria-label="Filter publications">\n'
            f'{publications_html(entries)}')
     write("publications/index.html", frame(site, "publications", pub, "/publications/", today, JS_PUBS)); pages.append("/publications/")
