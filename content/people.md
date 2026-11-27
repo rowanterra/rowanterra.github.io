@@ -8,7 +8,7 @@ title: people
 <img src="/assets/img/prof_pic.jpg" alt="Rowan R. Terra" width="240" height="242">
 <div>
 
-Rowan R. Terra is a computational biogeochemist. Rowan successfully defended a Ph.D. in Biological Sciences at Duquesne University in October 2026 (degree conferral pending), co-advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL). In November 2026 Rowan joined the DOE-NETL HERMES initiative as an ORISE Postdoctoral Research Fellow. Rowan plans to move into industry in 2027 and is excited to broaden the range of projects Terra Cognita LLC takes on.
+Rowan R. Terra is a computational biogeochemist. Rowan successfully defended a Ph.D. in Biological Sciences at Duquesne University in October 2026, co-advised by Dr. Nancy Trun at Duquesne University and Dr. Djuna Gulliver at the Department of Energy National Energy Technology Laboratory (DOE-NETL). In November 2026 Rowan joined the DOE-NETL HERMES initiative as an ORISE Postdoctoral Research Fellow. Rowan plans to move into industry in 2027 and is excited to broaden the range of projects Terra Cognita LLC takes on.
 
 Their doctoral research focused on the coupled geochemical and microbial controls on metal mobility and critical mineral recovery in abandoned mine drainage (AMD) systems, with particular emphasis on 3d- and 4f-block metals in Appalachian coal basins. Rowan integrates environmental microbiology, chemistry, and data science to develop holistic frameworks for understanding and predicting microbe–metal interactions in mining-impacted environments.
 
